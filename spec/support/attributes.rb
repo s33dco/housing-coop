@@ -16,3 +16,20 @@ def property_attributes(overrides = {})
     rent_per_week:  100.00
   }.merge(overrides)
 end
+
+def contractor_attributes(overrides = {})
+  {
+    phone:          '01234567789',
+    name:           'Steve Mcqueen',
+    email:          'mcqueenplumbing@gmail.com',
+    details:        'expert in hot water tank'
+  }.merge(overrides)
+end
+
+def maintenance_attributes(overrides = {})
+  {
+    worktype:        'Plumbing',
+    cost:            123.45,
+    details:          'Rat-proofed underneath the house, rewired the downstairs plug Sockets. They did an excellent job.'
+  }.merge(overrides)
+end

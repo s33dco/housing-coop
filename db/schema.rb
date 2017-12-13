@@ -10,7 +10,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171213002412) do
+ActiveRecord::Schema.define(version: 20171213130433) do
+
+  create_table "contractors", force: :cascade do |t|
+    t.string   "phone"
+    t.string   "name"
+    t.text     "details"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "email"
+  end
+
+  create_table "maintenances", force: :cascade do |t|
+    t.string   "worktype"
+    t.decimal  "cost"
+    t.text     "details"
+    t.date     "date"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "contractor_id"
+    t.integer  "property_id"
+    t.index ["contractor_id"], name: "index_maintenances_on_contractor_id"
+    t.index ["property_id"], name: "index_maintenances_on_property_id"
+  end
 
   create_table "people", force: :cascade do |t|
     t.string   "firstname"
