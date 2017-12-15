@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171213130433) do
+ActiveRecord::Schema.define(version: 20171214235642) do
+
+  create_table "calendars", force: :cascade do |t|
+    t.datetime "when"
+    t.string   "where"
+    t.string   "title"
+    t.text     "details"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "contractors", force: :cascade do |t|
     t.string   "phone"
@@ -19,6 +28,12 @@ ActiveRecord::Schema.define(version: 20171213130433) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string   "email"
+  end
+
+  create_table "jobs", force: :cascade do |t|
+    t.string   "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "maintenances", force: :cascade do |t|
@@ -32,6 +47,15 @@ ActiveRecord::Schema.define(version: 20171213130433) do
     t.integer  "property_id"
     t.index ["contractor_id"], name: "index_maintenances_on_contractor_id"
     t.index ["property_id"], name: "index_maintenances_on_property_id"
+  end
+
+  create_table "participations", force: :cascade do |t|
+    t.integer  "person_id"
+    t.integer  "calendar_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["calendar_id"], name: "index_participations_on_calendar_id"
+    t.index ["person_id"], name: "index_participations_on_person_id"
   end
 
   create_table "people", force: :cascade do |t|
@@ -62,6 +86,27 @@ ActiveRecord::Schema.define(version: 20171213130433) do
     t.decimal  "rent_per_week"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+  end
+
+  create_table "rents", force: :cascade do |t|
+    t.integer  "property_id"
+    t.decimal  "payment"
+    t.date     "date"
+    t.string   "notes"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["property_id"], name: "index_rents_on_property_id"
+  end
+
+  create_table "roles", force: :cascade do |t|
+    t.integer  "person_id"
+    t.integer  "job_id"
+    t.date     "start"
+    t.date     "end"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["job_id"], name: "index_roles_on_job_id"
+    t.index ["person_id"], name: "index_roles_on_person_id"
   end
 
 end

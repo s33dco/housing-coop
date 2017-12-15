@@ -1,6 +1,10 @@
 class Person < ApplicationRecord
 
   belongs_to :property
+  has_many :roles
+  has_many :jobs, through: :roles
+  has_many :participations
+  has_many :events, through: :participations, source: :calendar
 
 	validates :firstname, presence: true,
 											  format: { with: /\A[a-zA-Z]+\z/, message: "only allows letters" }

@@ -1,8 +1,9 @@
 class Property < ApplicationRecord
 
 	has_many :people
+	has_many :rents
 	has_many :maintenances
-
+	has_many :contractors, through: :maintenances
 
 	validates :house_name_no,	:address1, :address2,	
 						presence: true,

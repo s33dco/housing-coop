@@ -1,5 +1,6 @@
 class Contractor < ApplicationRecord
 	has_many :maintenances
+	has_many :properties, through: :maintenances
 
 		validates :name,	:details,	
 								presence: true,

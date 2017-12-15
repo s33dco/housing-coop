@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :calendars
+  resources :roles
+  resources :jobs
+  resources :rents
   resources :contractors
   resources :maintenances
   resources :properties

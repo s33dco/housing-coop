@@ -33,3 +33,11 @@ def maintenance_attributes(overrides = {})
     details:          'Rat-proofed underneath the house, rewired the downstairs plug Sockets. They did an excellent job.'
   }.merge(overrides)
 end
+
+def rent_attributes(overrides = {})
+  {
+    payment:          123.45,
+    notes:            "additional payement made",
+    date:             "2017/12/01"
+  }.merge(overrides)
+end
