@@ -3,8 +3,8 @@ class CreateRoles < ActiveRecord::Migration[5.0]
     create_table :roles do |t|
       t.references :person, foreign_key: true
       t.references :job, foreign_key: true
-      t.date :start
-      t.date :end
+      t.date :role_start
+      t.date :role_end
 
       t.timestamps
     end

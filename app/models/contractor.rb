@@ -4,7 +4,7 @@ class Contractor < ApplicationRecord
 
 		validates :name,	:details,	
 								presence: true,
-								format: {with: /\A[A-Za-z0-9\-\/\.\'\,\s]+\z/, message:'letters or numbers only'}
+								format: {with: /\A[a-zA-Z0-9 \-\/\.\'\,]+\Z/, message:'letters or numbers only'}
 
 		validates :phone, 					
 								presence: true, numericality: true,

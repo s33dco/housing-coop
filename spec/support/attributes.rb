@@ -30,14 +30,40 @@ def maintenance_attributes(overrides = {})
   {
     worktype:        'Plumbing',
     cost:            123.45,
-    details:          'Rat-proofed underneath the house, rewired the downstairs plug Sockets. They did an excellent job.'
+    details:         'Rat-proofed underneath the house, rewired the downstairs plug Sockets. They did an excellent job.'
   }.merge(overrides)
 end
 
 def rent_attributes(overrides = {})
   {
     payment:          123.45,
-    notes:            "additional payement made",
+    notes:            "additional payment made",
     date:             "2017/12/01"
   }.merge(overrides)
 end
+
+def calendar_attributes(overrides = {})
+  {
+    when:             "2017-12-25 19:30:00",
+    where:            "Meeting Space, Lordship Lane",
+    title:            "Annual General Meeting",
+    details:          "Adgenda points sent by email"
+  }.merge(overrides)
+end
+
+def job_attributes(overrides = {})
+  {
+    title:             "Maintenance Officer"
+  }.merge(overrides)
+end
+
+def role_attributes(overrides = {})
+  {
+    role_start:             "2016-01-01",
+    role_end:               "2017-01-01" 
+  }.merge(overrides)
+end
+
+
+
+

@@ -101,8 +101,8 @@ ActiveRecord::Schema.define(version: 20171214235642) do
   create_table "roles", force: :cascade do |t|
     t.integer  "person_id"
     t.integer  "job_id"
-    t.date     "start"
-    t.date     "end"
+    t.date     "role_start"
+    t.date     "role_end"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["job_id"], name: "index_roles_on_job_id"
