@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+
+	get  'static_pages/home'
+	get  'static_pages/allocations'
+	get  'static_pages/contact'
+
   resources :calendars
   resources :roles
   resources :jobs
@@ -7,5 +12,5 @@ Rails.application.routes.draw do
   resources :maintenances
   resources :properties
   resources :people
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
 end
