@@ -8,6 +8,9 @@ class Job < ApplicationRecord
 
 	before_validation :clean_title
 
+
+private
+
 	def clean_title
 		self.title = self.title.titleize
 	end

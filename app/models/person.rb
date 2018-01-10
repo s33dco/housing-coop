@@ -30,6 +30,7 @@ class Person < ApplicationRecord
 
 
 
+private
 
   def tidy_name
     self.firstname = self.firstname.downcase.titleize

@@ -19,6 +19,9 @@ class Property < ApplicationRecord
 
 	before_validation :smarten_address
 
+
+private
+
 	def smarten_address
 		self.house_name_no = self.house_name_no.titleize
 		self.address1 = self.address1.titleize

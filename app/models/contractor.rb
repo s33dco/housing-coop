@@ -16,6 +16,9 @@ class Contractor < ApplicationRecord
 
     before_validation :downcase_email, :clean_name
 
+
+private
+
   def clean_name
     self.name = self.name.downcase.titleize
   end
