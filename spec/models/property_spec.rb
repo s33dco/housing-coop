@@ -9,7 +9,7 @@ describe 'a property' do
   end
 
   it "requires a house name or number" do
-    property = Property.new(house_name_no: "")
+    property = Property.new(property_attributes(house_name_no: ""))
 
     property.valid?
 
@@ -20,7 +20,7 @@ describe 'a property' do
 
   	tests = %w[23? <!> (MYHOUSE) #fortytwo]
   	tests.each do |test|
-      property = Property.new(house_name_no: test)
+      property = Property.new(property_attributes(house_name_no: test))
       property.valid?
       
       expect(property.errors[:house_name_no].any?).to eq(true)
@@ -29,7 +29,7 @@ describe 'a property' do
 
 
   it "requires street name" do
-    property = Property.new(address1: "")
+    property = Property.new(property_attributes(address1: ""))
 
     property.valid?
 
@@ -40,7 +40,7 @@ describe 'a property' do
 
   	tests = %w[23? <!> (MYHOUSEst) #fortytwoAvenue]
   	tests.each do |test|
-      property = Property.new(address1: test)
+      property = Property.new(property_attributes(address1: test))
       property.valid?
       
       expect(property.errors[:address1].any?).to eq(true)
@@ -48,7 +48,7 @@ describe 'a property' do
   end
 
   it "requires town or city" do
-    property = Property.new(address2: "")
+    property = Property.new(property_attributes(address2: ""))
 
     property.valid?
 
@@ -59,7 +59,7 @@ describe 'a property' do
 
   	tests = %w[23? <!> (MYHOUSEst) #fortytwoAvenue]
   	tests.each do |test|
-      property = Property.new(address2: test)
+      property = Property.new(property_attributes(address2: test))
       property.valid?
       
       expect(property.errors[:address2].any?).to eq(true)
@@ -67,7 +67,7 @@ describe 'a property' do
   end
 
   it "requires a postcode" do
-    property = Property.new(postcode: "")
+    property = Property.new(property_attributes(postcode: ""))
 
     property.valid?
 
@@ -77,7 +77,7 @@ describe 'a property' do
   it "accepts a valid postcode" do
   	tests = ["wc1h 0aa", "da17 5ag", "b1 1ay", "g3 7uw", "BT33 0AA"]
   	tests.each do |test|
-      property = Property.new(postcode: test)
+      property = Property.new(property_attributes(postcode: test))
       property.valid?
       
       expect(property.errors[:postcode].any?).to eq(false)
@@ -87,7 +87,7 @@ describe 'a property' do
   it "rejects an invalid postcode" do
   	tests = ["wc1hh 99jh", "b! 7HG", "<><> **&", "postcode", "JJ99j HHH"]
   	tests.each do |test|
-      property = Property.new(postcode: test)
+      property = Property.new(property_attributes(postcode: test))
       property.valid?
       
       expect(property.errors[:postcode].any?).to eq(true)
@@ -95,7 +95,7 @@ describe 'a property' do
   end
 
   it "requires a rent per week value" do
-    property = Property.new(rent_per_week: "")
+    property = Property.new(property_attributes(rent_per_week: ""))
 
     property.valid?
 
@@ -105,7 +105,7 @@ describe 'a property' do
   it "rejects invalid rent values" do
   	rents = %w[-125.44 fiftyquid <> toomuch!]
   	rents.each do |rent|
-      property = Property.new(rent_per_week: rent)
+      property = Property.new(property_attributes(rent_per_week: rent))
       property.valid?
       
       expect(property.errors[:rent_per_week].any?).to eq(true)

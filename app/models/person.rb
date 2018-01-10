@@ -16,9 +16,24 @@ class Person < ApplicationRecord
   validates :email, 		presence: true,
                     		format: /\A\S+@\S+\z/,
                     		uniqueness: { case_sensitive: false , 
-                    									message: "Email address already used"}
+                    									message: "Email address already in use"}
 
   validates :phone, 		numericality: true,
   											length: {minimum: 10, maximum: 14}
+
+  before_validation :downcase_email
+  after_validation :tidy_name
+
+  scope :housed, ->{ where("housed = ?",true).order(firstname) }
+  scope :members, ->{ where("member = ?",true).order(firstname) }
+  scope :moved_out, ->{ where("housed = ?",false).order(firstname) }
+
+
+
+
+  def tidy_name
+    self.firstname = self.firstname.downcase.titleize
+    self.lastname = self.lastname.downcase.titleize
+  end
 
 end
