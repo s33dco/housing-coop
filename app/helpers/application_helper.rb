@@ -2,9 +2,9 @@ module ApplicationHelper
 	
 	def page_title
   	if content_for?(:title)
-  		"#{content_for(:title)} | Housing Coop"
+  		"#{content_for(:title)} | #{ENV['COOP_SHORT_NAME']}"
   	else
-  		"Housing Coop"
+  		"#{ENV['COOP_NAME']}"
   	end
   end
 
@@ -16,7 +16,7 @@ module ApplicationHelper
   	if content_for?(:description)
   		"#{content_for(:description)}"
   	else
-  		"Housing Coop"
+  		"#{ENV['COOP_NAME']}"
   	end
   end
 

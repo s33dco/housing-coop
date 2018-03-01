@@ -1,3 +1,8 @@
 <footer class="footer">
-	<h2>Housing Coop</h2>
+	<p><%= ENV['COOP_FULL_NAME']%></p>
+	<p><%= ENV['COOP_FOOTER']%></p>
+	<p>Registered Office : <%= ENV['COOP_ADDRESS']%></p>
+	<p>&copy; <%=link_to 's33d','http://www.s33d.co'%> <%= Time.current.year %></p>
+
+
 </footer>
