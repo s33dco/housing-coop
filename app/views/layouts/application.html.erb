@@ -16,13 +16,26 @@
   -->
     <meta charset="utf-8">
     <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
-
     <%= csrf_meta_tags %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <%= yield %>
+    <%= render "layouts/header" %>
+    <div id="wrapper">
+      <%= render "layouts/flashes" %>
+      <div id="container">
+        <main>
+          <section id="sidebar">
+            <%= render "layouts/sidebar" %>
+          </section>
+          <section id="content">
+            <%= yield %>
+          </section>
+        </main>
+      </div>
+      <%= render "layouts/footer" %>
+    </div>
   </body>
 </html>

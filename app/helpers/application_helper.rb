@@ -1,4 +1,28 @@
 module ApplicationHelper
+	
+	def page_title
+  	if content_for?(:title)
+  		"#{content_for(:title)} | Housing Coop"
+  	else
+  		"Housing Coop"
+  	end
+  end
+
+  def title(title)
+  	content_for(:title, title)
+  end
+
+	def page_description
+  	if content_for?(:description)
+  		"#{content_for(:description)}"
+  	else
+  		"Housing Coop"
+  	end
+  end
+
+  def description(description)
+  	content_for(:description, description)
+  end
 
 	def resident_helper(person)
 			name = person.first_name 
@@ -26,27 +50,4 @@ module ApplicationHelper
 		d.strftime("%d/%m/%y")	
 	end
 
-	def page_title
-  	if content_for?(:title)
-  		"#{content_for(:title)} | Housing Coop"
-  	else
-  		"Housing Coop"
-  	end
-  end
-
-  def title(title)
-  	content_for(:title, title)
-  end
-
-	def page_description
-  	if content_for?(:description)
-  		"#{content_for(:description)}"
-  	else
-  		"Housing Coop"
-  	end
-  end
-
-  def description(description)
-  	content_for(:description, description)
-  end
 end
