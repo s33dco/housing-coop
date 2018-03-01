@@ -40,7 +40,7 @@ module ApplicationHelper
 
 	def page_description
   	if content_for?(:description)
-  		"#{content_for(:description)} - Housing Coop"
+  		"#{content_for(:description)}"
   	else
   		"Housing Coop"
   	end
