@@ -2,15 +2,16 @@
 	<h1><%= ENV['COOP_NAME']%></h1>
 	<nav>
 		<ul class="main-nav">
-			<li>Home</li>
-			<li>Allocations</li>
-			<li>Contact</li>
-			<li>Sign In</li>
-			<li>Properties</li>
-			<li>People</li>
-			<li>Documents</li>
-			<li>Calendar</li>
-			<li>Sign Out</li>
+			<li>
+				<%=link_to 'Home', welcome_path%>
+			</li>
+			<li>
+				<%=link_to 'Allocations', allocations_path%>
+			</li>
+			<li>
+				<%=link_to 'Contact', contact_path%>
+			</li>
+			<li>Sign In/Out</li>
 		</ul>
 	</nav>
 </header>
