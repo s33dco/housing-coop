@@ -19,6 +19,9 @@ class Property < ApplicationRecord
 
 	before_validation :smarten_address
 
+	scope :by_street_name_number, ->{order("address1 asc").order("house_name_no asc")}
+	scope :former_coop, ->{where("coop_house = ?", false)}
+
 
 private
 

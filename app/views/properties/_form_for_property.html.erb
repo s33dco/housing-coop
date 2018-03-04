@@ -1,0 +1,42 @@
+<%= form_for [@property] do |f| %>
+  <%= render "shared/errors", object: @property %>
+    <fieldset>
+      <ul>
+        <li class="required">
+          <%= f.label :house_name_no, "Name or Number" %>         
+          <%= f.text_field :house_name_no, size: 40, placeholder: "Property name or number", autofocus: true %>
+        </li>
+        <li class="required">
+          <%= f.label :address1, "Address 1" %>         
+          <%= f.text_field :address1, size: 40 , placeholder: 'Road or Street name'%>
+        </li>
+        <li class="required">
+          <%= f.label :address2, "Address 2" %>         
+          <%= f.text_field :address2, size: 40 , placeholder: 'Town or City'%>
+        </li>
+        <li class="required">
+          <%= f.label :postcode, "Postcode" %>         
+          <%= f.text_field :postcode, size: 40 , placeholder: 'Postcode'%>
+        </li>
+        <li class="required">
+          <%= f.label :rent_per_week ,"Rent per week £"%>         
+          <%= f.text_field :rent_per_week, size: 40 , placeholder: 'just numbers'%>
+        </li>
+        <li>
+          <%= f.label :kitchen_upgrade, "Kitchen refurb due :"%>
+          <%= f.date_select :kitchen_upgrade, 
+          {order: [ :day, :month, :year], start_year: Date.today.year, end_year: Date.today.year + 10 } %>
+        </li>
+        <li class="required">
+          <%= f.label :coop_house, "Managed by Coop"%>
+          <%= f.radio_button(:coop_house, 'true', checked: true) %>
+          <%= f.label(:coop_house, "Yes") %>
+          <%= f.radio_button(:coop_house, 'false', checked: false) %>
+          <%= f.label(:coop_house, "No") %>
+        </li>
+      </ul>
+      <p>
+        <%= f.submit 'Submit' %> 
+      </p>
+    </fieldset>
+<% end %>

@@ -1,0 +1,12 @@
+<article>
+	<header>
+		<h1><%= @property.house_name_no %> <%= @property.address1 %>, <%= @property.address2 %>, <%= @property.postcode %></h1>
+	</header>
+
+<h2>Details for <%=@property.house_name_no %></h2>
+
+		<%=link_to 'Edit', edit_property_path(@property) %>
+		<%= link_to 'Delete', @property, 
+	                  class: 'button',
+	                  method: :delete, data: { confirm: 'Are you sure?' } %>
+</article>
