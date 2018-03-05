@@ -1,21 +1,19 @@
 <article>
 	<header>
-		<h1> (<%= pluralize(@properties.size, 'home') %>)</h1>
+		<h1> (<%= pluralize(@properties.size, 'property') %>)</h1>
 	</header>
 
-	<% @properties.each do | property | %>
-		<table>
+	<table>
+		<% @properties.each do | property | %>
 			<tr>
-				<td><%= property.house_name_no %> <%= property.address1 %></td>
-				<td><%= property.address2 %></td>
-				<td><%= property.postcode %></td>
+				<td><%= link_to home_address(property), property_path(property)%></td>
 				<td><%=link_to 'Edit', edit_property_path(property) %></td>
 				<td><%= link_to 'Delete', property, 
 	                  class: 'button',
 	                  method: :delete, data: { confirm: 'Are you sure?' } %></td>
 			</tr>
-		</table>
-	<% end %>
+		<% end %>
+	</table>
 
 	<%=link_to 'Add a new property', new_property_path %>
 </article>

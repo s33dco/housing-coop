@@ -1,0 +1,24 @@
+<article>
+	<header>
+		<h1><%= @person.firstname %> <%= @person.lastname %></h1>
+	</header>
+
+	<p><%= home_address(@person.property) %></p>
+	<p><%=@person.firstname%> has lived on <%= @person.property.address1%> <%= resident_since(@person)%>.</p>
+
+	<div class="contact-details">
+		<% unless @person.phone.empty? %>
+		<p>tel : <%=@person.phone %>
+		<% end %>
+
+		<% unless @person.email.empty? %>
+		 email : <%= @person.email %></p>
+		<% end %>
+	</div>
+
+
+		<%=link_to 'Edit', edit_person_path(@person) %>
+		<%= link_to 'Delete', @person, 
+	                  class: 'button',
+	                  method: :delete, data: { confirm: 'Are you sure?' } %>
+</article>

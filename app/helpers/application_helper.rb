@@ -28,8 +28,8 @@ module ApplicationHelper
 # for people
 
 	def full_name(person)
-			name = person.first_name 
-			name << " " << person.last_name
+			name = person.firstname 
+			name << " " << person.lastname
 	end
 
 # for one line address
@@ -54,6 +54,10 @@ module ApplicationHelper
 
 	def short_date(d)
 		d.strftime("%d/%m/%y")	
+	end
+
+		def month_year(d)
+		d.strftime("%B '%y")	
 	end
 
 end

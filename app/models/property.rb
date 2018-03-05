@@ -22,6 +22,9 @@ class Property < ApplicationRecord
 	scope :by_street_name_number, ->{order("address1 asc").order("house_name_no asc")}
 	scope :former_coop, ->{where("coop_house = ?", false)}
 
+	def number_and_address1
+		"#{house_name_no} #{address1}"
+	end
 
 private
 
@@ -31,5 +34,7 @@ private
 		self.address2 = self.address2.titleize
 		self.postcode.upcase!
 	end
+
+
 
 end

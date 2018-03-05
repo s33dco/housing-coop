@@ -5,6 +5,24 @@
 
 <h2>Details for <%=@property.house_name_no %></h2>
 
+<% if @people.empty? %>
+	<h3>This property has been empty for <%= empty(@property)%>.</h3>
+<% else %>
+	<% @people.each do | person |%>
+	<p><%= link_to full_name(person), person%><% if person.member?%> (Member)<%end%></p>
+		<% end %>
+
+<!-- showing rent link is dependent on a resident -->
+
+<% end %>
+
+<% unless @property.kitchen_upgrade.nil? %>
+	<p>Kitchen refurb due after <%= month_year(@property.kitchen_upgrade) %>, <%=kitchen_year(@property)%> to go.</p>
+<% end %>
+
+
+<!-- maintenance may be shown regardless of people -->
+
 		<%=link_to 'Edit', edit_property_path(@property) %>
 		<%= link_to 'Delete', @property, 
 	                  class: 'button',

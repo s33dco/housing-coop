@@ -24,9 +24,9 @@ class Person < ApplicationRecord
   before_validation :downcase_email
   after_validation :tidy_name
 
-  scope :housed, ->{ where("housed = ?",true).order(firstname) }
-  scope :members, ->{ where("member = ?",true).order(firstname) }
-  scope :moved_out, ->{ where("housed = ?",false).order(firstname) }
+  scope :housed, ->{ where("housed = ?",true).order('firstname asc') }
+  scope :members, ->{ where("member = ?",true).order('firstname asc') }
+  scope :moved_out, ->{ where("housed = ?",false).order('firstname asc') }
 
 
 
