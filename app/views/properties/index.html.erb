@@ -1,6 +1,11 @@
+<!-- for meta data -->
+<%= title("#{controller_name.titleize}")%>
+<%= description("List of properties managed by #{ENV['COOP_FULL_NAME']}")%>
+<!--  -->
+
 <article>
 	<header>
-		<h1> (<%= pluralize(@properties.size, 'property') %>)</h1>
+		<h1><%= ENV['COOP_SHORT_NAME']%> manages <%= pluralize(@properties.size, 'property') %>.</h1>
 	</header>
 
 	<table>
@@ -15,5 +20,7 @@
 		<% end %>
 	</table>
 
-	<%=link_to 'Add a new property', new_property_path %>
+	<div class="page-actions">
+		<%=link_to 'Add a new property', new_property_path %>
+	</div>
 </article>

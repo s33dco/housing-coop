@@ -8,15 +8,15 @@
         </li>
         <li class="required">
           <%= f.label :lastname, "Family Name" %>         
-          <%= f.text_field :lastname, size: 40 , placeholder: 'your family name'%>
+          <%= f.text_field :lastname, size: 40 , placeholder: 'your family name(s)'%>
         </li>
         <li class="required">
           <%= f.label :email, "Email" %>         
-          <%= f.text_field :email, size: 40 , placeholder: 'your email address'%>
+          <%= f.text_field :email, size: 40 , placeholder: 'must enter to be able to log in'%>
         </li>
         <li class="required">
           <%= f.label :phone, "Phone #" %>         
-          <%= f.text_field :phone, size: 40 , placeholder: 'your phone number'%>
+          <%= f.text_field :phone, size: 40 , placeholder: 'your phone number, only displayed internally'%>
         </li>
         <li class="required">
           <%= f.label :words, "Say a few words" %>         
@@ -34,16 +34,16 @@
           <%= f.label :joined, "date moved in"%>
           <%= f.date_select :joined, { order: [ :day, :month, :year], 
                                                 start_year: Date.today.year - 25, 
-                                                end_year: Date.today.year + 10, 
+                                                end_year: Date.today.year, 
                                                 include_blank: true
                                               } %>
         </li>
 
         <li class="required">
           <%= f.label :member, "Member"%>
-          <%= f.radio_button(:member, 'true', checked: true) %>
+          <%= f.radio_button(:member, 'true', checked: false) %>
           <%= f.label(:member, "Yes") %>
-          <%= f.radio_button(:member, 'false', checked: false) %>
+          <%= f.radio_button(:member, 'false', checked: true) %>
           <%= f.label(:member, "No") %>
         </li>
         <li class="required">
@@ -53,6 +53,17 @@
           <%= f.radio_button(:housed, 'false', checked: false) %>
           <%= f.label(:housed, "No") %>
         </li>
+        <li class="required">
+          <%= f.label :child, "Child"%>
+          <%= f.radio_button(:child, 'true', checked: false) %>
+          <%= f.label(:child, "Yes") %>
+          <%= f.radio_button(:child, 'false', checked: true) %>
+          <%= f.label(:child, "No") %>
+        </li>
+
+
+
+
         <li class="required">
           <%= f.label :secretary, "Secretary"%>
           <%= f.radio_button(:secretary, 'true', checked: false) %>

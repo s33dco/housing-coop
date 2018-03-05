@@ -1,30 +1,54 @@
+<!-- for meta data -->
+<%= title("#{@property.house_name_no} #{@property.address1}")%>
+<%= description("property details for #{@property.house_name_no} #{@property.address1} - #{ENV['COOP_FULL_NAME']}")%>
+<!--  -->
+
 <article>
 	<header>
 		<h1><%= @property.house_name_no %> <%= @property.address1 %>, <%= @property.address2 %>, <%= @property.postcode %></h1>
 	</header>
 
-<h2>Details for <%=@property.house_name_no %></h2>
-
-<% if @people.empty? %>
-	<h3>This property has been empty for <%= empty(@property)%>.</h3>
-<% else %>
-	<% @people.each do | person |%>
-	<p><%= link_to full_name(person), person%><% if person.member?%> (Member)<%end%></p>
+	<table>
+		<tr>
+			<td>Rent per week</td>
+			<td><%= show_money(@property.rent_per_week) %></td>
+		</tr>
+		<tr>
+			<td>Current Rent Balance</td>
+			<td>TBA</td>
+		</tr>
+	</table>
+		
+		<% if @people.empty? %>
+			<h2>This property has been empty for <%= empty(@property)%>.</h2>
+		<% else %>
+			<h2><%= pluralize(@people.size, 'Resident') %></h2>
+			<table>
+				<% @people.each do | person |%>
+					<tr>
+						<td><%= link_to full_name(person), person%></td>
+						<td><% if person.member?%> (Member)<% end %>
+								<% if person.child?%> (U18) <% end %>	
+						</td>
+					</tr>
+				<% end %>
+			</table>
 		<% end %>
 
-<!-- showing rent link is dependent on a resident -->
-
-<% end %>
-
-<% unless @property.kitchen_upgrade.nil? %>
-	<p>Kitchen refurb due after <%= month_year(@property.kitchen_upgrade) %>, <%=kitchen_year(@property)%> to go.</p>
-<% end %>
+		<% unless @property.kitchen_upgrade.nil? %>
+			<p>Kitchen refurb due <%= month_year(@property.kitchen_upgrade) %>, (<%=kitchen_year(@property)%> to go).</p>
+		<% end %>
 
 
-<!-- maintenance may be shown regardless of people -->
+	<!-- showing rent book link is dependent on a resident -->
 
+	<!-- maintenance may be shown regardless of people -->
+
+	<div class="page-actions">
 		<%=link_to 'Edit', edit_property_path(@property) %>
 		<%= link_to 'Delete', @property, 
 	                  class: 'button',
 	                  method: :delete, data: { confirm: 'Are you sure?' } %>
+	</div>
+
 </article>

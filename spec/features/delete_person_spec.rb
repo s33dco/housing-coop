@@ -6,7 +6,7 @@ describe "Deleting a person" do
 	    @property = Property.create!(property_attributes)
 	  end
   
-  it "destroys the person and shows the movie listing without the deleted person" do
+  it "destroys the person and shows the property page without the deleted person" do
     person = Person.new(person_attributes)
     person.property = @property
     person.save

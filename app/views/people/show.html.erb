@@ -1,24 +1,44 @@
+<!-- for meta data -->
+<%= title("#{@person.firstname} #{@person.lastname}")%>
+<%= description("Coop details for #{@person.firstname} #{@person.lastname} - #{ENV['COOP_FULL_NAME']}")%>
+<!--  -->
+
 <article>
 	<header>
-		<h1><%= @person.firstname %> <%= @person.lastname %></h1>
+		<h1><%= @person.firstname %> <%= @person.lastname %>
+			<% if @person.child? %> (U18)<% end %>
+		</h1>
 	</header>
 
-	<p><%= home_address(@person.property) %></p>
-	<p><%=@person.firstname%> has lived on <%= @person.property.address1%> <%= resident_since(@person)%>.</p>
+
 
 	<div class="contact-details">
-		<% unless @person.phone.empty? %>
-		<p>tel : <%=@person.phone %>
-		<% end %>
-
-		<% unless @person.email.empty? %>
-		 email : <%= @person.email %></p>
-		<% end %>
+		<p><%= link_to (home_address(@person.property)), property_path(@person.property) %>
+			(<% if @person.joined.nil? %>Please confirm the date you moved in
+				<% else %>
+				for <%= time_ago_in_words(@person.joined) %>
+				<% end %>)
+		</p>
+		<p>
+			<% unless @person.email.empty? %><i class="fas fa-envelope"></i> <%= @person.email %></p><% end %>
+		</p>
+		<p>
+		<% unless @person.phone.empty? %><i class="fas fa-phone"></i> <%= telephone(@person.phone)%><% end %>
+		</p>
 	</div>
 
+	<div class="bio">
+		<% unless @person.words.nil? || @person.words.empty? %>
+			<p><i class="fas fa-quote-left"></i> <%= @person.words %> <i class="fas fa-quote-right"></i></p>	
+		<% end %>
+	</div>	
+	
 
+
+	<div class="page-actions">
 		<%=link_to 'Edit', edit_person_path(@person) %>
 		<%= link_to 'Delete', @person, 
 	                  class: 'button',
 	                  method: :delete, data: { confirm: 'Are you sure?' } %>
+	 </div>
 </article>

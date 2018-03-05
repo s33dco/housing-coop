@@ -15,13 +15,15 @@ describe 'Creating a Person' do
     fill_in "First Name(s)", with: "Ian"
     fill_in "Family Name", with: "mArLeY"
     fill_in "Email", with: "code@s33d.co"
-    fill_in "Phone #", with: "077777777777"
+    fill_in "Phone #", with: "07777 7777777"
     select "1 Electric Avenue", from: "Choose Property"
  
 
     click_button 'Submit'
 
-    expect(current_path).to eq(person_path(Person.last))
+    @newperson = Person.last
+
+    expect(current_path).to eq(person_path(@newperson))
     expect(page).to have_text('Person successfully created!')
     expect(page).to have_text('Ian')
     expect(page).to have_text('Marley')

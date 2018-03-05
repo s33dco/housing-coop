@@ -5,4 +5,11 @@ class ApplicationRecord < ActiveRecord::Base
     self.email.downcase!
   end
 
+  def strip_spaces
+  	if self.phone.nil?
+  		self.phone.delete!(' ').gsub(/\D/)
+  	end
+  end
+
+
 end

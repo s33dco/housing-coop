@@ -46,13 +46,17 @@ describe 'a person' do
     end
   end
 
-  it "requires an email" do
-    person = Person.new(person_attributes(email: ""))
+  # the mandatory email requirement has been removed
+  # so U18 may be added without contact details 
+  # this maybe reviewed
 
-    person.valid?
+  # it "requires an email" do
+  #   person = Person.new(person_attributes(email: ""))
 
-    expect(person.errors[:email].any?).to eq(true)
-  end
+  #   person.valid?
+
+  #   expect(person.errors[:email].any?).to eq(true)
+  # end
 
   it "accepts properly formatted email addresses" do
     emails = %w[user@example.com first.last@example.com to@bee.co]

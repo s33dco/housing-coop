@@ -44,7 +44,7 @@ private
 
   def person_params
     params.require(:person).
-      permit(:firstname, :lastname, :email, :phone, :joined, :exit, :member, :housed, :secretary, :rent_officer, :admin, :words, :property_id)
+      permit(:firstname, :lastname, :email, :phone, :joined, :exit, :member, :housed, :child, :secretary, :rent_officer, :admin, :words, :property_id)
   end
 
 end

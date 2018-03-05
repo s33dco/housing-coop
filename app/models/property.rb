@@ -19,7 +19,7 @@ class Property < ApplicationRecord
 
 	before_validation :smarten_address
 
-	scope :by_street_name_number, ->{order("address1 asc").order("house_name_no asc")}
+	scope :by_street_name_number, ->{where("coop_house = ?", true).order("address1 asc").order("house_name_no asc")}
 	scope :former_coop, ->{where("coop_house = ?", false)}
 
 	def number_and_address1

@@ -1,3 +1,8 @@
+<!-- for meta data -->
+<%= title("#{@person.firstname} #{@person.lastname}(edit)")%>
+<%= description("Editing details for #{@person.firstname} #{@person.lastname} - #{ENV['COOP_FULL_NAME']}")%>
+<!--  -->
+
 <header>
 	<h1>Editing <%=@person.firstname%> <%=@person.lastname%></h1>
 </header>

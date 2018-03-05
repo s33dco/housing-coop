@@ -5,7 +5,7 @@ class PropertiesController < ApplicationController
 
 	def show
 		@property = Property.find(params[:id])
-    @people = @property.people.where("housed = ?", true).order("member desc")
+    @people = @property.people.members_adults_children
 	end
 
 	def new

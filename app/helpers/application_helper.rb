@@ -38,7 +38,12 @@ module ApplicationHelper
 		address << " " << property.address1 << ", "  << property.postcode
 	end
 
-# set currency
+# for phone numbers
+	def telephone(phone)
+		number_to_phone(phone, pattern: /(\d{5})(\d{6})/, delimiter: " ")
+	end
+
+# for money
 	def show_money(money)
 		number_to_currency(money, unit: "£")
 	end
@@ -59,5 +64,4 @@ module ApplicationHelper
 		def month_year(d)
 		d.strftime("%B '%y")	
 	end
-
 end
