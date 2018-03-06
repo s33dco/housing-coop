@@ -20,7 +20,7 @@
 				<% unless @property.new_rent_value.nil? || @property.new_rent_value.empty? %>. This is scheduled to change to <%= show_money(@property.new_rent_value)%> per week<% end %><% unless @property.rent_change.nil? %> as of the <%=nice_short_date(@property.rent_change)%><% end %>.</p>
 
 			<% unless @rent_balance.nil? %>
-			<p>The current rent balance is <%=show_money(@rent_balance)%> as of the <%= nice_short_date(Time.now)%>.<br><%if @rent_balance < 0%> Please contact the Rent Officer - the account is in arrears.<%end%></p>			
+			<p>The current rent balance,(as of the <%= nice_short_date(Time.now)%>), is <%=show_money(@rent_balance)%> .<br><%if @rent_balance < 0%> Please contact the Rent Officer - the account is in arrears.<%end%></p>			
 			<% end %>
 
 			<% unless @payments.empty? %>
