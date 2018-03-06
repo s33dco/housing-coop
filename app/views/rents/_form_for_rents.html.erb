@@ -2,6 +2,10 @@
   <%= render "shared/errors", object: @rent %>
     <fieldset>
       <ul>
+         <li class="required">
+          <%= f.label :property_id, "Payment For" %>
+          <%= f.collection_select(:property_id, Property.all.order('house_name_no asc'), :id , :number_and_address1 ) %>
+        </li>
         <li>
           <%= f.label :date, "Payment Date"%>
           <%= f.date_select :date, { order: [ :day, :month, :year], 
@@ -10,21 +14,14 @@
                                                 autofocus: true 
                                               } %>
         </li>
-         <li class="required">
-          <%= f.label :property_id, "Payment For" %>
-          <%= f.collection_select(:property_id, Property.all.order('house_name_no asc'), :id , :number_and_address1 ) %>
-        </li>
-
         <li class="required">
           <%= f.label :payment, "Payment Amount £" %>         
           <%= f.text_field :payment, size: 40 , placeholder: 'just numbers no spaces'%>
         </li>
-
         <li class="required">
           <%= f.label :notes, "Notes" %>         
           <%= f.text_field :notes, size: 40, placeholder: "any additional information" %>
         </li>
-
       </ol>
       <p>
         <%= f.submit 'Submit' %> 
