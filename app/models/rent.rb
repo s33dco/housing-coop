@@ -3,7 +3,7 @@ class Rent < ApplicationRecord
 
 	validates :payment, 								
 							presence: true,
-							numericality: { greater_or_equal_to: 0}
+							numericality: { greater_than: 0}
 
 	validates :notes,	
 							format: {with: /\A[A-Za-z0-9\-\/\.\'\,\s]+\z/, message:'letters or numbers only'},

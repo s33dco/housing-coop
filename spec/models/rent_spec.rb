@@ -16,9 +16,9 @@ describe 'a rent payment' do
   end
 
   it "rejects invalid payment values" do
-  	payments = %w[-125.44 fiftyquid <> toomuch!]
+  	payments = %w[-125.44 fiftyquid toomuch!]
   	payments.each do |payment|  
-	    rent = Rent.new(payment: payment)
+	    rent = Rent.new(rent_attributes(payment: payment))
 	    rent.valid?  
 	    expect(rent.errors[:payment].any?).to eq(true)
 	  end

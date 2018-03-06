@@ -10,33 +10,33 @@
 
 	<p>
 		Rent is currently charged at <%= show_money(@property.rent_per_week)%> per week. 
-		(Pro rata : <%= rent_per_month(@property.rent_per_week)%> per month / <%= rent_per_day(@property.rent_per_week)%> per day).<br> 
-			<% unless @property.new_rent_value.nil? %>
-				This is scheduled to change to <%= show_money(@property.new_rent_value)%> per week.<% end %><% unless @property.rent_change.nil? %> As of the <%=nice_short_date(@property.rent_change) %>.<% end %></p>
+		(Pro rata : <%= rent_per_month(@property.rent_per_week)%> per month / <%= rent_per_day(@property.rent_per_week)%> per day).<br>
 
-				<% unless @rent_balance.nil? %>
-	<p>The current rent balance is <%=show_money(@rent_balance)%> as of the <%= nice_short_date(Time.now)%>.<br><%if @rent_balance < 0%> Please contact the Rent Officer the account is in arrears.<%end%></p>
+		<% unless @property.new_rent_value.nil? || @property.new_rent_value.empty? %>This is scheduled to change to <%= show_money(@property.new_rent_value)%> per week<% end %><% unless @property.rent_change.nil? %> on the <%=nice_short_date(@property.rent_change)%><% end %>.</p>
+
+		<% unless @rent_balance.nil? %>
+	<p>The current rent balance is <%=show_money(@rent_balance)%> as of the <%= nice_short_date(Time.now)%>.<br><%if @rent_balance < 0%> Please contact the Rent Officer - the account is in arrears.<%end%></p>
 				
-	
+	<% end %>
 
-	<div class="rent-book">
-		<h2>Rent Book</h2>
-		<div class="rent-payments">
-			<table>
-				<% @payments.each do | payment | %>
-				<tr>
-					<td><%=nice_short_date(payment.date)%></td>
-					<td>a payment of <%=show_money(payment.payment)%> was made,</td>
-					<td>this was updated on <%= short_date(payment.updated_at) %></td>
-					<% unless payment.notes.empty? %>
-						<td>(<%=truncate(payment.notes, length: 40, separator: ' ')%>)</td>
+	<% unless @payments.empty? %>
+		<div class="rent-book">
+			<h2>Rent Book</h2>
+			<div class="rent-payments">
+				<table>
+					<% @payments.each do | payment | %>
+					<tr>
+						<td><%=nice_short_date(payment.date)%></td>
+						<td>a payment of <%=show_money(payment.payment)%> was made,</td>
+						<td>this was updated on <%= short_date(payment.updated_at) %></td>
+						<% unless payment.notes.empty? %>
+							<td>(<%=truncate(payment.notes, length: 40, separator: ' ')%>)</td>
+						<% end %>
+					</tr>
 					<% end %>
-				</tr>
-				<% end %>
-			</table>
+				</table>
+			</div>
 		</div>
-	</div>
-
 	<% end %>
 
 	<div class="residents">	
