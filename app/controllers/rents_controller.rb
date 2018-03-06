@@ -1,7 +1,7 @@
 class RentsController < ApplicationController
 
 	def index
-		@rents = Rent.last_first
+		@payments = Rent.last_first
 	end
 
 	def show

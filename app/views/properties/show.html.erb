@@ -1,70 +1,61 @@
 <!-- for meta data -->
-<%= title("#{@property.house_name_no} #{@property.address1}")%>
-<%= description("property details for #{@property.house_name_no} #{@property.address1} - #{ENV['COOP_FULL_NAME']}")%>
-<!--  -->
+<% title("#{@property.number_and_address1}")%>
+<% description("property details for #{@property.house_name_no} #{@property.address1} - #{ENV['COOP_FULL_NAME']}")%>
+
 
 <article>
-	<header>
-		<h1><%= @property.house_name_no %> <%= @property.address1 %>, <%= @property.address2 %>, <%= @property.postcode %></h1>
+	<header class="header">
+		<h1><%= @property.number_and_address1%>, 
+			<% if @property.address2 %><%= @property.address2 %>,<% end %>
+			<%= @property.postcode %></h1>
 	</header>
 
-	<p>
-		Rent is currently charged at <%= show_money(@property.rent_per_week)%> per week. 
-		(Pro rata : <%= rent_per_month(@property.rent_per_week)%> per month / <%= rent_per_day(@property.rent_per_week)%> per day)
+	<section class='detail'>
 
-		<% unless @property.new_rent_value.nil? || @property.new_rent_value.empty? %>. This is scheduled to change to <%= show_money(@property.new_rent_value)%> per week<% end %><% unless @property.rent_change.nil? %> on the <%=nice_short_date(@property.rent_change)%>.<% end %></p>
+		<div class="rent">
+			<p>
+				Rent is currently charged at <%= show_money(@property.rent_per_week)%> per week. 
+				(Pro rata : <%= rent_per_month(@property.rent_per_week)%> per month / <%= rent_per_day(@property.rent_per_week)%> per day)
 
-	<% unless @rent_balance.nil? %>
-	<p>The current rent balance is <%=show_money(@rent_balance)%> as of the <%= nice_short_date(Time.now)%>.<br><%if @rent_balance < 0%> Please contact the Rent Officer - the account is in arrears.<%end%></p>			
-	<% end %>
+				<% unless @property.new_rent_value.nil? || @property.new_rent_value.empty? %>. This is scheduled to change to <%= show_money(@property.new_rent_value)%> per week<% end %><% unless @property.rent_change.nil? %> as of the <%=nice_short_date(@property.rent_change)%><% end %>.</p>
 
-	<% unless @payments.empty? %>
-		<div class="rent-book">
-			<h2>Rent Book</h2>
-			<div class="rent-payments">
+			<% unless @rent_balance.nil? %>
+			<p>The current rent balance is <%=show_money(@rent_balance)%> as of the <%= nice_short_date(Time.now)%>.<br><%if @rent_balance < 0%> Please contact the Rent Officer - the account is in arrears.<%end%></p>			
+			<% end %>
+
+			<% unless @payments.empty? %>
+
+				<%= render "layouts/rentbook" %>
+
+			<% end %>
+		</div>
+
+		<div class="residents">	
+			<% if @people.empty? %>
+				<h2>This property has been empty for <%= empty(@property)%>.</h2>
+			<% else %>
+				<h2><%= pluralize(@people.size, 'Resident') %></h2>
 				<table>
-					<% @payments.each do | payment | %>
-					<tr>
-						<td><%=nice_short_date(payment.date)%></td>
-						<td>a payment of <%=show_money(payment.payment)%> was made,</td>
-						<td>this was updated on <%= short_date(payment.updated_at) %></td>
-						<% unless payment.notes.empty? %>
-							<td>(<%=truncate(payment.notes, length: 40, separator: ' ')%>)</td>
-						<% end %>
-					</tr>
+					<% @people.each do | person |%>
+						<tr>
+							<td><%= link_to person.full_name, person %></td>
+							<td><% if person.member?%> (Member)<% end %>
+									<% if person.child?%> (U18) <% end %>	
+							</td>
+						</tr>
 					<% end %>
 				</table>
-			</div>
+			<% end %>
 		</div>
-	<% end %>
 
-	<div class="residents">	
-		<% if @people.empty? %>
-			<h2>This property has been empty for <%= empty(@property)%>.</h2>
-		<% else %>
-			<h2><%= pluralize(@people.size, 'Resident') %></h2>
-			<table>
-				<% @people.each do | person |%>
-					<tr>
-						<td><%= link_to full_name(person), person%></td>
-						<td><% if person.member?%> (Member)<% end %>
-								<% if person.child?%> (U18) <% end %>	
-						</td>
-					</tr>
-				<% end %>
-			</table>
-		<% end %>
-	</div>
+		<div class="maintenance">
+			<% unless @property.kitchen_upgrade.nil? %>
+				<p>Kitchen refurb due <%= month_year(@property.kitchen_upgrade) %>, (<%=kitchen_year(@property)%> to go).</p>
+			<% end %>
+			<!-- maintenance may be shown regardless of people -->
+		</div>
 
-		<% unless @property.kitchen_upgrade.nil? %>
-			<p>Kitchen refurb due <%= month_year(@property.kitchen_upgrade) %>, (<%=kitchen_year(@property)%> to go).</p>
-		<% end %>
-
-
-	<!-- showing rent book link is dependent on a resident -->
-
-
-	<!-- maintenance may be shown regardless of people -->
+	</section>
 
 	<div class="page-actions">
 		<%=link_to 'Edit', edit_property_path(@property) %>

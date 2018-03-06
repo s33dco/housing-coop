@@ -1,9 +1,19 @@
 <!-- for meta data -->
-<%= title("Edit rent payment")%>
-<%= description("Edit rent payment - #{ENV['COOP_FULL_NAME']}")%>
+<% title("Edit rent payment")%>
+<% description("Edit rent payment - #{ENV['COOP_FULL_NAME']}")%>
 <!--  -->
 
-<header>
-	<h1>Editing </h1>
-</header>
-<%= render 'form_for_rents' %>
+<article>
+	<header class="header">
+		<h1>Editing Payment</h1>
+		</header>
+
+	<section class='detail'>
+		<%= render 'form_for_rents' %>
+		</section>
+
+	<div class="page-actions">
+	
+		</div>
+
+</article>

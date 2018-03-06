@@ -22,19 +22,24 @@
 
   <body>
     <%= render "layouts/header" %>
-    <div id="wrapper">
+
+    <div id="container">
+
       <%= render "layouts/flashes" %>
-      <div id="container">
-        <main>
-          <section id="sidebar">
-            <%= render "layouts/sidebar" %>
-          </section>
-          <section id="content">
-            <%= yield %>
-          </section>
-        </main>
-      </div>
-      <%= render "layouts/footer" %>
+
+      <main>
+        <aside class="sidebar">
+          <%= render "layouts/sidebar" %>
+        </aside>
+        <section class="content">
+          <%= yield %>
+        </section>
+      </main>
+
+      <footer class='footer'>
+        <%= render "layouts/footer" %>
+      </footer>
+
     </div>
   </body>
 </html>

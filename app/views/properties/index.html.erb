@@ -1,26 +1,30 @@
 <!-- for meta data -->
-<%= title("#{controller_name.titleize}")%>
-<%= description("List of properties managed by #{ENV['COOP_FULL_NAME']}")%>
-<!--  -->
+<% title("#{controller_name.titleize}")%>
+<% description("List of properties managed by #{ENV['COOP_FULL_NAME']}")%>
+
 
 <article>
-	<header>
+	
+	<header class="header">
 		<h1><%= ENV['COOP_SHORT_NAME']%> manages <%= pluralize(@properties.size, 'property') %>.</h1>
-	</header>
+		</header>
 
-	<table>
-		<% @properties.each do | property | %>
-			<tr>
-				<td><%= link_to home_address(property), property_path(property)%></td>
-				<td><%=link_to 'Edit', edit_property_path(property) %></td>
-				<td><%= link_to 'Delete', property, 
-	                  class: 'button',
-	                  method: :delete, data: { confirm: 'Are you sure?' } %></td>
-			</tr>
-		<% end %>
-	</table>
+	<section class='detail'>
+		<table>
+			<% @properties.each do | property | %>
+				<tr>
+					<td><%= link_to "#{property.number_and_address1}", property_path(property)%></td>
+					<td><%=link_to 'Edit', edit_property_path(property) %></td>
+					<td><%= link_to 'Delete', property, 
+		                  class: 'button',
+		                  method: :delete, data: { confirm: 'Are you sure?' } %></td>
+				</tr>
+			<% end %>
+		</table>
+		</section>
 
 	<div class="page-actions">
 		<%=link_to 'Add a new property', new_property_path %>
-	</div>
+		</div>
+
 </article>

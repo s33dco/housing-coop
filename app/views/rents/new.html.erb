@@ -1,8 +1,18 @@
-<%= title("Add a new property")%>
+<!-- for meta data -->
+<%= title("Add Rent Payment")%>
+<%= description("Add a new rent payment - #{ENV['COOP_FULL_NAME']}")%>
+<!--  -->
+
+
+<%= title("Add new payment")%>
 
 <article>
-	<header>
+	<header class="header">
 		<h1>Add A New Payment</h1>
 	</header>
-	<%= render 'form_for_rents' %>
+	<section class='detail'>
+		<%= render 'form_for_rents' %>
+	</section>
+	<div class="page-actions">
+	</div>
 </article>

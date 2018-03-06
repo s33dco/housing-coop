@@ -1,24 +1,26 @@
 <!-- for meta data -->
-<%= title("#{controller_name.titleize}")%>
-<%= description("Directory - #{ENV['COOP_FULL_NAME']}")%>
+<% title("#{controller_name.titleize}")%>
+<% description("Directory - #{ENV['COOP_FULL_NAME']}")%>
 <!--  -->
 
 <article>
-	<header>
+	<header class="header">
 		<h1><%= ENV['COOP_SHORT_NAME']%> is home to <%= pluralize(@people.size, 'person') %></h1>
 	</header>
 
-	<table>
-		<% @people.each do | person | %>
-			<tr>
-				<td><%= link_to full_name(person), person_path(person) %></td>
-				<td><%=link_to 'Edit', edit_person_path(person) %></td>
-				<td><%= link_to 'Delete', person, 
-	                  class: 'button',
-	                  method: :delete, data: { confirm: 'Are you sure?' } %></td>
-			</tr>
-		<% end %>
-	</table>
+	<section class='detail'>
+		<table>
+			<% @people.each do | person | %>
+				<tr>
+					<td><%= link_to person.full_name, person_path(person) %></td>
+					<td><%=link_to 'Edit', edit_person_path(person) %></td>
+					<td><%= link_to 'Delete', person, 
+		                  class: 'button',
+		                  method: :delete, data: { confirm: 'Are you sure?' } %></td>
+				</tr>
+			<% end %>
+		</table>
+	</section>
 
 	<div class="page-actions">
 		<%=link_to 'Add a new person', new_person_path %>

@@ -25,19 +25,6 @@ module ApplicationHelper
   	end
   end
 
-# for people
-
-	def full_name(person)
-			name = person.firstname 
-			name << " " << person.lastname
-	end
-
-# for one line address
-	def home_address(property)
-		address = property.house_name_no
-		address << " " << property.address1
-	end
-
 # for phone numbers
 	def telephone(phone)
 		number_to_phone(phone, pattern: /(\d{5})(\d{6})/, delimiter: " ")
@@ -59,9 +46,7 @@ module ApplicationHelper
 	end
 
 # date formats
-	def nice_date(t)
-		t.strftime("%A the #{t.day.ordinalize} %B %Y")	
-	end
+
 	def nice_short_date(t)
 		t.strftime("#{t.day.ordinalize} %B %Y")	
 	end
@@ -74,7 +59,7 @@ module ApplicationHelper
 		d.strftime("%d/%m/%y")	
 	end
 
-		def month_year(d)
+	def month_year(d)
 		d.strftime("%B '%y")	
 	end
 end

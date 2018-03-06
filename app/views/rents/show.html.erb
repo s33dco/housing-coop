@@ -1,28 +1,41 @@
-<header>
-<h1> Rent Payment for <%= link_to home_address(@rent.property), property_path(@rent.property)%></h1>
-</header>
+<!-- for meta data -->
+<% title("Rent payment for #{@rent.property.number_and_address1}")%>
+<% description("Edit rent payment - #{ENV['COOP_FULL_NAME']}")%>
 
-<p>Rent is charged at <%= show_money(@rent.property.rent_per_week)%> per week</p>
 
-<table>
-	<tr>
-		<td>On Statement</td><td>:</td>
-		<td><%= nice_short_date(@rent.date) %></td>
-	</tr>
-	<tr>
-		<td>Amount Paid</td><td>:</td>
-		<td><%= show_money(@rent.payment) %></td>
-	</tr>
-		<tr>
-		<td>Notes</td><td>:</td>
-		<td><%= @rent.notes%></td>
-	</tr>
-		<tr>
-		<td>Updated by Rent Officer</td><td>:</td>
-		<td><%= short_date(@rent.updated_at) %></td>
-	</tr>
-</table>
+<article>
 
-<%=link_to 'Edit This Payment', edit_rent_path(@rent) %>
-<%=link_to 'Delete This Payment', @rent, method: :delete, data: { confirm: 'Are you sure?' } %>
-<%=link_to 'Rent Home', rents_path(@rent) %>
+	<header class="header">
+		<h1>Payment made for <%= @rent.property.number_and_address1%></h1>
+		</header>
+
+	<section class='detail'>
+		<table>
+			<tr>
+				<td>On Statement</td>
+				<td><%= nice_short_date(@rent.date) %></td>
+			</tr>
+			<tr>
+				<td>Property</td>
+				<td><%=link_to @rent.property.number_and_address1, @rent.property%></<td>
+			</tr>
+			<tr>
+				<td>Amount Paid</td>
+				<td><%= show_money(@rent.payment) %></td>
+			</tr>
+			<% unless @rent.notes.empty? %>
+			<tr>
+				<td>Notes</td>
+				<td><%= @rent.notes%></td>
+			</tr>
+			<% end %>
+		</table>
+	</section>
+
+	<div class="page-actions">
+		<%=link_to 'Edit This Payment', edit_rent_path(@rent) %>
+		<%=link_to 'Delete This Payment', @rent, method: :delete, data: { confirm: 'Are you sure?' } %>
+		<%=link_to 'Rent Home', rents_path(@rent) %>
+		</div>
+
+</article>

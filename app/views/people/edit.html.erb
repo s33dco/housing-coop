@@ -1,9 +1,17 @@
 <!-- for meta data -->
-<%= title("#{@person.firstname} #{@person.lastname}(edit)")%>
-<%= description("Editing details for #{@person.firstname} #{@person.lastname} - #{ENV['COOP_FULL_NAME']}")%>
+<% title("#{@person.firstname} #{@person.lastname}(edit)")%>
+<% description("Editing details for #{@person.firstname} #{@person.lastname} - #{ENV['COOP_FULL_NAME']}")%>
 <!--  -->
 
-<header>
-	<h1>Editing <%=@person.firstname%> <%=@person.lastname%></h1>
-</header>
-<%= render 'form_for_people' %>
+<article>
+	<header class="header">
+		<h1>Editing <%=@person.firstname%> <%=@person.lastname%></h1>
+	</header>
+
+	<section class='detail'>
+	<%= render 'form_for_people' %>
+	</section>
+
+	<div class="page-actions"></div>
+	</article>
+	

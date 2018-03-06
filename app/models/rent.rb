@@ -11,4 +11,5 @@ class Rent < ApplicationRecord
 
 	scope :last_first, ->{order(date: :desc).order(property_id: :asc).order(notes: :asc)}
 
+
 end

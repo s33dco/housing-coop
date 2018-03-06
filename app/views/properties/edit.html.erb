@@ -1,9 +1,20 @@
 <!-- for meta data -->
-<%= title("#{@property.house_name_no} #{@property.address1}(edit)")%>
-<%= description("Edit the property details for #{@property.house_name_no} #{@property.address1} - #{ENV['COOP_FULL_NAME']}")%>
+<% title("Editing #{@property.number_and_address1}")%>
+<% description("Edit the property details for #{@property.house_name_no} #{@property.address1} - #{ENV['COOP_FULL_NAME']}")%>
 <!--  -->
 
-<header>
-	<h1>Editing <%=@property.house_name_no%></h1>
-</header>
-<%= render 'form_for_property' %>
+<article>
+	<header class="header">
+		<h1>Editing <%= @property.number_and_address1%>, 
+			<% if @property.address2 %><%= @property.address2 %>,<% end %>
+			<%= @property.postcode %></h1>
+	</header>
+
+	<section class='detail'>
+		<%= render 'form_for_property' %>
+	</section>
+
+	<div class="page-actions">
+
+	</div>
+</article>

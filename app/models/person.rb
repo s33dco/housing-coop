@@ -40,6 +40,16 @@ private
   #   self.words = self.words.humanize
   # end
 
+  def downcase_email
+    self.email.downcase!
+  end
+
+  def strip_spaces
+    if self.phone.nil?
+      self.phone.delete!(' ').gsub(/\D/)
+    end
+  end
+
   def tidy_name
     self.firstname = self.firstname.downcase.titleize
     self.lastname = self.lastname.downcase.titleize

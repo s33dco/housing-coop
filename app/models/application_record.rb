@@ -1,15 +1,12 @@
 class ApplicationRecord < ActiveRecord::Base
   self.abstract_class = true
 
-  def downcase_email
-    self.email.downcase!
-  end
+  def number_and_address1
+		"#{self.house_name_no} #{self.address1}"
+	end
 
-  def strip_spaces
-  	if self.phone.nil?
-  		self.phone.delete!(' ').gsub(/\D/)
-  	end
-  end
-
+	def full_name
+		"#{self.firstname} #{self.lastname}"
+	end
 
 end
