@@ -1,7 +1,7 @@
 class Property < ApplicationRecord
 
 	has_many :people
-	has_many :rents
+	has_many :rents, -> { order(created_at: :asc) }
 	has_many :maintenances
 	has_many :contractors, through: :maintenances
 

@@ -1,0 +1,28 @@
+<header>
+<h1> Rent Payment for <%= link_to home_address(@payment.property), property_path(@payment.property)%></h1>
+</header>
+
+<p>Rent is charged at <%= show_money(@payment.property.rent_per_week)%> per week</p>
+
+<table>
+	<tr>
+		<td>On Statement</td><td>:</td>
+		<td><%= nice_date(@payment.date) %></td>
+	</tr>
+	<tr>
+		<td>Amount Paid</td><td>:</td>
+		<td><%= show_money(@payment.payment) %></td>
+	</tr>
+		<tr>
+		<td>Notes</td><td>:</td>
+		<td><%= @payment.notes%></td>
+	</tr>
+		<tr>
+		<td>Updated by Rent Officer</td><td>:</td>
+		<td><%= update_day(@payment.updated_at) %></td>
+	</tr>
+</table>
+
+<%=link_to 'Edit This Payment', edit_rent_path(@payment) %>
+<%=link_to 'Delete This Payment', @payment, method: :delete, data: { confirm: 'Are you sure?' } %>
+

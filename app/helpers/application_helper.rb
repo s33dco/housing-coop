@@ -48,9 +48,17 @@ module ApplicationHelper
 		number_to_currency(money, unit: "£")
 	end
 
+	def rent_per_month(per_week)
+		per_month = (per_week*52)/12
+		number_to_currency(per_month, unit: "£")
+	end
+
 # date formats
 	def nice_date(t)
 		t.strftime("%A the #{t.day.ordinalize} %B %Y")	
+	end
+	def nice_short_date(t)
+		t.strftime("#{t.day.ordinalize} %B %Y")	
 	end
 
 	def update_day(d)

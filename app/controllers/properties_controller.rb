@@ -6,6 +6,7 @@ class PropertiesController < ApplicationController
 	def show
 		@property = Property.find(params[:id])
     @people = @property.people.members_adults_children
+    @payments = @property.rents
 	end
 
 	def new

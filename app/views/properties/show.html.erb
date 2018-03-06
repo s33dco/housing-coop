@@ -8,17 +8,27 @@
 		<h1><%= @property.house_name_no %> <%= @property.address1 %>, <%= @property.address2 %>, <%= @property.postcode %></h1>
 	</header>
 
-	<table>
-		<tr>
-			<td>Rent per week</td>
-			<td><%= show_money(@property.rent_per_week) %></td>
-		</tr>
-		<tr>
-			<td>Current Rent Balance</td>
-			<td>TBA</td>
-		</tr>
-	</table>
-		
+	<p>Rent is charged at <%= show_money(@property.rent_per_week)%> per week (pro rata <%= rent_per_month(@property.rent_per_week)%> per calendar month).</p>
+
+	<div class="rent-book">
+		<h2>Rent Book</h2>
+		<div class="rent-payments">
+			<table>
+				<% @payments.each do | payment | %>
+				<tr>
+					<td><%=nice_short_date(payment.date)%></td>
+					<td>a payment of <%=show_money(payment.payment)%> was made,</td>
+					<td>this was updated on <%= short_date(payment.updated_at) %></td>
+					<% unless payment.notes.empty? %>
+						<td>(<%=truncate(payment.notes, length: 40, separator: ' ')%>)</td>
+					<% end %>
+				</tr>
+				<% end %>
+			</table>
+		</div>
+	</div>
+
+	<div class="residents">	
 		<% if @people.empty? %>
 			<h2>This property has been empty for <%= empty(@property)%>.</h2>
 		<% else %>
@@ -34,6 +44,7 @@
 				<% end %>
 			</table>
 		<% end %>
+	</div>
 
 		<% unless @property.kitchen_upgrade.nil? %>
 			<p>Kitchen refurb due <%= month_year(@property.kitchen_upgrade) %>, (<%=kitchen_year(@property)%> to go).</p>
@@ -41,6 +52,7 @@
 
 
 	<!-- showing rent book link is dependent on a resident -->
+
 
 	<!-- maintenance may be shown regardless of people -->
 
