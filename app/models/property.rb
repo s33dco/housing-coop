@@ -1,7 +1,7 @@
 class Property < ApplicationRecord
 
 	has_many :people
-	has_many :rents, -> { order(created_at: :asc) }
+	has_many :rents, -> { order(date: :desc).order(notes: :asc) }
 	has_many :maintenances
 	has_many :contractors, through: :maintenances
 
@@ -23,12 +23,20 @@ class Property < ApplicationRecord
 
 	before_validation :smarten_address
 
-	scope :by_street_name_number, ->{where("coop_house = ?", true).order("address1 asc").order("house_name_no asc")}
+	scope :by_street_name_number, ->{where("coop_house = ?", true).order(address1: :asc).order(house_name_no: :asc)}
 	scope :former_coop, ->{where("coop_house = ?", false)}
 
 	def number_and_address1
 		"#{house_name_no} #{address1}"
 	end
+
+	def balance
+	 	total_rent = self.rents.sum{|amount| amount.payment}
+	 	start_date = self.rents.last.date
+		number_of_days = (Time.now.to_date - start_date.to_date).to_i
+		total_rent - ((self.rent_per_week / 7) * number_of_days)
+	end
+
 
 private
 

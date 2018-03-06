@@ -7,7 +7,7 @@ class PropertiesController < ApplicationController
 		@property = Property.find(params[:id])
     @people = @property.people.members_adults_children
     @payments = @property.rents
-    @rent_balance = -200
+    @rent_balance = @property.balance
 	end
 
 	def new

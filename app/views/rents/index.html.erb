@@ -22,7 +22,7 @@
 			<td><%=home_address(rent.property)%></td>
 			<td><%=show_money(rent.payment)%></td>		
 			<td><%=truncate(rent.notes, length: 40, separator: ' ')%></td>
-			<td>updated : <%=short_date(rent.date)%></td>
+			<td>updated : <%=short_date(rent.updated_at)%></td>
 			<td><%=link_to 'edit', edit_rent_path(rent) %></td>
 			<td><%=link_to 'delete', rent, method: :delete, data: { confirm: 'Are you sure?' } %></td>
 		</tr>
