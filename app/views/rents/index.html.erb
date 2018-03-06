@@ -5,7 +5,7 @@
 
 <article>
 	<header>
-		<h1><%= ENV['COOP_SHORT_NAME']%> rent administration, <%= pluralize(@payments.size, 'payment') %> received.</h1>
+		<h1><%= ENV['COOP_SHORT_NAME']%> rent administration, <%= pluralize(@rents.size, 'payment') %> received.</h1>
 	</header>
 	<table>
 		<tr>
@@ -16,14 +16,15 @@
 			<td></td>
 		</tr>
 
-		<% @payments.each do | payment | %>
+		<% @rents.each do | rent | %>
 		<tr>
-			<td><%=short_date(payment.date)%></td>
-			<td><%=home_address(payment.property)%></td>
-			<td><%=show_money(payment.payment)%></td>		
-			<td><%=truncate(payment.notes, length: 40, separator: ' ')%></td>
-			<td><%=link_to 'edit', edit_rent_path(payment) %></td>
-			<td><%=link_to 'delete', payment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+			<td><%=short_date(rent.date)%></td>
+			<td><%=home_address(rent.property)%></td>
+			<td><%=show_money(rent.payment)%></td>		
+			<td><%=truncate(rent.notes, length: 40, separator: ' ')%></td>
+			<td>updated : <%=short_date(rent.date)%></td>
+			<td><%=link_to 'edit', edit_rent_path(rent) %></td>
+			<td><%=link_to 'delete', rent, method: :delete, data: { confirm: 'Are you sure?' } %></td>
 		</tr>
 		<% end %>
 	</table>

@@ -8,7 +8,14 @@
 		<h1><%= @property.house_name_no %> <%= @property.address1 %>, <%= @property.address2 %>, <%= @property.postcode %></h1>
 	</header>
 
-	<p>Rent is charged at <%= show_money(@property.rent_per_week)%> per week (pro rata <%= rent_per_month(@property.rent_per_week)%> per calendar month).</p>
+	<p>
+		Rent is currently charged at <%= show_money(@property.rent_per_week)%> per week. 
+		(Pro rata : <%= rent_per_month(@property.rent_per_week)%> per month / <%= rent_per_day(@property.rent_per_week)%> per day).<br> 
+			<% unless @property.new_rent_value.nil? %>
+				This is scheduled to change to <%= show_money(@property.new_rent_value)%> per week<% end %><% unless @property.rent_change.nil? %> as of the <%=nice_short_date(@property.rent_change) %><% end %>.</p>
+
+	<p>The current rent balance is <%=show_money(@rent_balance)%> as of the <%= nice_short_date(Time.now)%>.<br><%if @rent_balance < 0%> Please contact the Rent Officer the account in in arrears.<%end%></p>
+	
 
 	<div class="rent-book">
 		<h2>Rent Book</h2>

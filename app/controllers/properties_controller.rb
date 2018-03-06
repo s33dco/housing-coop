@@ -7,6 +7,7 @@ class PropertiesController < ApplicationController
 		@property = Property.find(params[:id])
     @people = @property.people.members_adults_children
     @payments = @property.rents
+    @rent_balance = -200
 	end
 
 	def new
@@ -47,7 +48,7 @@ private
 
   def property_params
     params.require(:property).
-      permit(:house_name_no, :address1, :address2, :postcode, :rent_per_week, :kitchen_upgrade, :coop_house)
+      permit(:house_name_no, :address1, :address2, :postcode, :rent_per_week, :kitchen_upgrade, :coop_house, :rent_change, :new_rent_value)
   end
 
 end

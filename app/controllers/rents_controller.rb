@@ -1,15 +1,15 @@
 class RentsController < ApplicationController
 
 	def index
-		@payments = Rent.all
+		@rents = Rent.all
 	end
 
 	def show
-		@payment = Rent.find(params[:id])
+		@rent = Rent.find(params[:id])
 	end
 
 	def new
-		@payment = Rent.new
+		@rent = Rent.new
 	end
 
 	def create
@@ -23,21 +23,21 @@ class RentsController < ApplicationController
 	end
 
 	def edit
-		@payment = Rent.find(params[:id])
+		@rent = Rent.find(params[:id])
 	end
 
 	def update
-	  @payment = Rent.find(params[:id])
-	  if @payment.update(rent_params)
-	    redirect_to @payment, notice: "Payment successfully updated!"
+	  @rent = Rent.find(params[:id])
+	  if @rent.update(rent_params)
+	    redirect_to @rent, notice: "Payment successfully updated!"
 	  else
 	    render :edit
 	  end
 	end
 
 	def destroy
-    @payment = Rent.find(params[:id])
-    @payment.destroy
+    @rent = Rent.find(params[:id])
+    @rent.destroy
     redirect_to rents_url, alert: "Payment successfully deleted!"
 	end
 

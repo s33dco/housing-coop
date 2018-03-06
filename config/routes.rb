@@ -1,20 +1,24 @@
 Rails.application.routes.draw do
 
-	root "static_pages#welcome"
+	Rails.application.routes.draw do
 
-	get  "static_pages/welcome" => "static_pages#welcome", as: 'welcome'
-	get  "static_pages/allocations" => "static_pages#allocations", as: 'allocations'
-	get  "static_pages/contact" => "static_pages#contact", as: 'contact'
+		root "static_pages#welcome"
+
+		get  "static_pages/welcome" => "static_pages#welcome", as: 'welcome'
+		get  "static_pages/allocations" => "static_pages#allocations", as: 'allocations'
+		get  "static_pages/contact" => "static_pages#contact", as: 'contact'
 
 
-  resources :properties
-  resources :people
-  resources :calendars
-  resources :roles
-  resources :jobs
-  resources :rents
-  resources :contractors
-  resources :maintenances
+	  resources :properties
+	  resources :people
+	  resources :calendars
+	  resources :roles
+	  resources :jobs
+	  resources :rents
+	  resources :contractors
+	  resources :maintenances
 
+
+	end
 
 end

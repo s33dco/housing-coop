@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180305110421) do
+ActiveRecord::Schema.define(version: 20180306104125) do
 
   create_table "calendars", force: :cascade do |t|
     t.datetime "when"
@@ -89,6 +89,8 @@ ActiveRecord::Schema.define(version: 20180305110421) do
     t.datetime "updated_at", null: false
     t.date "kitchen_upgrade"
     t.boolean "coop_house"
+    t.date "rent_change"
+    t.string "new_rent_value"
   end
 
   create_table "rents", force: :cascade do |t|

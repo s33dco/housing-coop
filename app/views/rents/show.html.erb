@@ -1,28 +1,28 @@
 <header>
-<h1> Rent Payment for <%= link_to home_address(@payment.property), property_path(@payment.property)%></h1>
+<h1> Rent Payment for <%= link_to home_address(@rent.property), property_path(@rent.property)%></h1>
 </header>
 
-<p>Rent is charged at <%= show_money(@payment.property.rent_per_week)%> per week</p>
+<p>Rent is charged at <%= show_money(@rent.property.rent_per_week)%> per week</p>
 
 <table>
 	<tr>
 		<td>On Statement</td><td>:</td>
-		<td><%= nice_date(@payment.date) %></td>
+		<td><%= nice_short_date(@rent.date) %></td>
 	</tr>
 	<tr>
 		<td>Amount Paid</td><td>:</td>
-		<td><%= show_money(@payment.payment) %></td>
+		<td><%= show_money(@rent.payment) %></td>
 	</tr>
 		<tr>
 		<td>Notes</td><td>:</td>
-		<td><%= @payment.notes%></td>
+		<td><%= @rent.notes%></td>
 	</tr>
 		<tr>
 		<td>Updated by Rent Officer</td><td>:</td>
-		<td><%= update_day(@payment.updated_at) %></td>
+		<td><%= short_date(@rent.updated_at) %></td>
 	</tr>
 </table>
 
-<%=link_to 'Edit This Payment', edit_rent_path(@payment) %>
-<%=link_to 'Delete This Payment', @payment, method: :delete, data: { confirm: 'Are you sure?' } %>
+<%=link_to 'Edit This Payment', edit_rent_path(@rent) %>
+<%=link_to 'Delete This Payment', @rent, method: :delete, data: { confirm: 'Are you sure?' } %>
 
