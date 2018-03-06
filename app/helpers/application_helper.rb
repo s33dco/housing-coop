@@ -35,7 +35,7 @@ module ApplicationHelper
 # for one line address
 	def home_address(property)
 		address = property.house_name_no
-		address << " " << property.address1 << ", "  << property.postcode
+		address << " " << property.address1
 	end
 
 # for phone numbers
