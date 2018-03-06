@@ -31,10 +31,13 @@ class Property < ApplicationRecord
 	end
 
 	def balance
-	 	total_rent = self.rents.sum{|amount| amount.payment}
-	 	start_date = self.rents.last.date
-		number_of_days = (Time.now.to_date - start_date.to_date).to_i
-		total_rent - ((self.rent_per_week / 7) * number_of_days)
+		unless self.rents.empty?
+		 	total_rent = self.rents.sum{|amount| amount.payment}
+		 	start_date = self.rents.last.date
+			number_of_days = (Time.now.to_date - start_date.to_date).to_i
+			total_rent - ((self.rent_per_week / 7) * number_of_days)
+		end
+		return nil
 	end
 
 
