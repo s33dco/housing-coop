@@ -23,7 +23,7 @@
 				<td>Amount Paid</td>
 				<td><%= show_money(@rent.payment) %></td>
 			</tr>
-			<% unless @rent.notes.empty? %>
+			<% unless @rent.notes.blank? %>
 			<tr>
 				<td>Notes</td>
 				<td><%= @rent.notes%></td>

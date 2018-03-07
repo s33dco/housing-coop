@@ -15,7 +15,7 @@ describe 'Creating a Person' do
     fill_in "First Name(s)", with: "Ian"
     fill_in "Family Name", with: "mArLeY"
     fill_in "Email", with: "code@s33d.co"
-    fill_in "Phone #", with: "07777 7777777"
+    fill_in "Phone #", with: "077777777777"
     select "1 Electric Avenue", from: "Choose Property"
  
     click_button 'Submit'
@@ -26,6 +26,6 @@ describe 'Creating a Person' do
     expect(page).to have_text('Ian')
     expect(page).to have_text('Marley')
     expect(page).to have_text('code@s33d.co')
-    expect(page).to have_text('077777777777')
+    expect(page).to have_text('07777 777777')
   end
 end

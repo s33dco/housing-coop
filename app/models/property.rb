@@ -31,10 +31,22 @@ class Property < ApplicationRecord
 		if self.rents.empty?
 			return nil
 		else
-		 	total_rent = self.rents.sum{|amount| amount.payment}
-		 	start_date = self.rents.last.date
-			number_of_days = (Time.now.to_date - start_date.to_date).to_i
-			total_rent - ((self.rent_per_week / 7) * number_of_days)
+
+			start_date = self.rents.last.date
+
+			if Time.now.to_date < self.rent_change
+
+				 	total_rent = self.rents.sum{|amount| amount.payment}
+					number_of_days = (Time.now.to_date - start_date.to_date).to_i
+					total_rent - ((self.rent_per_week / 7) * number_of_days)
+			else
+				# work out rent balance before rent change
+				pre_change = self.rents.select{|paymade| paymade.date > Time.now.to_date }.sum{|amount| amount.payment}
+
+				# work out rent balance after rent change
+				post_change = self.rents.select{|paymade| paymade.date < Time.now.to_date }.sum{|amount| amount.payment}
+				-1000000000
+			end
 		end
 	end
 

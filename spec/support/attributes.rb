@@ -13,7 +13,8 @@ def property_attributes(overrides = {})
     address1:      "Electric Avenue",
     address2:       "Citytown",
     postcode:       "BN1 7HZ",
-    rent_per_week:  100.00
+    rent_per_week:  100.00,
+    co-op
   }.merge(overrides)
 end
 

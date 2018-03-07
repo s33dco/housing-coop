@@ -15,24 +15,23 @@
 		<div class="contact-details">
 			<p><i class="fas fa-home"></i><%= link_to @person.property.number_and_address1, property_path(@person.property) %>
 				(<% if @person.joined.nil? %>Please confirm the date you moved in
-					<% else %>
-					for <%= time_ago_in_words(@person.joined) %>
+					<% else %><%= time_ago_in_words(@person.joined) %>
 					<% end %>)
 			</p>
 			<p>
-				<% unless @person.email.empty? %>
+				<% unless @person.email.blank? %>
 					<i class="fas fa-envelope"></i> <%= @person.email %></p>
 				<% end %>
 			</p>
 			<p>
-				<% unless @person.phone.empty? %>
+				<% unless @person.phone.blank? %>
 					<i class="fas fa-phone"></i> <%= telephone(@person.phone)%>
 				<% end %>
 			</p>
 		</div>
 
 		<div class="bio">
-			<% unless @person.words.nil? || @person.words.empty? %>
+			<% unless @person.words.blank? %>
 				<p><i class="fas fa-quote-left"></i> <%= @person.words %> <i class="fas fa-quote-right"></i></p>	
 			<% end %>
 		</div>	

@@ -62,4 +62,14 @@ module ApplicationHelper
 	def month_year(d)
 		d.strftime("%B '%y")	
 	end
+
+# displaying rent balance
+
+	def show_balance(rent)
+		if rent.to_f >= 0
+			"(CREDIT)"
+		else
+			"(ARREARS)"
+		end
+	end
 end

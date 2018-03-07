@@ -7,10 +7,10 @@ class Person < ApplicationRecord
   has_many :events, through: :participations, source: :calendar
 
 	validates :firstname, presence: true,
-											  format: { with: /\A[a-zA-Z]+(?: [a-zA-Z]+)?\z/, message: "only allows letters" }
+											  format: { with: /\A[a-zA-Z]+(?: [a-zA-Z]+)?\z/, message: "only letters" }
 
 	validates :lastname, 	presence: true,
-											  format: { with: /\A[a-zA-Z]+(?: [a-zA-Z]+)?\z/, message: "only allows letters" },
+											  format: { with: /\A[a-zA-Z]+(?: [a-zA-Z]+)?\z/, message: "only letters" },
 												length: { minimum: 2 }
 
   validates :email, 		presence: true,
@@ -19,12 +19,11 @@ class Person < ApplicationRecord
                     									message: "Email address already in use"},
                         allow_blank: true
 
-  validates :phone,     numericality: true,
+  validates :phone,     numericality:  {message: "- just digits no spaces"},
   											length: {minimum: 10, maximum: 14},
                         allow_blank: true
 
   before_validation :downcase_email
-  before_validation :strip_spaces
   after_validation :tidy_name
   # after_validation :tidy_words
 
@@ -39,16 +38,6 @@ private
   # def tidy_words
   #   self.words = self.words.humanize
   # end
-
-  def downcase_email
-    self.email.downcase!
-  end
-
-  def strip_spaces
-    if self.phone.nil?
-      self.phone.delete!(' ').gsub(/\D/)
-    end
-  end
 
   def tidy_name
     self.firstname = self.firstname.downcase.titleize

@@ -3,11 +3,11 @@
     <fieldset>
       <ul>
          <li class="required">
-          <%= f.label :property_id, "Payment For" %>
+          <%= f.label :property_id, "Property" %>
           <%= f.collection_select(:property_id, Property.all.order('house_name_no asc'), :id , :number_and_address1 ) %>
         </li>
         <li>
-          <%= f.label :date, "Statement Date"%>
+          <%= f.label :date, "Date (on statement)"%>
           <%= f.date_select :date, { order: [ :day, :month, :year], 
                                                 start_year: Date.today.year - 2, 
                                                 end_year: Date.today.year,

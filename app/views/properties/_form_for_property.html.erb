@@ -19,10 +19,6 @@
           <%= f.text_field :postcode, size: 40 , placeholder: 'Postcode'%>
         </li>
         <li class="required">
-          <%= f.label :rent_per_week ,"Rent per week £"%>         
-          <%= f.number_field :rent_per_week, size: 40 , placeholder: 'just numbers'%>
-        </li>
-        <li class="required">
           <%= f.label :kitchen_upgrade, "Kitchen refurb due :"%>
           <%= f.date_select :kitchen_upgrade, { order: [ :day, :month, :year], 
                                                 start_year: Date.today.year, 
@@ -31,23 +27,43 @@
                                               } %>
         </li>
         <li class="required">
-          <%= f.label :rent_change, "Next Change in Rent :"%>
-          <%= f.date_select :rent_change, { order: [ :day, :month, :year], 
-                                                start_year: Date.today.year, 
-                                                end_year: Date.today.year + 5, 
-                                                include_blank: true
-                                              } %>
-        </li>
-        <li class="required">
-          <%= f.label :new_rent_value ,"New Rent per week £"%>         
-          <%= f.number_field :new_rent_value, size: 40 , placeholder: 'just numbers'%>
-        </li>
-        <li class="required">
           <%= f.label :coop_house, "Managed by Coop"%>
           <%= f.radio_button(:coop_house, 'true', checked: true) %>
           <%= f.label(:coop_house, "Yes") %>
           <%= f.radio_button(:coop_house, 'false', checked: false) %>
           <%= f.label(:coop_house, "No") %>
+        </li>
+        <li class="required">
+          <%= f.label :rent_per_week ,"Current Rent per week £"%>         
+          <%= f.number_field :rent_per_week, step: :any, placeholder: 'just numbers'%>
+        </li>
+        <li class="required">
+          <%= f.label :rent_begin, "Date current period started"%>
+          <%= f.date_select :rent_begin, { order: [ :day, :month, :year], 
+                                                start_year: Date.today.year - 3, 
+                                                end_year: Date.today.year + 3, 
+                                                include_blank: true
+                                              } %>
+        </li>
+        <li class="required">
+          <%= f.label :rent_end, "Date currrent period due to end"%>
+          <%= f.date_select :rent_end, { order: [ :day, :month, :year], 
+                                                start_year: Date.today.year - 3, 
+                                                end_year: Date.today.year + 3, 
+                                                include_blank: true
+                                              } %>
+        </li>
+        <li class="required">
+          <%= f.label :new_rent_value ,"Future Rent per week £"%>         
+          <%= f.number_field :new_rent_value, step: :any, placeholder: 'just numbers'%>
+        </li>
+        <li class="required">
+          <%= f.label :rent_change, "Date rent will change"%>
+          <%= f.date_select :rent_change, { order: [ :day, :month, :year], 
+                                                start_year: Date.today.year, 
+                                                end_year: Date.today.year + 5, 
+                                                include_blank: true
+                                              } %>
         </li>
       </ul>
       <p>

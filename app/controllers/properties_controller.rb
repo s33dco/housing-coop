@@ -48,7 +48,9 @@ private
 
   def property_params
     params.require(:property).
-      permit(:house_name_no, :address1, :address2, :postcode, :rent_per_week, :kitchen_upgrade, :coop_house, :rent_change, :new_rent_value)
+      permit(:house_name_no, :address1, :address2, :postcode, :rent_per_week, 
+            :kitchen_upgrade, :coop_house, :rent_change, :new_rent_value, 
+            :rent_begin, :rent_end)
   end
 
 end

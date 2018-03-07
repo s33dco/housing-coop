@@ -9,4 +9,8 @@ class ApplicationRecord < ActiveRecord::Base
 		"#{self.firstname} #{self.lastname}"
 	end
 
+	def downcase_email
+	  self.email.downcase!
+	end
+
 end
