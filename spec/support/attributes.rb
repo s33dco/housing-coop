@@ -14,7 +14,6 @@ def property_attributes(overrides = {})
     address2:       "Citytown",
     postcode:       "BN1 7HZ",
     rent_per_week:  100.00,
-    co-op
   }.merge(overrides)
 end
 

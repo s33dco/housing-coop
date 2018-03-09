@@ -19,7 +19,7 @@
           <%= f.text_field :postcode, size: 40 , placeholder: 'Postcode'%>
         </li>
         <li class="required">
-          <%= f.label :kitchen_upgrade, "Kitchen refurb due :"%>
+          <%= f.label :kitchen_upgrade, "Kitchen upgrade due :"%>
           <%= f.date_select :kitchen_upgrade, { order: [ :day, :month, :year], 
                                                 start_year: Date.today.year, 
                                                 end_year: Date.today.year + 10, 
@@ -38,7 +38,7 @@
           <%= f.number_field :rent_per_week, step: :any, placeholder: 'just numbers'%>
         </li>
         <li class="required">
-          <%= f.label :rent_begin, "Date current period started"%>
+          <%= f.label :rent_begin, "First day of current rent"%>
           <%= f.date_select :rent_begin, { order: [ :day, :month, :year], 
                                                 start_year: Date.today.year - 3, 
                                                 end_year: Date.today.year + 3, 
@@ -46,7 +46,7 @@
                                               } %>
         </li>
         <li class="required">
-          <%= f.label :rent_end, "Date currrent period due to end"%>
+          <%= f.label :rent_end, "Last day of current rent"%>
           <%= f.date_select :rent_end, { order: [ :day, :month, :year], 
                                                 start_year: Date.today.year - 3, 
                                                 end_year: Date.today.year + 3, 
@@ -58,7 +58,7 @@
           <%= f.number_field :new_rent_value, step: :any, placeholder: 'just numbers'%>
         </li>
         <li class="required">
-          <%= f.label :rent_change, "Date rent will change"%>
+          <%= f.label :rent_change, "First day of future rent"%>
           <%= f.date_select :rent_change, { order: [ :day, :month, :year], 
                                                 start_year: Date.today.year, 
                                                 end_year: Date.today.year + 5, 

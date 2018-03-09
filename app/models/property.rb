@@ -26,29 +26,40 @@ class Property < ApplicationRecord
 	scope :by_street_name_number, ->{where("coop_house = ?", true).order(address1: :asc).order(house_name_no: :asc)}
 	scope :former_coop, ->{where("coop_house = ?", false)}
 
-
 	def balance
 		if self.rents.empty?
-			return nil
+				return nil
 		else
-
-			start_date = self.rents.last.date
-
+			# if before the date rent is due to change
 			if Time.now.to_date < self.rent_change
-
-				 	total_rent = self.rents.sum{|amount| amount.payment}
-					number_of_days = (Time.now.to_date - start_date.to_date).to_i
-					total_rent - ((self.rent_per_week / 7) * number_of_days)
+				# reset balances_created to nil
+				self.update_columns(balance_created:nil)
+				# calculate rent position (rent_paid - rent_due) + self.rent_balance
+				(self.rents.select{|rent| rent.date >= self.rent_begin}.sum{|amount| amount.payment} - ((self.rent_per_week / 7) * (Time.now.to_date - self.rent_begin ).to_i)) + self.rent_balance
 			else
-				# work out rent balance before rent change
-				pre_change = self.rents.select{|paymade| paymade.date > Time.now.to_date }.sum{|amount| amount.payment}
-
-				# work out rent balance after rent change
-				post_change = self.rents.select{|paymade| paymade.date < Time.now.to_date }.sum{|amount| amount.payment}
-				-1000000000
+				unless self.balance_created.present?
+					# work out rent position pre change and update rent_balance
+					# pre_change_balance = (pre_change_rent_paid - pre_change_rent_due )
+					pre_change_balance = (self.rents.select{|rent| rent.date < rent.property.rent_change}.sum{|rent|rent.payment}) - ((self.rent_per_week / 7) * ((self.rent_end - self.rent_begin).to_i + 1))
+					end_of_rent_period_balance = pre_change_balance + self.rent_balance
+					# update rent_balance with value, timestamp change
+					self.update_columns(rent_balance:end_of_rent_period_balance) 
+					self.update_columns(balance_created:Time.now)
+				end
+				# calculate rent position (rent_paid - rent_due) +  updated rent_balance for new period
+				# (post_rent_change_paid - post_rent_change_due) + self.rent_balance
+				((self.rents.select{|payment| payment.date >= self.rent_change }.sum{|rent|rent.payment}) - ((self.new_rent_value / 7) * (Time.now.to_date - self.rent_change).to_i)) + self.rent_balance
 			end
 		end
 	end
+
+	# def report
+	# 	report = Hash.new
+	# 		self.each do |home|
+	# 			report[home.number_and_address1.to_sym] = home.balance
+	# 		end
+	# 	return report
+	# end
 
 
 private
@@ -59,7 +70,4 @@ private
 		self.address2 = self.address2.titleize
 		self.postcode.upcase!
 	end
-
-
-
 end

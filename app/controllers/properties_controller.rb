@@ -1,4 +1,10 @@
 class PropertiesController < ApplicationController
+
+  def report
+    @properties = Property.by_street_name_number
+    @rent_report = @properties.report
+  end
+
 	def index
 		@properties = Property.by_street_name_number
 	end

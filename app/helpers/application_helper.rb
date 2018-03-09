@@ -66,7 +66,7 @@ module ApplicationHelper
 # displaying rent balance
 
 	def show_balance(rent)
-		if rent.to_f >= 0
+		if rent >= 0
 			"(CREDIT)"
 		else
 			"(ARREARS)"
