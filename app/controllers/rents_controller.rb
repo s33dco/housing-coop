@@ -41,13 +41,9 @@ class RentsController < ApplicationController
     redirect_to rents_url, alert: "Payment successfully deleted!"
 	end
 
-
-
-
-
-
-
-
+	def report
+	  @houses = Property.by_street_name_number
+	end
 
 
 private

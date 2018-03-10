@@ -53,14 +53,6 @@ class Property < ApplicationRecord
 		end
 	end
 
-	# def report
-	# 	report = Hash.new
-	# 		self.each do |home|
-	# 			report[home.number_and_address1.to_sym] = home.balance
-	# 		end
-	# 	return report
-	# end
-
 
 private
 

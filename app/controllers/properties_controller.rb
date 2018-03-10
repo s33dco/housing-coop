@@ -1,10 +1,5 @@
 class PropertiesController < ApplicationController
 
-  def report
-    @properties = Property.by_street_name_number
-    @rent_report = @properties.report
-  end
-
 	def index
 		@properties = Property.by_street_name_number
 	end
@@ -49,6 +44,9 @@ class PropertiesController < ApplicationController
     @property.destroy
     redirect_to properties_url, alert: "Property successfully deleted!"
 	end
+
+
+
 
 private
 

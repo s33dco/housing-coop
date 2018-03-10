@@ -1,0 +1,28 @@
+<!-- for meta data -->
+<% title("Rent Report")%>
+<% description("Rent Report - #{ENV['COOP_FULL_NAME']}")%>
+
+
+<article>
+
+	<header class="header">
+		<h1><%= ENV['COOP_SHORT_NAME']%> rent report - <%= nice_short_date(Time.now.to_date)%></h1>
+		</header>
+
+	<section class='detail'>
+		<table>
+		<% @houses.each do |house| %>
+		<tr>
+			<td><%= house.number_and_address1 %><td>
+			<td><%= show_money(house.balance) %></td>
+			<td><%= show_balance(house.balance)%></td>
+		</tr>
+		<% end %>
+		</table>
+		</section>
+
+	<div class="page-actions">
+		
+		</div>
+
+</article>
