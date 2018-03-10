@@ -8,7 +8,7 @@
 	<header class="header">
 		<h1><%= ENV['COOP_SHORT_NAME']%> rent administration</h1>
 		<% unless @payments.empty? %>
-		<p><%= nice_short_date(@first)%> - <%= nice_short_date(Time.now.to_date) %>, (<%= pluralize(@payments.size, 'payment') %> made, <%= show_money(@money)%> received).</p>
+		<p><%= nice_short_date(@payments.first_payment_date)%> - <%= nice_short_date(Time.now.to_date) %>, (<%= pluralize(@payments.size, 'payment') %> made, <%= show_money(@money)%> received).</p>
 		<% end %>
 		</header>
 

@@ -10,7 +10,7 @@ class Rent < ApplicationRecord
 							allow_blank: true
 
 	scope :last_first, ->{order(date: :desc).order(property_id: :asc).order(notes: :asc)}
-	scope :first_payment_date, ->{order(date: :asc).first.date}
+	scope :first_payment_date, ->{last_first.last.date}
 
 
 	def self.total
