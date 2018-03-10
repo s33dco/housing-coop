@@ -25,13 +25,14 @@ class Property < ApplicationRecord
 
 	scope :by_street_name_number, ->{where("coop_house = ?", true).order(address1: :asc).order(house_name_no: :asc)}
 	scope :former_coop, ->{where("coop_house = ?", false)}
+	scope :rent_report, ->{by_street_name_number.where("rent_begin = ?", !nil)}
 
 	def balance
-		if self.rents.empty?
+		if self.rents.empty? || self.rent_begin.nil?
 				return nil
 		else
 			# if before the date rent is due to change
-			if Time.now.to_date < self.rent_change
+			if self.rent_change.nil? || Time.now.to_date < self.rent_change
 				# reset balances_created to nil
 				self.update_columns(balance_created:nil)
 				# calculate rent position (rent_paid - rent_due) + self.rent_balance

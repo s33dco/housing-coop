@@ -38,7 +38,7 @@
           <%= f.number_field :rent_per_week, step: :any, placeholder: 'just numbers'%>
         </li>
         <li class="required">
-          <%= f.label :rent_begin, "First day of current rent"%>
+          <%= f.label :rent_begin, "First day of current rent, leave blank if property vacant."%>
           <%= f.date_select :rent_begin, { order: [ :day, :month, :year], 
                                                 start_year: Date.today.year - 3, 
                                                 end_year: Date.today.year + 3, 

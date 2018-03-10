@@ -66,10 +66,13 @@ module ApplicationHelper
 # displaying rent balance
 
 	def show_balance(rent)
-		if rent >= 0
-			"(CREDIT)"
+		case rent
+		when nil
+			"(VOID)"
+		when 0..(1.0/0.0)
+				"(CREDIT)"
 		else
-			"(ARREARS)"
+				"(ARREARS)"
 		end
 	end
 end

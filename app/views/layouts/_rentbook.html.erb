@@ -12,7 +12,7 @@
 	<tr>
 		<td><%=nice_short_date(rent.date)%></td>
 		<td><%=link_to "#{rent.property.number_and_address1}", rent.property%></td>
-		<td class='right'><%=show_money(rent.payment)%></td>
+		<td class='money'><%=show_money(rent.payment)%></td>
 		<td><%=truncate(rent.notes, length: 40, separator: ' ')%></td>
 		<td><%=short_date(rent.updated_at)%></td>		
 		<td><%=link_to 'edit', edit_rent_path(rent) %></td>

@@ -12,5 +12,7 @@ class Rent < ApplicationRecord
 	scope :last_first, ->{order(date: :desc).order(property_id: :asc).order(notes: :asc)}
 
 
-
+	def self.total
+		self.sum{|rent| rent.payment}
+	end
 end

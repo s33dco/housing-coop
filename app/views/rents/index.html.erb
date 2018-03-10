@@ -6,7 +6,8 @@
 <article>
 
 	<header class="header">
-		<h1><%= ENV['COOP_SHORT_NAME']%> rent administration, <%= pluralize(@payments.size, 'payment') %> received.</h1>
+		<h1><%= ENV['COOP_SHORT_NAME']%> rent administration</h1>
+		<p><%= pluralize(@payments.size, 'payment') %> made since the <%= nice_short_date(@first)%>, <%= show_money(@money)%> received.</p>
 		</header>
 
 	<section class='detail'>
