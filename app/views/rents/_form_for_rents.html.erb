@@ -1,30 +1,35 @@
-<%= form_for [@rent] do |f| %>
-  <%= render "shared/errors", object: @rent %>
-    <fieldset>
-      <ul>
-         <li class="required">
-          <%= f.label :property_id, "Property" %>
-          <%= f.collection_select(:property_id, Property.all.order('house_name_no asc'), :id , :number_and_address1 ) %>
-        </li>
-        <li>
-          <%= f.label :date, "Date (on statement)"%>
-          <%= f.date_select :date, { order: [ :day, :month, :year], 
-                                                start_year: Date.today.year - 2, 
-                                                end_year: Date.today.year,
-                                                autofocus: true 
-                                              } %>
-        </li>
-        <li class="required">
-          <%= f.label :payment, "Payment Amount £" %>         
-          <%= f.text_field :payment, size: 40 , placeholder: 'just numbers no spaces'%>
-        </li>
-        <li class="required">
-          <%= f.label :notes, "Notes" %>         
-          <%= f.text_field :notes, size: 40, placeholder: "any additional information" %>
-        </li>
-      </ol>
-      <p>
-        <%= f.submit 'Submit' %> 
-      </p>
-    </fieldset>
-  <% end %>
+<% unless Property.by_street_name_number.blank? %>
+  <%= form_for [@rent] do |f| %>
+    <%= render "shared/errors", object: @rent %>
+      <fieldset>
+        <ul>
+           <li class="required">
+            <%= f.label :property_id, "Property" %>
+            <%= f.collection_select(:property_id, Property.by_street_name_number, :id , :number_and_address1 ) %>
+          </li>
+          <li>
+            <%= f.label :date, "Date (on statement)"%>
+            <%= f.date_select :date, { order: [ :day, :month, :year], 
+                                                  start_year: Date.today.year - 2, 
+                                                  end_year: Date.today.year,
+                                                  autofocus: true 
+                                                } %>
+          </li>
+          <li class="required">
+            <%= f.label :payment, "Payment Amount £" %>         
+            <%= f.text_field :payment, size: 40 , placeholder: 'just numbers no spaces'%>
+          </li>
+          <li class="required">
+            <%= f.label :notes, "Notes" %>         
+            <%= f.text_field :notes, size: 40, placeholder: "any additional information" %>
+          </li>
+        </ol>
+        <p>
+          <%= f.submit 'Submit' %> 
+        </p>
+      </fieldset>
+    <% end %>
+<% else %>
+  <h2>A property must be added before rent can be allocated</h2>
+  <h2><%=link_to 'Properties', properties_path%></h2>
+<% end %>

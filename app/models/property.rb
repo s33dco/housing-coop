@@ -28,7 +28,7 @@ class Property < ApplicationRecord
 	scope :rent_report, ->{by_street_name_number.where("rent_begin = ?", !nil)}
 
 	def balance
-		if self.rents.empty? || self.rent_begin.nil?
+		if self.rents.blank? || self.rent_begin.nil?
 				return nil
 		else
 			# if before the date rent is due to change
