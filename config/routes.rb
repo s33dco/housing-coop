@@ -16,4 +16,5 @@ Rails.application.routes.draw do
   resources :contractors
   resources :maintenances
   resources :worktypes
+  
 end

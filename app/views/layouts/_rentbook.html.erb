@@ -1,5 +1,5 @@
 <table class="rentbook">
-	<tr>
+	<tr class='hide'>
 		<td>On Statement</td>
 		<td>Property</td>
 		<td>Payment</td>
@@ -11,12 +11,12 @@
 	<% @payments.each do | rent | %>
 	<tr>
 		<td><%=nice_short_date(rent.date)%></td>
-		<td><%=link_to "#{rent.property.number_and_address1}", rent.property%></td>
+		<td class='hide'><%=link_to "#{rent.property.number_and_address1}", rent.property%></td>
 		<td class='money'><%=show_money(rent.payment)%></td>
 		<td><%=truncate(rent.notes, length: 40, separator: ' ')%></td>
 		<td><%=short_date(rent.updated_at)%></td>		
-		<td><%=link_to 'edit', edit_rent_path(rent) %></td>
-		<td><%=link_to 'delete', rent, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+		<td class='hide'><%=link_to 'edit', edit_rent_path(rent) %></td>
+		<td class='hide'><%=link_to 'delete', rent, method: :delete, data: { confirm: 'Are you sure?' } %></td>
 	</tr>
 	<% end %>
 </table>

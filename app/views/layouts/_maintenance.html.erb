@@ -1,8 +1,8 @@
 <table class="maintenance">
-	<tr>
+	<tr td class='hide'>
 		<td>Date of Work</td>
 		<td>Property</td>
-		<td>Payment</td>
+		<td>Cost</td>
 		<td>Category</td>
 		<td>Contractor</td>
 		<td>Details</td>
@@ -12,14 +12,13 @@
 	<% @maintenances.each do | maintenance | %>
 	<tr>
 		<td><%= nice_short_date(maintenance.date) %></td>
-		<td><%=link_to "#{maintenance.property.number_and_address1}", maintenance.property%></td>
-		<td><%= show_money(maintenance.cost) %></td>
-		<td><%= maintenance.worktype.title %></td>
-		<td><%= maintenance.contractor.name %></td>
+		<td class='hide'><%=link_to "#{maintenance.property.number_and_address1}", maintenance.property%></td>
+		<td class='hide money'><%= show_money(maintenance.cost) %></td>
 		<td><%= truncate(maintenance.details, length: 40, separator: ' ')%></td>
-		
-		<td><%=link_to 'edit', edit_maintenance_path(maintenance) %></td>
-		<td><%= link_to 'delete', maintenance, 
+		<td><%= maintenance.worktype.title %></td>
+		<td><%=link_to "#{maintenance.contractor.name}", maintenance.contractor %></td>
+		<td class='hide'><%=link_to 'edit', edit_maintenance_path(maintenance) %></td>
+		<td class='hide'><%= link_to 'delete', maintenance, 
                 class: 'button',
                 method: :delete, data: { confirm: 'Are you sure?' } %></td>
 	</tr>
