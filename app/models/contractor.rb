@@ -8,13 +8,23 @@ class Contractor < ApplicationRecord
 
 		validates :phone, 					
 								presence: true, numericality: true,
-  							length: {minimum: 10, maximum: 14}
+  							length: {minimum: 10, maximum: 14},
+                allow_blank: true
+
 
   	validates :email, 					
   							presence: true,
-                format: {with: /\A\S+@\S+\z/, message: 'please check the email address'}
+                format: {with: /\A\S+@\S+\z/, message: 'please check the email address'},
+                allow_blank: true
+
+    validates :details, 
+                format: {with: /\A[A-Za-z0-9\-\/\.\'\&\£\+\-\,\s]+\z/, message:'letters or numbers only'},
+                allow_blank: true
+                
 
     before_validation :downcase_email, :clean_name
+
+    scope :alphabetically, ->{ order(name: :asc)}
 
 
 private

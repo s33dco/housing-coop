@@ -1,0 +1,21 @@
+<!-- for meta data -->
+<% title("#{controller_name.titleize}")%>
+<% description("Maintenance home #{ENV['COOP_FULL_NAME']}")%>
+<article>
+	<header class="header">
+		<h1><%= ENV['COOP_SHORT_NAME']%> Maintenance Home - <%= pluralize(@maintenances.size, 'job') %>.</h1>
+		<% unless @maintenances.empty? %>
+		<p><%= nice_short_date(@maintenances.first_job_date)%> - <%= nice_short_date(Time.now.to_date) %>, (<%= pluralize(@maintenances.size, 'job') %> completed at a cost of <%= show_money(@money)%>).</p>
+		<% end %>
+	</header>
+
+	<section class='detail'>
+		<%= render "layouts/maintenance" %>
+	</section>
+
+	<div class="page-actions">
+		<%=link_to 'Add a new job', new_maintenance_path %>
+		<%=link_to 'Contractor', contractors_path %>
+		<%=link_to 'Work Categories', worktypes_path %>
+	</div>
+</article>

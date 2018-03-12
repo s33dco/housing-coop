@@ -1,0 +1,49 @@
+<!-- for meta data -->
+<% title("Maintenance job for #{@maintenance.property.number_and_address1}")%>
+<% description("Maintenance job for #{@maintenance.property.number_and_address1} - #{ENV['COOP_FULL_NAME']}")%>
+
+
+<article>
+
+	<header class="header">
+		<h1>Maintenance job for <%= @maintenance.property.number_and_address1%></h1>
+		</header>
+
+	<section class='detail'>
+		<table>
+			<tr>
+				<td>Date</td>
+				<td><%= nice_short_date(@maintenance.date) %></td>
+			</tr>
+			<tr>
+				<td>Category of Work</td>
+				<td><%= @maintenance.worktype.title %></td>
+			</tr>
+			<tr>
+				<td>Contractor</td>
+				<td><%= @maintenance.contractor.name %></td>
+			</tr>
+			<tr>
+				<td>Property</td>
+				<td><%=link_to @maintenance.property.number_and_address1, @maintenance.property%></<td>
+			</tr>
+			<tr>
+				<td>Cost</td>
+				<td><%= show_money(@maintenance.cost) %></td>
+			</tr>
+			<% unless @maintenance.details.blank? %>
+			<tr>
+				<td>Details</td>
+				<td><%= @maintenance.details%></td>
+			</tr>
+			<% end %>
+		</table>
+	</section>
+
+	<div class="page-actions">
+		<%=link_to 'Edit This Job', edit_maintenance_path(@maintenance) %>
+		<%=link_to 'Delete This Job', @maintenance, method: :delete, data: { confirm: 'Are you sure?' } %>
+		<%=link_to 'Maintenance Home', rents_path(@maintenance) %>
+		</div>
+
+</article>

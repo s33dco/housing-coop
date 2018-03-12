@@ -1,0 +1,34 @@
+<%= form_for [@contractor] do |f| %>
+  <%= render "shared/errors", object: @contractor %>
+    <fieldset>
+      <ul>
+        <li class="required">
+          <%= f.label :name, "Contractor's name" %>         
+          <%= f.text_field :name, size: 40 , placeholder: 'your family name(s)'%>
+        </li>
+        <li class="required">
+          <%= f.label :phone, "Phone #" %>         
+          <%= f.text_field :phone, size: 40 , placeholder: 'just numbers no spaces'%>
+        </li>
+        <li class="required">
+          <%= f.label :email, "Email" %>         
+          <%= f.text_field :email, size: 40 , placeholder: 'must enter to be able to log in'%>
+        </li>
+        <li class="required">
+          <%= f.label :details, "Details" %>         
+          <%= f.text_area :details, cols: 40, rows: 7, 
+           placeholder:"start with category of work(s), then any other details." %>
+        </li>
+        <li class="required">
+          <%= f.label :use, "Display"%>
+          <%= f.radio_button(:use, 'true', checked: true) %>
+          <%= f.label(:use, "Yes") %>
+          <%= f.radio_button(:use, 'false', checked: false) %>
+          <%= f.label(:use, "No") %>
+        </li>
+      </ul>
+      <p>
+        <%= f.submit 'Submit' %> 
+      </p>
+    </fieldset>
+<% end %>

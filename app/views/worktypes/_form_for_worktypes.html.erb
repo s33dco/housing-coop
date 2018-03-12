@@ -1,0 +1,14 @@
+<%= form_for [@worktype] do |f| %>
+  <%= render "shared/errors", object: @worktype %>
+    <fieldset>
+      <ul>
+        <li class="required">
+          <%= f.label :title, "Category of Work" %>         
+          <%= f.text_field :title, size: 40 , placeholder: 'e.g Electical, Plumbing etc'%>
+        </li>
+      </ul>
+      <p>
+        <%= f.submit 'Submit' %> 
+      </p>
+    </fieldset>
+  <% end %>

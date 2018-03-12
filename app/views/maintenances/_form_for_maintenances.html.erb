@@ -1,0 +1,43 @@
+<% if Property.by_street_name_number.blank? || Worktype.alphabetically.blank? || Contractor.alphabetically.blank?%>
+	<p>To add your maintenance record
+	<% if  Property.by_street_name_number.blank? %>, <%=link_to 'please add a work category', new_worktype_path%><% end %><% if  Worktype.alphabetically.blank? %>, <%=link_to 'please add a work category', new_worktype_path%><% end %><% if Contractor.alphabetically.blank? %>, <%=link_to 'please add a contractor', new_contractor_path%>.</p>
+	<% end %>
+<% else %>
+	<%= form_for [@maintenance] do |f| %>
+	  <%= render "shared/errors", object: @maintenance %>
+
+		<fieldset>
+			<li>
+			  <%= f.label :date, "Date Job Completed"%>
+			  <%= f.date_select :date, { order: [ :day, :month, :year], 
+			                                        start_year: Date.today.year - 1, 
+			                                        end_year: Date.today.year,
+			                                        autofocus: true 
+			                                      } %>
+			</li>
+			<li class="required">
+			  <%= f.label :property_id, "Property" %>
+			  <%= f.collection_select(:property_id, Property.by_street_name_number, :id , :number_and_address1 ) %>
+			</li>
+			<li class="required">
+			  <%= f.label :worktype_id, "Category of work" %>
+			  <%= f.collection_select(:worktype_id, Worktype.alphabetically, :id , :title ) %>
+			</li>
+			<li class="required">
+			  <%= f.label :contractor_id, "Contractor" %>
+			  <%= f.collection_select(:contractor_id, Contractor.alphabetically, :id , :name ) %>
+			</li>
+			<li class="required">
+			  <%= f.label :details, "Details" %>         
+			  <%= f.text_field :details, size: 40, placeholder: "details of the work completed" %>
+			</li>
+			<li class="required">
+			  <%= f.label :cost, "Cost £" %>         
+			  <%= f.number_field :cost, size: 40 , placeholder: 'just numbers no spaces'%>
+			</li>
+			<p>
+				<%= f.submit 'Submit' %> 
+			</p>
+		</fieldset>
+	<% end %>
+<% end %>

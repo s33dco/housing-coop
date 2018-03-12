@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180309143516) do
+ActiveRecord::Schema.define(version: 20180312115737) do
 
   create_table "calendars", force: :cascade do |t|
     t.datetime "when"
@@ -28,6 +28,8 @@ ActiveRecord::Schema.define(version: 20180309143516) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "email"
+    t.text "notes"
+    t.boolean "use"
   end
 
   create_table "jobs", force: :cascade do |t|
@@ -37,7 +39,6 @@ ActiveRecord::Schema.define(version: 20180309143516) do
   end
 
   create_table "maintenances", force: :cascade do |t|
-    t.string "worktype"
     t.decimal "cost"
     t.text "details"
     t.date "date"
@@ -45,8 +46,10 @@ ActiveRecord::Schema.define(version: 20180309143516) do
     t.datetime "updated_at", null: false
     t.integer "contractor_id"
     t.integer "property_id"
+    t.integer "worktype_id"
     t.index ["contractor_id"], name: "index_maintenances_on_contractor_id"
     t.index ["property_id"], name: "index_maintenances_on_property_id"
+    t.index ["worktype_id"], name: "index_maintenances_on_worktype_id"
   end
 
   create_table "participations", force: :cascade do |t|
@@ -116,6 +119,12 @@ ActiveRecord::Schema.define(version: 20180309143516) do
     t.datetime "updated_at", null: false
     t.index ["job_id"], name: "index_roles_on_job_id"
     t.index ["person_id"], name: "index_roles_on_person_id"
+  end
+
+  create_table "worktypes", force: :cascade do |t|
+    t.string "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

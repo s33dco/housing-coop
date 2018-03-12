@@ -12,18 +12,17 @@
             <%= f.date_select :date, { order: [ :day, :month, :year], 
                                                   start_year: Date.today.year - 2, 
                                                   end_year: Date.today.year,
-                                                  autofocus: true 
                                                 } %>
           </li>
           <li class="required">
             <%= f.label :payment, "Payment Amount £" %>         
-            <%= f.text_field :payment, size: 40 , placeholder: 'just numbers no spaces'%>
+            <%= f.number_field :payment, size: 40 , placeholder: 'just numbers no spaces'%>
           </li>
           <li class="required">
             <%= f.label :notes, "Notes" %>         
             <%= f.text_field :notes, size: 40, placeholder: "any additional information" %>
           </li>
-        </ol>
+        </ul>
         <p>
           <%= f.submit 'Submit' %> 
         </p>

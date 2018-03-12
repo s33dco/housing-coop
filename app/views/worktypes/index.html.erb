@@ -1,0 +1,30 @@
+<!-- for meta data -->
+<% title("#{controller_name.titleize}")%>
+<% description("Work Types - #{ENV['COOP_FULL_NAME']}")%>
+
+
+<article>
+
+	<header class="header">
+		<h1><%= ENV['COOP_SHORT_NAME']%> Maintenance work categories.</h1>
+		</header>
+
+	<section class='detail'>
+		<table>
+		<% @worktypes.each do | worktype | %>
+			<tr>
+				<td><%= link_to "#{worktype.title}", worktype_path(worktype)%></td>
+				<td><%=link_to 'Edit', edit_worktype_path(worktype) %></td>
+				<td><%= link_to 'Delete', worktype, 
+	                  class: 'button',
+	                  method: :delete, data: { confirm: 'Are you sure?' } %></td>				
+			</tr>
+		<% end %>
+		</table>
+	</section>
+
+	<div class="page-actions">
+		<%=link_to 'Add A New Work Type', new_worktype_path %>
+		</div>
+
+</article>

@@ -6,7 +6,10 @@ class Calendar < ApplicationRecord
 	validates :when, 	presence: true
 	validates :title, :details, :where, 
 										presence: true,
-										format: {with: /\A[A-Za-z0-9\-\/\.\'\,\s]+\z/, message:'letters or numbers only'}
+										format: {with: /\A[A-Za-z0-9\-\/\.\'\&\£\+\-\,\s]+\z/, message:'letters or numbers only'}
+	validates :details, 
+	            format: {with: /\A[A-Za-z0-9\-\/\.\'\&\£\+\-\,\s]+\z/, message:'letters or numbers only'},
+	            allow_blank: true
 
 	before_validation :clean_title
 

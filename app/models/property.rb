@@ -2,7 +2,7 @@ class Property < ApplicationRecord
 
 	has_many :people
 	has_many :rents, -> { order(date: :desc).order(notes: :asc) }
-	has_many :maintenances
+	has_many :maintenances, -> { order(date: :desc)}
 	has_many :contractors, through: :maintenances
 
 	validates :house_name_no,	:address1, :address2, :postcode,	

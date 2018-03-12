@@ -9,6 +9,7 @@ class PropertiesController < ApplicationController
     @people = @property.people.members_adults_children
     @payments = @property.rents
     @rent_balance = @property.balance
+    @maintenances = @property.maintenances
 	end
 
 	def new

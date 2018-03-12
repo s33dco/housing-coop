@@ -1,0 +1,35 @@
+<!-- for meta data -->
+<% title("Details for #{@contractor.name}")%>
+<% description("Details for #{@contractor.name} - #{ENV['COOP_FULL_NAME']}")%>
+
+
+<article>
+
+	<header class="header">
+		<h1><%= @contractor.name %>.</h1>
+		</header>
+
+	<section class='detail'>
+		<table>
+			<tr>
+				<td>telephone :</td>
+				<td><%= @contractor.phone %></td>
+			</tr>
+			<tr>
+				<td>email :</td>
+				<td><%= @contractor.email %></td>
+			</tr>
+			<tr>
+				<td>details :</td>
+				<td><%= @contractor.details %></td>
+			</tr>
+		</table>
+	</section>
+
+	<div class="page-actions">
+			<%=link_to 'Edit Details', edit_contractor_path(@contractor) %>
+			<%= link_to 'Delete', @contractor, 
+		                  class: 'button',
+		                  method: :delete, data: { confirm: 'Are you sure?' } %>
+		</div>
+</article>
