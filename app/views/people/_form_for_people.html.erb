@@ -1,86 +1,91 @@
-<%= form_for [@person] do |f| %>
-  <%= render "shared/errors", object: @person %>
-  <fieldset>
-    <ul>
-      <li class="required">
-        <%= f.label :firstname, "First Name(s)" %>         
-        <%= f.text_field :firstname, size: 40, placeholder: "your first name(s)", autofocus: true %>
-      </li>
-      <li class="required">
-        <%= f.label :lastname, "Family Name" %>         
-        <%= f.text_field :lastname, size: 40 , placeholder: 'your family name(s)'%>
-      </li>
-      <li class="required">
-        <%= f.label :email, "Email" %>         
-        <%= f.text_field :email, size: 40 , placeholder: 'must enter to be able to log in'%>
-      </li>
-      <li class="required">
-        <%= f.label :phone, "Phone #" %>         
-        <%= f.text_field :phone, size: 40 , placeholder: 'just numbers no spaces'%>
-      </li>
-      <li class="required">
-        <%= f.label :words, "Say a few words" %>         
-        <%= f.text_area :words, cols: 40, rows: 7, 
-         placeholder:"Please say a few words, what you enter here will appear on your profile page, this will only be visible to logged in members" %>
-      </li>
-       <li class="required">
-        <%= f.label :property_id, "Choose Property" %>
-        <%= f.collection_select(:property_id, Property.all.order('house_name_no asc'), :id , :number_and_address1 ) %>
-      </li>
-      <li>
-        <%= f.label :joined, "first moved in"%>
-        <%= f.date_select :joined, { order: [ :day, :month, :year], 
-                                              start_year: Date.today.year - 25, 
-                                              end_year: Date.today.year, 
-                                              include_blank: true
-                                            } %>
-      </li>
-      <li class="required">
-        <%= f.label :member, "Member"%>
-        <%= f.radio_button(:member, 'true', checked: false) %>
-        <%= f.label(:member, "Yes") %>
-        <%= f.radio_button(:member, 'false', checked: true) %>
-        <%= f.label(:member, "No") %>
-      </li>
-      <li class="required">
-        <%= f.label :housed, "Housed"%>
-        <%= f.radio_button(:housed, 'true', checked: true) %>
-        <%= f.label(:housed, "Yes") %>
-        <%= f.radio_button(:housed, 'false', checked: false) %>
-        <%= f.label(:housed, "No") %>
-      </li>
-      <li class="required">
-        <%= f.label :child, "Child"%>
-        <%= f.radio_button(:child, 'true', checked: false) %>
-        <%= f.label(:child, "Yes") %>
-        <%= f.radio_button(:child, 'false', checked: true) %>
-        <%= f.label(:child, "No") %>
-      </li>
-<!-- add p/word p/word conf -->
-      <li class="required">
-        <%= f.label :secretary, "Secretary"%>
-        <%= f.radio_button(:secretary, 'true', checked: false) %>
-        <%= f.label(:secretary, "Yes") %>
-        <%= f.radio_button(:secretary, 'false', checked: true) %>
-        <%= f.label(:secretary, "No") %>
-      </li>
-      <li class="required">
-        <%= f.label :rent_officer, "Rent Officer"%>
-        <%= f.radio_button(:rent_officer, 'true', checked: false) %>
-        <%= f.label(:rent_officer, "Yes") %>
-        <%= f.radio_button(:rent_officer, 'false', checked: true) %>
-        <%= f.label(:rent_officer, "No") %>
-      </li>
-      <li class="required">
-        <%= f.label :admin, "Web Admin"%>
-        <%= f.radio_button(:admin, 'true', checked: false) %>
-        <%= f.label(:admin, "Yes") %>
-        <%= f.radio_button(:admin, 'false', checked: true) %>
-        <%= f.label(:admin, "No") %>
-      </li>
-    </ul>
-  <p>
-    <%= f.submit 'Submit' %> 
-  </p>
-  </fieldset>
+<% if Property.by_street_name_number.blank? %>
+  <p>Please <%=link_to 'add a property', new_property_path%><% end %> first</p>
+<% else %>
+
+  <%= form_for [@person] do |f| %>
+    <%= render "shared/errors", object: @person %>
+    <fieldset>
+      <ul>
+        <li class="required">
+          <%= f.label :firstname, "First Name(s)" %>         
+          <%= f.text_field :firstname, size: 40, placeholder: "your first name(s)", autofocus: true %>
+        </li>
+        <li class="required">
+          <%= f.label :lastname, "Family Name" %>         
+          <%= f.text_field :lastname, size: 40 , placeholder: 'your family name(s)'%>
+        </li>
+        <li class="required">
+          <%= f.label :email, "Email" %>         
+          <%= f.text_field :email, size: 40 , placeholder: 'must enter to be able to log in'%>
+        </li>
+        <li class="required">
+          <%= f.label :phone, "Phone #" %>         
+          <%= f.text_field :phone, size: 40 , placeholder: 'just numbers no spaces'%>
+        </li>
+        <li class="required">
+          <%= f.label :words, "Say a few words" %>         
+          <%= f.text_area :words, cols: 40, rows: 7, 
+           placeholder:"Please say a few words, what you enter here will appear on your profile page, this will only be visible to logged in members" %>
+        </li>
+         <li class="required">
+          <%= f.label :property_id, "Choose Property" %>
+          <%= f.collection_select(:property_id, Property.by_street_name_number, :id , :number_and_address1 ) %>
+        </li>
+        <li>
+          <%= f.label :joined, "first moved in"%>
+          <%= f.date_select :joined, { order: [ :day, :month, :year], 
+                                                start_year: Date.today.year - 25, 
+                                                end_year: Date.today.year, 
+                                                include_blank: true
+                                              } %>
+        </li>
+        <li class="required">
+          <%= f.label :member, "Member"%>
+          <%= f.radio_button(:member, 'true', checked: false) %>
+          <%= f.label(:member, "Yes") %>
+          <%= f.radio_button(:member, 'false', checked: true) %>
+          <%= f.label(:member, "No") %>
+        </li>
+        <li class="required">
+          <%= f.label :housed, "Housed"%>
+          <%= f.radio_button(:housed, 'true', checked: true) %>
+          <%= f.label(:housed, "Yes") %>
+          <%= f.radio_button(:housed, 'false', checked: false) %>
+          <%= f.label(:housed, "No") %>
+        </li>
+        <li class="required">
+          <%= f.label :child, "Child"%>
+          <%= f.radio_button(:child, 'true', checked: false) %>
+          <%= f.label(:child, "Yes") %>
+          <%= f.radio_button(:child, 'false', checked: true) %>
+          <%= f.label(:child, "No") %>
+        </li>
+  <!-- add p/word p/word conf -->
+        <li class="required">
+          <%= f.label :secretary, "Secretary"%>
+          <%= f.radio_button(:secretary, 'true', checked: false) %>
+          <%= f.label(:secretary, "Yes") %>
+          <%= f.radio_button(:secretary, 'false', checked: true) %>
+          <%= f.label(:secretary, "No") %>
+        </li>
+        <li class="required">
+          <%= f.label :rent_officer, "Rent Officer"%>
+          <%= f.radio_button(:rent_officer, 'true', checked: false) %>
+          <%= f.label(:rent_officer, "Yes") %>
+          <%= f.radio_button(:rent_officer, 'false', checked: true) %>
+          <%= f.label(:rent_officer, "No") %>
+        </li>
+        <li class="required">
+          <%= f.label :admin, "Web Admin"%>
+          <%= f.radio_button(:admin, 'true', checked: false) %>
+          <%= f.label(:admin, "Yes") %>
+          <%= f.radio_button(:admin, 'false', checked: true) %>
+          <%= f.label(:admin, "No") %>
+        </li>
+      </ul>
+    <p>
+      <%= f.submit 'Submit' %> 
+    </p>
+    </fieldset>
+  <% end %>
 <% end %>

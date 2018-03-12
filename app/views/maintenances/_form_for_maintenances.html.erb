@@ -1,6 +1,6 @@
 <% if Property.by_street_name_number.blank? || Worktype.alphabetically.blank? || Contractor.alphabetically.blank?%>
-	<p>To add your maintenance record
-	<% if  Property.by_street_name_number.blank? %>, <%=link_to 'please add a work category', new_worktype_path%><% end %><% if  Worktype.alphabetically.blank? %>, <%=link_to 'please add a work category', new_worktype_path%><% end %><% if Contractor.alphabetically.blank? %>, <%=link_to 'please add a contractor', new_contractor_path%>.</p>
+	<p>To add your maintenance record please add
+	<% if  Property.by_street_name_number.blank? %>, <%=link_to 'add a property', new_property_path%><% end %><% if  Worktype.alphabetically.blank? %>, <%=link_to 'a work category', new_worktype_path%><% end %><% if Contractor.alphabetically.blank? %>, <%=link_to 'a contractor', new_contractor_path%> first.</p>
 	<% end %>
 <% else %>
 	<%= form_for [@maintenance] do |f| %>
