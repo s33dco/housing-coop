@@ -1,5 +1,5 @@
 <% if Property.by_street_name_number.blank? %>
-  <p>Please add a property first.</p>
+  <p>Please <%= link_to 'add a property', new_property_path %> first.</p>
 <% else %>
   <%= form_for [@person] do |f| %>
     <%= render "shared/errors", object: @person %>
