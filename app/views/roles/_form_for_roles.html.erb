@@ -1,0 +1,38 @@
+<% if Person.members.blank? || Job.alphabetically.blank? %>
+	<p>To alloacte a role you need People and Officer Roles, please add
+	<% if  Person.members.blank? %>, <%=link_to 'a person', new_person_path%><% end %><% if  Worktype.alphabetically.blank? %>, <%=link_to 'a role', new_job_path%><% end %> first.</p>
+<% else %>
+	<%= form_for [@role] do |f| %>
+	  <%= render "shared/errors", object: @role %>
+
+		<fieldset>
+			<li class="required">
+			  <%= f.label :person_id, "Person" %>
+			  <%= f.collection_select(:person_id, Person.members, :id , :full_name ) %>
+			</li>
+			<li class="required">
+			  <%= f.label :job_id, "Role" %>
+			  <%= f.collection_select(:job_id, Job.alphabetically, :id , :title) %>
+			</li>
+			<li>
+			  <%= f.label :role_start, "From"%>
+			  <%= f.date_select :role_start, { order: [ :day, :month, :year], 
+			                                        start_year: Date.today.year - 1, 
+			                                        end_year: Date.today.year + 1,
+			                                        autofocus: true 
+			                                      } %>
+			</li>
+			<li>
+			  <%= f.label :role_end, "To"%>
+			  <%= f.date_select :role_end, { order: [ :day, :month, :year], 
+			                                        start_year: Date.today.year - 1, 
+			                                        end_year: Date.today.year + 1,
+			                                        autofocus: true 
+			                                      } %>
+			</li>
+			<p>
+				<%= f.submit 'Submit' %> 
+			</p>
+		</fieldset>
+	<% end %>
+<% end %>

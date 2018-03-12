@@ -1,7 +1,8 @@
 class Person < ApplicationRecord
 
   belongs_to :property
-  has_many :roles
+
+  has_many :roles, ->{ order(role_end: :desc).joins(:job).merge(Job.order(title: :asc))}
   has_many :jobs, through: :roles
   has_many :participations
   has_many :events, through: :participations, source: :calendar
@@ -25,7 +26,7 @@ class Person < ApplicationRecord
 
   before_validation :downcase_email
   after_validation :tidy_name
-  # after_validation :tidy_words
+  after_validation :tidy_words
 
   scope :housed, ->{ where("housed = ?",true).order('firstname asc') }
   scope :members, ->{ where("member = ?",true).order('firstname asc') }
@@ -35,9 +36,9 @@ class Person < ApplicationRecord
   scope :members_adults_children, ->{ where("housed = ?", true).order("member desc").order("child asc").order("firstname desc") }
 
 private
-  # def tidy_words
-  #   self.words = self.words.humanize
-  # end
+  def tidy_words
+    self.words = self.words.humanize
+  end
 
   def tidy_name
     self.firstname = self.firstname.downcase.titleize

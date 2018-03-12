@@ -1,0 +1,14 @@
+<%= form_for [@job] do |f| %>
+  <%= render "shared/errors", object: @job %>
+    <fieldset>
+      <ul>
+        <li class="required">
+          <%= f.label :title, "Officer Role" %>         
+          <%= f.text_field :title, size: 40 , placeholder: 'e.g Secretary'%>
+        </li>
+      </ul>
+      <p>
+        <%= f.submit 'Submit' %> 
+      </p>
+    </fieldset>
+<% end %>

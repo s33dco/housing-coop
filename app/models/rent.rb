@@ -11,7 +11,8 @@ class Rent < ApplicationRecord
 							format: {with: /\A[A-Za-z0-9\-\/\.\'\£\+\-\,\s]+\z/, message:'letters or numbers only'},
 							allow_blank: true
 
-	scope :last_first, ->{order(date: :desc).order(property_id: :asc).order(notes: :asc)}
+	scope :last_first, ->{order(date: :desc).joins(:property).merge(Property.order(address1: :asc).order(house_name_no: :asc))}
+
 	scope :first_payment_date, ->{last_first.last.date}
 
 

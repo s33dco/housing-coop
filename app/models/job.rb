@@ -8,6 +8,8 @@ class Job < ApplicationRecord
 
 	before_validation :clean_title
 
+	scope :alphabetically, ->{ order(title: :asc)}
+
 
 private
 
