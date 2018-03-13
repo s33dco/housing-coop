@@ -1,0 +1,32 @@
+<%= form_for [@event] do |f| %>
+  <%= render "shared/errors", object: @event %>
+    <fieldset>
+      <ul>
+        <li class="required">
+          <%= f.label :date_time, "When" %> 
+          <%= f.datetime_select :date_time, :ampm => true, :minute_step => 15, :order => [:day, :month, :year]  %>
+        </li>
+        </li>
+        <li class="required">
+          <%= f.label :title, "Title" %>         
+          <%= f.text_field :title, size: 40 , placeholder: 'e.g General Meeting'%>
+        </li>
+        <li class="required">
+          <%= f.label :where, "Where" %>         
+          <%= f.text_field :where, size: 40 , placeholder: 'e.g 57 Mount Pleasant St'%>
+        </li>
+        <li class="required">
+          <%= f.label :details, "Details" %>         
+          <%= f.text_area :details, cols: 40, rows: 7, 
+           placeholder:"add the details" %>
+        </li>
+        <li class="required">
+          <%= f.label :link, "link" %>         
+          <%= f.text_field :link, size: 40 , placeholder: 'link to docs'%>
+        </li>
+      </ul>
+      <p>
+        <%= f.submit 'Submit' %> 
+      </p>
+    </fieldset>
+<% end %>

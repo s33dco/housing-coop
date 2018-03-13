@@ -38,7 +38,7 @@
 
 		<% unless @roles.empty? %>
 		<div class="roles">
-			<h2>Previous Roles (<%= @roles.size %>)</h2>
+			<h2><%=@person.firstname%>'s previous roles.</h2>
 			<table>
 				<% @roles.each do |role | %>
 				<tr>

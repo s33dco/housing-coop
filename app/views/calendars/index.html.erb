@@ -1,0 +1,26 @@
+<!-- for meta data -->
+<% title("#{controller_name.titleize}")%>
+<% description("Calendar #{ENV['COOP_FULL_NAME']}")%>
+<article>
+	<header class="header">
+		<h1><%= ENV['COOP_SHORT_NAME']%> Events.</h1>
+	</header>
+
+	<section class='detail'>
+		<% @events.each do | event | %>
+		<div class="event">
+			<p><%= time_day(event.date_time) %></p>
+			<p><%= event.title %> - <%= event.where %></p>
+			<p><%= event.details %></p>
+			<p><%= event.link %></p>
+			<p class='hide'><%=link_to 'edit', edit_calendar_path(event) %> | <%= link_to 'delete', event, 
+			                class: 'button',
+			                method: :delete, data: { confirm: 'Are you sure?' } %></p>
+		<% end %>
+		</div>
+	</section>
+
+	<div class="page-actions">
+		<%=link_to 'Add an event', new_calendar_path %>
+	</div>
+</article>

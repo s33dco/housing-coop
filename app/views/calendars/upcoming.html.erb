@@ -1,0 +1,23 @@
+<!-- for meta data -->
+<% title("Upcoming Events")%>
+<% description("Upcoming Events #{ENV['COOP_FULL_NAME']}")%>
+<article>
+	<header class="header">
+		<h1><%= ENV['COOP_SHORT_NAME']%> Calendar.</h1>
+	</header>
+
+	<section class='detail'>
+		<% @events.each do | event | %>
+		<div class="event">
+			<p><%= time_day(event.date_time) %></p>
+			<p><%= event.title %> - <%= event.where %></p>
+			<p><%= event.details %></p>
+			<p><%= event.link %></p>
+			<p><%=link_to 'more details', calendar_path(event) %></p>
+		<% end %>
+		</div>
+	</section>
+
+	<div class="page-actions">
+	</div>
+</article>

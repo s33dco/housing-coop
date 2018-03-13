@@ -16,7 +16,7 @@
           </li>
           <li class="required">
             <%= f.label :payment, "Payment Amount £" %>         
-            <%= f.number_field :payment, size: 40 , placeholder: 'just numbers no spaces'%>
+            <%= f.number_field :payment, size: 40 , step: :any, placeholder: 'just numbers no spaces'%>
           </li>
           <li class="required">
             <%= f.label :notes, "Notes" %>         

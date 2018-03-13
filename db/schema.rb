@@ -10,15 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180312225914) do
+ActiveRecord::Schema.define(version: 20180313100902) do
 
   create_table "calendars", force: :cascade do |t|
-    t.datetime "when"
+    t.datetime "date_time"
     t.string "where"
     t.string "title"
     t.text "details"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "link"
   end
 
   create_table "contractors", force: :cascade do |t|

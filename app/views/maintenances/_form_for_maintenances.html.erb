@@ -33,7 +33,7 @@
 			</li>
 			<li class="required">
 			  <%= f.label :cost, "Cost £" %>         
-			  <%= f.number_field :cost, size: 40 , placeholder: 'just numbers no spaces'%>
+			  <%= f.number_field :cost, size: 40 ,step: :any, placeholder: 'just numbers no spaces'%>
 			</li>
 			<p>
 				<%= f.submit 'Submit' %> 

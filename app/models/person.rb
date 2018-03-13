@@ -28,12 +28,13 @@ class Person < ApplicationRecord
   after_validation :tidy_name
   after_validation :tidy_words
 
-  scope :housed, ->{ where("housed = ?",true).order('firstname asc') }
-  scope :members, ->{ where("member = ?",true).order('firstname asc') }
-  scope :non_members, ->{ where("member = ?",false).where("child = ?",false).order('lastname asc').order('firstname asc') }
+  scope :first_name_last, ->{ order('lastname asc').order('firstname asc') }
+  scope :housed, ->{ where("housed = ?",true).first_name_last }
+  scope :members, ->{ where("member = ?",true).first_name_last }
+  scope :non_members, ->{ where("member = ?",false).where("child = ?",false).first_name_last }
   scope :moved_out, ->{ where("housed = ?",false).order('firstname asc') }
-  scope :under18s, ->{ where("housed = ?",true).where("child = ?",true).order('lastname asc').order('firstname asc') }
-  scope :members_adults_children, ->{ where("housed = ?", true).order("member desc").order("child asc")..order('lastname asc').order('firstname asc') }
+  scope :under18s, ->{ where("housed = ?",true).where("child = ?",true).first_name_last }
+  scope :members_adults_children, ->{ where("housed = ?", true).order("member desc").order("child asc").first_name_last }
 
 private
   def tidy_words

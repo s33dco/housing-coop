@@ -1,0 +1,25 @@
+<!-- for meta data -->
+<% title("#{@event.title} - #{time_day(@event.date_time)}")%>
+<% description("#{@event.title} - #{time_day(@event.date_time)} - #{ENV['COOP_FULL_NAME']}")%>
+
+
+<article>
+
+	<header class="header">
+		<h1><%=@event.title %> - <%= time_day(@event.date_time)%></h1>
+		</header>
+
+	<section class='detail'>
+		<p><%= @event.title %></p>
+		<p><%= time_day(@event.date_time) %></p>
+		<p><%= @event.where %><p>
+		<p><%= @event.details %></p>
+		<p><%= @event.link %></p>
+	</section>
+
+	<div class="page-actions">
+		<%=link_to 'back to calendar', upcoming_events_path%>
+
+		</div>
+
+</article>

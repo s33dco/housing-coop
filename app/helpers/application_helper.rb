@@ -63,6 +63,10 @@ module ApplicationHelper
 		d.strftime("%B '%y")	
 	end
 
+	def time_day(t)
+		t.strftime("%A #{t.day.ordinalize} %B %Y %l:%M%P")
+	end
+
 # displaying rent balance
 
 	def show_balance(rent)
