@@ -13,7 +13,7 @@
 		<table>
 			<% @contractors.each do |contractor| %>
 			<tr>
-				<td><%= link_to contractor.name, contractor_path(contractor) %></td>
+				<td><%= contractor.name %></td>
 				<td><%=	contractor.details %></td>
 				<td><%= contractor.phone %></td>
 				<td><%= contractor.email %></td>
