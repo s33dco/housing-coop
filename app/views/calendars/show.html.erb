@@ -15,11 +15,16 @@
 		<p><%= @event.where %><p>
 		<p><%= @event.details %></p>
 		<p><%= @event.link %></p>
+
+
+		<p>Who was there : <% @event.people.each do |person| %>
+			<%= person.full_name %>,<% end %><br>
+		Thanks for participating!</p>
 	</section>
 
 	<div class="page-actions">
 		<%=link_to 'back to calendar', upcoming_events_path%>
-
-		</div>
+		<%=link_to 'Calendar Admin', calendars_path%>
+	</div>
 
 </article>

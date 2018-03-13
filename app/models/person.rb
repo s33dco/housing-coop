@@ -35,6 +35,7 @@ class Person < ApplicationRecord
   scope :moved_out, ->{ where("housed = ?",false).order('firstname asc') }
   scope :under18s, ->{ where("housed = ?",true).where("child = ?",true).first_name_last }
   scope :members_adults_children, ->{ where("housed = ?", true).order("member desc").order("child asc").first_name_last }
+  
 
 private
   def tidy_words

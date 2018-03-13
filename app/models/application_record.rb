@@ -13,4 +13,8 @@ class ApplicationRecord < ActiveRecord::Base
 	  self.email.downcase!
 	end
 
+	def meetings_since_member
+	  select{| event | person_ids.event.date_time > @person.joined}.size
+	end
+
 end

@@ -1,0 +1,22 @@
+<!-- for meta data -->
+<% title("Participation")%>
+<% description("Participation - #{ENV['COOP_FULL_NAME']}")%>
+<!--  -->
+
+<article>
+	<header class="header">
+		<h1><%= ENV['COOP_SHORT_NAME']%> Participation</h1>
+	</header>
+	<section class='detail'>
+		<table>
+			<% @people.each do |person| %>
+				<tr>
+				<td><%= person.full_name %> </td>
+				<td>attended <%= person.events.size %> meetings,</td>
+				<td>held <%= person.roles.size %> roles.</td>
+			</tr>
+			<% end %>
+		</table>
+	</section>
+	<div class="page-actions"></div>
+</article>

@@ -24,6 +24,10 @@
           <%= f.label :link, "link" %>         
           <%= f.text_field :link, size: 40 , placeholder: 'link to docs'%>
         </li>
+        <p>Who attended ?</p>
+        <li>
+          <%= f.collection_check_boxes(:person_ids, Person.members, :id , :full_name) %>
+        </li>
       </ul>
       <p>
         <%= f.submit 'Submit' %> 

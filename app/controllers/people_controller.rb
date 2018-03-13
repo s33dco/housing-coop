@@ -4,6 +4,11 @@ class PeopleController < ApplicationController
     @roles = Role.current
 	end
 
+  def participation
+    @people = Person.members
+    @events = Calendar.all
+  end
+
 	def show
 		@person = Person.find(params[:id])
     @roles = @person.roles

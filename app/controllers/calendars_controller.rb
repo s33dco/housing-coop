@@ -1,6 +1,6 @@
 class CalendarsController < ApplicationController
 	def index
-		@events = Calendar.upcoming
+		@events = Calendar.future_to_past
 	end
 
 	def upcoming
@@ -9,6 +9,7 @@ class CalendarsController < ApplicationController
 
 	def show
 		@event = Calendar.find(params[:id])
+		@attended = @event.people
 	end
 
 	def new
@@ -18,7 +19,7 @@ class CalendarsController < ApplicationController
 	def create
 		@event = Calendar.new(calendar_params)
 		if @event.save
-			  redirect_to @event, notice: "It's in the diary!"
+			  redirect_to calendars_path, notice: "It's in the diary!"
 			else
 			  render :new
 			  @event.errors.full_messages
@@ -32,7 +33,7 @@ class CalendarsController < ApplicationController
 	def update
 		@event = Calendar.find(params[:id])
 		if @event.update(calendar_params)
-		  redirect_to @event, notice: "Event successfully updated!"
+		  redirect_to calendars_path, notice: "Event successfully updated!"
 		else
 		  render :edit
 		end
@@ -41,13 +42,13 @@ class CalendarsController < ApplicationController
 	def destroy
 		@event = Calendar.find(params[:id])
 		@event.destroy
-		redirect_to calendars_path, alert: "Person successfully deleted!"
+		redirect_to calendars_path, alert: "Event successfully deleted!"
 	end
 
 private
 
 	def calendar_params
-		 params.require(:calendar).permit(:date_time, :where, :title, :details, :link)
+		 params.require(:calendar).permit(:date_time, :where, :title, :details, :link, :person_ids => [])
 			
 		end	
 end
