@@ -6,7 +6,7 @@
 <article>
 
 	<header class="header">
-		<h1><%= ENV['COOP_SHORT_NAME']%>List of Officer Roles</h1>
+		<h1><%= ENV['COOP_SHORT_NAME']%> List of Officer Roles</h1>
 	</header>
 
 	<section class='detail'>
@@ -14,7 +14,8 @@
 			<% @jobs.each do |job| %>
 			<tr>
 				<td><%=job.title %></td>
-				<td>			<%=link_to 'Edit Details', edit_job_path(job) %></td>
+				<td><%=job.email %></td>
+				<td><%=link_to 'Edit', edit_job_path(job) %></td>
 				<td><%= link_to 'Delete', @job, 
 		                  class: 'button',
 		                  method: :delete, data: { confirm: 'Are you sure?' } %></td>

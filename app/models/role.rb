@@ -6,6 +6,7 @@ validates :role_start, :role_end, presence: true
 validate :role_end_not_before_start
 
 scope :current, ->{ where("role_end >  ?", Time.now.to_date).joins(:job).merge(Job.order(title: :asc))}
+scope :by_title_going_back, ->{ order(role_end: :desc).joins(:job).merge(Job.order(title: :asc))}
 
 
 private

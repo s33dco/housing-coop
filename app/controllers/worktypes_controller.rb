@@ -11,7 +11,7 @@ class WorktypesController < ApplicationController
 		def create
 			@worktype = Worktype.new(worktype_params)
 	    if @worktype.save
-	      redirect_to worktypes_url, notice: "New category added"
+	      redirect_to worktypes_path, notice: "New category added"
 	    else
 	      render :new
 	      @worktype.errors.full_messages
@@ -25,7 +25,7 @@ class WorktypesController < ApplicationController
 		def update
 		  @worktype = Worktype.find(params[:id])
 		  if @worktype.update(worktype_params)
-		    redirect_to worktypes_url, notice: "Category updated!"
+		    redirect_to worktypes_path, notice: "Category updated!"
 		  else
 		    render :edit
 		  end
@@ -34,7 +34,7 @@ class WorktypesController < ApplicationController
 		def destroy
 	    @worktype = Worktype.find(params[:id])
 	    @worktype.destroy
-	    redirect_to worktypes_url, alert: "Category successfully deleted!"
+	    redirect_to worktypes_path, alert: "Category successfully deleted!"
 		end
 
 

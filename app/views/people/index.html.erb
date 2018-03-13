@@ -9,17 +9,34 @@
 	</header>
 
 	<section class='detail'>
-		<table>
-			<% @people.each do | person | %>
+
+		<div class="officers">
+			<h2>Current Officers</h2>
+				<table>
+				<% @roles.each do |role | %>
 				<tr>
-					<td><%= link_to person.full_name, person_path(person) %></td>
-					<td><%=link_to 'Edit', edit_person_path(person) %></td>
-					<td><%= link_to 'Delete', person, 
-		                  class: 'button',
-		                  method: :delete, data: { confirm: 'Are you sure?' } %></td>
+					<td><%=role.job.title%></td>
+					<td><%=role.person.full_name%></td>
+					<td><%=role.job.email%></td>
 				</tr>
-			<% end %>
-		</table>
+				<% end %>
+				</table>
+		</div>
+
+		<div class="directory">
+			<h2><%= ENV['COOP_SHORT_NAME']%> People</h2>
+			<table>
+				<% @people.each do | person | %>
+					<tr>
+						<td><%= link_to person.full_name, person_path(person) %></td>
+						<td><%=link_to 'Edit', edit_person_path(person) %></td>
+						<td><%= link_to 'Delete', person, 
+			                  class: 'button',
+			                  method: :delete, data: { confirm: 'Are you sure?' } %></td>
+					</tr>
+				<% end %>
+			</table>
+		</div>
 	</section>
 
 	<div class="page-actions">

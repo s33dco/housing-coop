@@ -4,8 +4,8 @@ class ContractorsController < ApplicationController
 			@contractors = Contractor.alphabetically
 		end
 
-		def show
-			@contractor = Contractor.find(params[:id])
+		def list
+			@contractors = Contractor.alphabetically
 		end
 
 		def new
@@ -15,7 +15,7 @@ class ContractorsController < ApplicationController
 		def create
 			@contractor = Contractor.new(contractor_params)
 	    if @contractor.save
-	      redirect_to @contractor, notice: "Contractor successfully added!"
+	      redirect_to contractors_path, notice: "Contractor successfully added!"
 	    else
 	      render :new
 	      @contractor.errors.full_messages
@@ -29,21 +29,21 @@ class ContractorsController < ApplicationController
 		def update
 		  @contractor = Contractor.find(params[:id])
 		  if @contractor.update(contractor_params)
-		    redirect_to @contractor, notice: "Contractor successfully updated!"
+		    redirect_to contractors_path, notice: "Contractor successfully updated!"
 		  else
 		    render :edit
 		  end
 		end
 
 		def destroy
+			fail
 	    @contractor = Contractor.find(params[:id])
-	    @contractor.destroy
-	    redirect_to rents_url, alert: "Contractor successfully deleted!"
+	    @contractor.update(use:false)
+	    redirect_to contractors_path, alert: "Contractor successfully deleted!"
 		end
 
 
 	private
-
 	  def contractor_params
 	    params.require(:contractor).permit(:name, :details, :email, :details, :use, :phone)
 	  end

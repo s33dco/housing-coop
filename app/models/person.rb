@@ -30,10 +30,10 @@ class Person < ApplicationRecord
 
   scope :housed, ->{ where("housed = ?",true).order('firstname asc') }
   scope :members, ->{ where("member = ?",true).order('firstname asc') }
-  scope :non_members, ->{ where("member = ?",false).where("child = ?",false).order('firstname asc') }
+  scope :non_members, ->{ where("member = ?",false).where("child = ?",false).order('lastname asc').order('firstname asc') }
   scope :moved_out, ->{ where("housed = ?",false).order('firstname asc') }
-  scope :under18s, ->{ where("housed = ?",true).where("child = ?",true).order('firstname asc') }
-  scope :members_adults_children, ->{ where("housed = ?", true).order("member desc").order("child asc").order("firstname desc") }
+  scope :under18s, ->{ where("housed = ?",true).where("child = ?",true).order('lastname asc').order('firstname asc') }
+  scope :members_adults_children, ->{ where("housed = ?", true).order("member desc").order("child asc")..order('lastname asc').order('firstname asc') }
 
 private
   def tidy_words

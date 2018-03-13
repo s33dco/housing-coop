@@ -3,10 +3,6 @@ class RolesController < ApplicationController
 				@roles = Role.current
 			end
 
-			def show
-				@role = Role.find(params[:id])
-			end
-
 			def new
 				@role = Role.new
 			end
@@ -37,7 +33,7 @@ class RolesController < ApplicationController
 			def destroy
 		    @role = Role.find(params[:id])
 		    @role.destroy
-		    redirect_to rents_url, alert: "Role successfully deleted!"
+		    redirect_to roles_path, alert: "Role successfully deleted!"
 			end
 
 

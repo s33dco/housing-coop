@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 	get  "static_pages/allocations" => "static_pages#allocations", as: 'allocations'
 	get  "static_pages/contact" => "static_pages#contact", as: 'contact'
 	get  "rents/report" => "rents#report", as: 'rent_report'
+  get  "contractors/list" => "contractors#list", as: 'contractors_list'
 
   resources :properties
   resources :people

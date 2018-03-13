@@ -4,10 +4,6 @@ class JobsController < ApplicationController
 			@jobs = Job.alphabetically
 		end
 
-		def show
-			@job = Job.find(params[:id])
-		end
-
 		def new
 			@job = Job.new
 		end
@@ -29,7 +25,7 @@ class JobsController < ApplicationController
 		def update
 		  @job = Job.find(params[:id])
 		  if @job.update(job_params)
-		    redirect_to @job, notice: "Job successfully updated!"
+		    redirect_to jobs_path, notice: "Job successfully updated!"
 		  else
 		    render :edit
 		  end
@@ -45,6 +41,6 @@ class JobsController < ApplicationController
 	private
 
 	  def job_params
-	    params.require(:job).permit(:title)
+	    params.require(:job).permit(:title, :email)
 	  end
 end

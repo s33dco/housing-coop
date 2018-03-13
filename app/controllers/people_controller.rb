@@ -1,6 +1,7 @@
 class PeopleController < ApplicationController
 	def index
 		@people = Person.housed
+    @roles = Role.current
 	end
 
 	def show

@@ -6,6 +6,13 @@ class Job < ApplicationRecord
 	validates :title, presence: true,
 									format: { with: /\A[a-zA-Z0-9 \-\/\.\'\,]+\Z/, message: "only allows letters" }
 
+	validates :email, 		presence: true,
+	                  		format: /\A\S+@\S+\z/,
+	                  		uniqueness: { case_sensitive: false , 
+	                  									message: "Email address already in use"},
+	                      allow_blank: true
+
+
 	before_validation :clean_title
 
 	scope :alphabetically, ->{ order(title: :asc)}
