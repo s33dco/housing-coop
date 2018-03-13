@@ -13,7 +13,7 @@
 		<table>
 		<% @worktypes.each do | worktype | %>
 			<tr>
-				<td><%= link_to "#{worktype.title}", worktype_path(worktype)%></td>
+				<td><%= worktype.title %></td>
 				<td><%=link_to 'Edit', edit_worktype_path(worktype) %></td>
 				<td><%= link_to 'Delete', worktype, 
 	                  class: 'button',
