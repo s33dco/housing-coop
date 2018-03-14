@@ -35,7 +35,16 @@ class Person < ApplicationRecord
   scope :moved_out, ->{ where("housed = ?",false).order('firstname asc') }
   scope :under18s, ->{ where("housed = ?",true).where("child = ?",true).first_name_last }
   scope :members_adults_children, ->{ where("housed = ?", true).order("member desc").order("child asc").first_name_last }
-  
+
+def events_since_joined(events)
+
+  events.select{|event| event.date_time > self.joined}.size
+end
+
+def event_percent
+  eventsattended = self.joined
+  (self.events.size.to_f/Calendar.all.select{|event| event.date_time > eventsattended}.size)*(100)  
+end  
 
 private
   def tidy_words

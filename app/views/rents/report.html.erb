@@ -6,16 +6,18 @@
 <article>
 
 	<header class="header">
-		<h1><%= ENV['COOP_SHORT_NAME']%> rent report - <%= nice_short_date(Time.now.to_date)%></h1>
+		<h1><%= ENV['COOP_SHORT_NAME']%> rent report for the <%= nice_short_date(Time.now.to_date)%></h1>
 		</header>
 
 	<section class='detail'>
 		<table>
 		<% @houses.each do |house| %>
 		<tr>
-			<td><%= link_to house.number_and_address1, property_path(house) %><td>
+			<td><%= link_to house.number_and_address1, property_path(house) %></td>
+			<td> <% if house.people.empty? %> (Vacant)<% end %><td>
 			<td class='money'><%= show_money(house.balance) %></td>
-			<td class='status'><%= show_balance(house.balance)%></td>
+			<td><%=show_balance(house.balance)%></td>
+	
 		</tr>
 		<% end %>
 		</table>

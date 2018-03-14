@@ -7,7 +7,7 @@ class PropertiesController < ApplicationController
 	def show
 		@property = Property.find(params[:id])
     @people = @property.people.members_adults_children
-    @payments = @property.rents
+    @payments = @property.rent_paid_by_tenant
     @rent_balance = @property.balance
     @maintenances = @property.maintenances
 	end
@@ -45,8 +45,6 @@ class PropertiesController < ApplicationController
     @property.destroy
     redirect_to properties_url, alert: "Property successfully deleted!"
 	end
-
-
 
 
 private

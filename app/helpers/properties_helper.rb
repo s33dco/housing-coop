@@ -10,8 +10,7 @@ module PropertiesHelper
 	end
 
 	def empty(property)
-		last_in = property.updated_at
-		time_ago_in_words(last_in)
+		time_ago_in_words(property.rent_end)
 	end
 
 end

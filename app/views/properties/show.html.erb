@@ -5,9 +5,7 @@
 
 <article>
 	<header class="header">
-		<h1><%= @property.number_and_address1%>, 
-			<% if @property.address2 %><%= @property.address2 %>,<% end %>
-			<%= @property.postcode %></h1>
+		<h1><%= @property.number_and_address1%><% if @property.address2 %>, <%= @property.address2 %><% end %>, <%= @property.postcode %></h1>
 	</header>
 
 	<section class='property'>
@@ -21,8 +19,8 @@
 
 				<% unless @rent_balance.nil? %>
 				<p>The balance of the rent account, (as of the <%= nice_short_date(Time.now)%>), is <%=show_money(@rent_balance)%> <%=show_balance(@rent_balance)%>.
-					<% unless @rent_balance >=0 %>	Please contact the Rent Officer.</p>
-						<% end %><% end %>
+					<% unless @rent_balance >=0 %><% unless @property.people.empty? %>	Please contact the Rent Officer.</p>
+						<% end %><% end %><%end%>
 						
 			<% unless @property.kitchen_upgrade.nil? %>
 				<p>Kitchen refurb due <%= month_year(@property.kitchen_upgrade) %>, (<%=kitchen_year(@property)%> to go).</p>
@@ -30,7 +28,7 @@
 		</div>
 
 		<div class="residents">	
-			<% if @people.empty? %>
+			<% if @people.empty? && @property.rent_begin.blank? %>
 				<h2>This property has been empty for <%= empty(@property)%>.</h2>
 			<% else %>
 				<h2><%= pluralize(@people.size, 'Resident') %></h2>
@@ -48,7 +46,7 @@
 		</div>
 
 		<div class="rent">
-			<% unless @payments.empty? %>
+			<% unless @payments.blank? %>
 			<h2>Rent Payments</h2>
 				<%= render "layouts/rentbook" %>
 			<% end %>

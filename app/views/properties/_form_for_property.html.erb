@@ -46,7 +46,7 @@
                                               } %>
         </li>
         <li class="required">
-          <%= f.label :rent_end, "Last day of current rent"%>
+          <%= f.label :rent_end, "Last day of current rent, enter yesterday if new empty house"%>
           <%= f.date_select :rent_end, { order: [ :day, :month, :year], 
                                                 start_year: Date.today.year - 3, 
                                                 end_year: Date.today.year + 3, 
