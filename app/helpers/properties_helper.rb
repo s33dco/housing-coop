@@ -10,7 +10,11 @@ module PropertiesHelper
 	end
 
 	def empty(property)
-		time_ago_in_words(property.rent_end)
+		if property.last_day_of_rent_period == nil
+			time_ago_in_words(property.updated_at)
+		else
+			time_ago_in_words(property.last_day_of_rent_period)
+		end
 	end
 
 end

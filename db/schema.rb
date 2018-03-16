@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180314113745) do
+ActiveRecord::Schema.define(version: 20180315235922) do
 
   create_table "calendars", force: :cascade do |t|
     t.datetime "date_time"
@@ -85,7 +85,7 @@ ActiveRecord::Schema.define(version: 20180314113745) do
   end
 
   create_table "properties", force: :cascade do |t|
-    t.string "house_name_no"
+    t.string "name_or_number"
     t.string "address1"
     t.string "address2"
     t.string "postcode"
@@ -95,9 +95,9 @@ ActiveRecord::Schema.define(version: 20180314113745) do
     t.date "kitchen_upgrade"
     t.boolean "coop_house"
     t.decimal "new_rent_value"
-    t.date "rent_change"
-    t.date "rent_begin"
-    t.date "rent_end"
+    t.date "first_day_of_next_rent_period"
+    t.date "rent_period_start"
+    t.date "last_day_of_rent_period"
     t.decimal "rent_balance", default: "0.0"
     t.datetime "balance_created"
     t.decimal "end_of_tenancy"

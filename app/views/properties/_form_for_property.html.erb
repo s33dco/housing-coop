@@ -3,8 +3,8 @@
     <fieldset>
       <ul>
         <li class="required">
-          <%= f.label :house_name_no, "Name or Number" %>         
-          <%= f.text_field :house_name_no, size: 40, placeholder: "Property name or number", autofocus: true %>
+          <%= f.label :name_or_number, "Name or Number" %>         
+          <%= f.text_field :name_or_number, size: 40, placeholder: "Property name or number", autofocus: true %>
         </li>
         <li class="required">
           <%= f.label :address1, "Address 1" %>         
@@ -38,19 +38,19 @@
           <%= f.number_field :rent_per_week, step: :any, placeholder: 'just numbers'%>
         </li>
         <li class="required">
-          <%= f.label :rent_begin, "First day of current rent, leave blank if property vacant."%>
-          <%= f.date_select :rent_begin, { order: [ :day, :month, :year], 
+          <%= f.label :rent_period_start, "Start of current rent period"%>
+          <%= f.date_select :rent_period_start, { order: [ :day, :month, :year], 
                                                 start_year: Date.today.year - 3, 
                                                 end_year: Date.today.year + 3, 
                                                 include_blank: true
                                               } %>
         </li>
         <li class="required">
-          <%= f.label :rent_end, "Last day of current rent, enter yesterday if new empty house"%>
-          <%= f.date_select :rent_end, { order: [ :day, :month, :year], 
+          <%= f.label :last_day_of_rent_period, "Last day of current rent period."%>
+          <%= f.date_select :last_day_of_rent_period, { order: [ :day, :month, :year], 
                                                 start_year: Date.today.year - 3, 
                                                 end_year: Date.today.year + 3, 
-                                                include_blank: true
+                                                include_blank: true,
                                               } %>
         </li>
         <li class="required">
@@ -58,12 +58,16 @@
           <%= f.number_field :new_rent_value, step: :any, placeholder: 'just numbers'%>
         </li>
         <li class="required">
-          <%= f.label :rent_change, "First day of future rent"%>
-          <%= f.date_select :rent_change, { order: [ :day, :month, :year], 
+          <%= f.label :first_day_of_next_rent_period, "First day of next rent period"%>
+          <%= f.date_select :first_day_of_next_rent_period, { order: [ :day, :month, :year], 
                                                 start_year: Date.today.year, 
                                                 end_year: Date.today.year + 5, 
                                                 include_blank: true
                                               } %>
+        </li>
+        <li class="required">
+          <%= f.label :rent_balance ,"Balance from previous period, auto updates"%>         
+          <%= f.number_field :rent_balance, step: :any%>
         </li>
       </ul>
       <p>

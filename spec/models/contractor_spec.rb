@@ -31,14 +31,6 @@ describe 'a contractor' do
     end
   end
 
-  it "requires an email" do
-    contractor = Contractor.new(contractor_attributes(email: ""))
-
-    contractor.valid?
-
-    expect(contractor.errors[:email].any?).to eq(true)
-  end
-
   it "accepts properly formatted email addresses" do
     emails = %w[user@example.com first.last@example.com to@bee.co]
     emails.each do |email|
@@ -57,14 +49,6 @@ describe 'a contractor' do
     end
   end
 
-  it "requires some details" do
-    contractor = Contractor.new(contractor_attributes(details: ""))
-
-    contractor.valid?
-
-    expect(contractor.errors[:details].any?).to eq(true)
-  end
-
   it "accepts properly formatted details" do
   	details = [ "plumbing and odd-jobs", "general repairs and carpentry", "electrics and hot water", "he's the best electrician in the univese"]
   	details.each do |detail|
@@ -75,7 +59,7 @@ describe 'a contractor' do
   end
 
   it "rejects improperly formatted details" do
-  	details = [ "!ks<>", " ", "1-2-2!!!"]
+  	details = [ "!ks<>", "1-2-2!!!"]
   	details.each do |detail|
 	    contractor = Contractor.new(contractor_attributes(details: detail))
 	    contractor.valid?

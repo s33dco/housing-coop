@@ -2,9 +2,9 @@ class Contractor < ApplicationRecord
 	has_many :maintenances
 	has_many :properties, through: :maintenances
 
-		validates :name,	:details,	
+		validates :name,	
 								presence: true,
-								format: {with: /\A[a-zA-Z0-9 \-\/\.\'\,]+\Z/, message:'letters or numbers only'}
+								format: { with: /\A[a-z0-9\s\-]+\Z/i, message: "- you've used an invalid character" }
 
 		validates :phone, 					
 								presence: true, numericality: true,
@@ -13,12 +13,11 @@ class Contractor < ApplicationRecord
 
 
   	validates :email, 					
-  							presence: true,
                 format: {with: /\A\S+@\S+\z/, message: 'please check the email address'},
                 allow_blank: true
 
     validates :details, 
-                format: {with: /\A[A-Za-z0-9\-\/\.\'\&\£\+\-\,\s]+\z/, message:'letters or numbers only'},
+                format: { with: /\A[a-z0-9\s\-\,\.\(\)\/\£\']+\Z/i, message: "- you've used an invalid character" },
                 allow_blank: true
                 
 

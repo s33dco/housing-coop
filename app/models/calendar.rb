@@ -7,7 +7,7 @@ class Calendar < ApplicationRecord
 
 	validates :title, :details, :where, 
 										presence: true,
-										format: {with: /\A[A-Za-z0-9\-\/\.\'\&\£\!\?\+\-\,\s]+\z/, message:'letters or numbers only'}
+										format: {with: /\A[a-z0-9\s\-\,\.\(\)\/\&\£\!\?\']+\Z/i, message:"- you've used an invalid character"}
 	# validate :link
 
 	before_validation :clean_title

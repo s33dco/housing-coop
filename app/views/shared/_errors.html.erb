@@ -2,10 +2,10 @@
 <section id="errors">
   <header>
     <h2>
-      Oops! The <%= object.class.name.humanize.downcase %> could not be saved. 
+      Ouch! The <%= object.class.name.humanize.downcase %> could not be saved. 
     </h2>
     <h3>
-      Please correct the following <%= pluralize(object.errors.count, "error") %>:
+      Please correct the following <%= pluralize(object.errors.count, "error") %> below:
     </h3>
   </header>
   <ul>

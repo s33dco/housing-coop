@@ -3,7 +3,7 @@ class Worktype < ApplicationRecord
 
   	validates :title, 		uniqueness: true,
   												presence: true,
-  											  format: { with: /\A[a-zA-Z]+(?: [a-zA-Z]+)?\z/, message: "only letters" }
+  											  format: { with: /\A[a-z0-9\s\-\.]+\Z/i, message: "only letters" }
 
 
 

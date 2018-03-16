@@ -4,7 +4,7 @@ class Job < ApplicationRecord
 
 
 	validates :title, presence: true,
-									format: { with: /\A[a-zA-Z0-9 \-\/\.\'\,]+\Z/, message: "only allows letters" }
+									format: { with: /\A[a-z0-9\s\-\.]+\Z/i, message: "- you've used an invalid character" }
 
 	validates :email, 		presence: true,
 	                  		format: /\A\S+@\S+\z/,

@@ -1,11 +1,11 @@
 <!-- for meta data -->
 <% title("#{@property.number_and_address1}")%>
-<% description("property details for #{@property.house_name_no} #{@property.address1} - #{ENV['COOP_FULL_NAME']}")%>
+<% description("property details for #{@property.number_and_address1} - #{ENV['COOP_FULL_NAME']}")%>
 
 
 <article>
 	<header class="header">
-		<h1><%= @property.number_and_address1%><% if @property.address2 %>, <%= @property.address2 %><% end %>, <%= @property.postcode %></h1>
+		<h1><%= @property.number_and_address1%>, <% if @property.address2 %><%= @property.address2 %><% end %>, <%= @property.postcode %></h1>
 	</header>
 
 	<section class='property'>
@@ -15,12 +15,11 @@
 				(Pro rata <%= rent_per_month(@property.rent_per_week)%> per month / <%= rent_per_day(@property.rent_per_week)%> per day)
 
 				<% unless @property.new_rent_value.nil? %>. 
-					This is scheduled to change to <%= show_money(@property.new_rent_value)%> per week<% end %><% unless @property.rent_change.nil? %> as of the <%=nice_short_date(@property.rent_change)%><% end %>.</p>
+<% description("property details for #{@property.number_and_address1} - #{ENV['COOP_FULL_NAME']}")%>
+					This is scheduled to change to <%= show_money(@property.new_rent_value)%> per week<% end %><% unless @property.first_day_of_next_rent_period.nil? %> as of the <%=nice_short_date(@property.first_day_of_next_rent_period)%><% end %>.</p>
 
 				<% unless @rent_balance.nil? %>
-				<p>The balance of the rent account, (as of the <%= nice_short_date(Time.now)%>), is <%=show_money(@rent_balance)%> <%=show_balance(@rent_balance)%>.
-					<% unless @rent_balance >=0 %><% unless @property.people.empty? %>	Please contact the Rent Officer.</p>
-						<% end %><% end %><%end%>
+				<p>The balance of the rent account, (as of the <%= nice_short_date(Time.now)%>), is <%=show_money(@rent_balance)%> <%=show_balance(@rent_balance)%>.<% end %>
 						
 			<% unless @property.kitchen_upgrade.nil? %>
 				<p>Kitchen refurb due <%= month_year(@property.kitchen_upgrade) %>, (<%=kitchen_year(@property)%> to go).</p>
@@ -28,7 +27,7 @@
 		</div>
 
 		<div class="residents">	
-			<% if @people.empty? && @property.rent_begin.blank? %>
+			<% if @people.empty? %>
 				<h2>This property has been empty for <%= empty(@property)%>.</h2>
 			<% else %>
 				<h2><%= pluralize(@people.size, 'Resident') %></h2>

@@ -8,10 +8,10 @@ class Person < ApplicationRecord
   has_many :events, through: :participations, source: :calendar
 
 	validates :firstname, presence: true,
-											  format: { with: /\A[a-zA-Z]+(?: [a-zA-Z]+)?\z/, message: "only letters" }
+											  format: { with: /\A[a-z\s]+\Z/i, message: "only letters" }
 
 	validates :lastname, 	presence: true,
-											  format: { with: /\A[a-zA-Z]+(?: [a-zA-Z]+)?\z/, message: "only letters" },
+											  format: { with: /\A[a-z\s]+\Z/i, message: "only letters" },
 												length: { minimum: 2 }
 
   validates :email, 		presence: true,
@@ -48,7 +48,7 @@ end
 
 private
   def tidy_words
-    self.words = self.words.humanize
+    self.words = self.words.humanize unless self.words.blank?
   end
 
   def tidy_name

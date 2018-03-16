@@ -1,7 +1,7 @@
 def person_attributes(overrides = {})
   {
-    firstname:    "Peter",
-    lastname:     "Perfect",
+    firstname:    "Peter Delphine",
+    lastname:     "Perfect Gentleman",
     email:        "example@example.com",
     phone:        "07777777777"
   }.merge(overrides)
@@ -9,11 +9,12 @@ end
 
 def property_attributes(overrides = {})
   {
-    house_name_no: '1',
+    name_or_number: '1',
     address1:      "Electric Avenue",
     address2:       "Citytown",
     postcode:       "BN1 7HZ",
     rent_per_week:  100.00,
+    last_day_of_rent_period: (Time.now.to_date - 15.days)
   }.merge(overrides)
 end
 
@@ -28,42 +29,47 @@ end
 
 def maintenance_attributes(overrides = {})
   {
-    worktype:        'Plumbing',
     cost:            123.45,
+    date:            "2017-12-25 19:30:00",
     details:         'Rat-proofed underneath the house, rewired the downstairs plug Sockets. They did an excellent job.'
   }.merge(overrides)
 end
 
 def rent_attributes(overrides = {})
   {
-    payment:          123.45,
-    notes:            "additional payment made",
-    date:             "2017/12/01"
+    payment:         123.45,
+    notes:           "additional payment made",
+    date:            "2017/12/01"
   }.merge(overrides)
 end
 
 def calendar_attributes(overrides = {})
   {
-    when:             "2017-12-25 19:30:00",
-    where:            "Meeting Space, Lordship Lane",
-    title:            "Annual General Meeting",
-    details:          "Adgenda points sent by email"
+    date_time:       "2017-12-25 19:30:00",
+    where:           "Meeting Space, Lordship Lane",
+    title:           "Annual General Meeting",
+    details:         "Agenda points sent by email"
   }.merge(overrides)
 end
 
 def job_attributes(overrides = {})
   {
-    title:             "Maintenance Officer"
+    title:           "Maintenance Officer"
   }.merge(overrides)
 end
 
 def role_attributes(overrides = {})
   {
-    role_start:             "2016-01-01",
-    role_end:               "2017-01-01" 
+    role_start:      "2016-01-01",
+    role_end:        "2017-01-01" 
   }.merge(overrides)
 end
 
+def worktype_attributes(overrides = {})
+  {
+    title:      "Electrical" 
+  }.merge(overrides)
+end
 
 
 

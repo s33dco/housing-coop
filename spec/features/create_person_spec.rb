@@ -6,7 +6,7 @@ describe 'Creating a Person' do
   end
 
   it "saves the person and shows the new person's details" do
-    visit people_url
+    visit people_path
 
     click_link 'Add a new person'
 

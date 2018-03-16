@@ -14,10 +14,9 @@
 		<% @houses.each do |house| %>
 		<tr>
 			<td><%= link_to house.number_and_address1, property_path(house) %></td>
-			<td> <% if house.people.empty? %> (Vacant)<% end %><td>
 			<td class='money'><%= show_money(house.balance) %></td>
 			<td><%=show_balance(house.balance)%></td>
-	
+			<td> <% if house.people.empty? && house.rent_end != nil%> - empty since <%= short_date(house.rent_end) %><% end %><td>
 		</tr>
 		<% end %>
 		</table>

@@ -2,7 +2,7 @@ class ApplicationRecord < ActiveRecord::Base
   self.abstract_class = true
 
   def number_and_address1
-		"#{self.house_name_no} #{self.address1}"
+		"#{self.name_or_number} #{self.address1}"
 	end
 
 	def full_name

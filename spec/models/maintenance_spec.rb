@@ -4,10 +4,12 @@ describe 'a maintenance record' do
 	
 	it "is valid with example attributes" do
 		property = Property.create!(property_attributes)
+    worktype = Worktype.create!(worktype_attributes)
 		contractor = Contractor.create!(contractor_attributes)
     maintenance = Maintenance.new(maintenance_attributes)
     maintenance.property = property
 		maintenance.contractor = contractor
+    maintenance.worktype = worktype
     
     expect(maintenance.valid?).to eq(true)
   end

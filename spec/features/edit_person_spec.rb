@@ -17,9 +17,9 @@ describe "Editing a person" do
 
     expect(current_path).to eq(edit_person_path(person))
 
-    expect(find_field("First Name").value).to eq(person.firstname)
+    expect(find_field("First Name(s)").value).to eq(person.firstname)
 
-    fill_in "First Name", with: "Delbert"
+    fill_in "First Name(s)", with: "Delbert"
 
     click_button 'Submit'
 
@@ -36,7 +36,7 @@ describe "Editing a person" do
     
     visit edit_person_url(person)
     
-    fill_in "First Name", with: " "
+    fill_in "First Name(s)", with: " "
     
     click_button 'Submit' 
         

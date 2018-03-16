@@ -9,21 +9,21 @@ describe 'a property' do
   end
 
   it "requires a house name or number" do
-    property = Property.new(property_attributes(house_name_no: ""))
+    property = Property.new(property_attributes(name_or_number: ""))
 
     property.valid?
 
-    expect(property.errors[:house_name_no].any?).to eq(true)
+    expect(property.errors[:name_or_number].any?).to eq(true)
   end
 
   it "rejects a house name or number with non alphnumerics" do
 
-  	tests = %w[23? <!> (MYHOUSE) #fortytwo]
+  	tests = %w[23? <!> #fortytwo]
   	tests.each do |test|
-      property = Property.new(property_attributes(house_name_no: test))
+      property = Property.new(property_attributes(name_or_number: test))
       property.valid?
       
-      expect(property.errors[:house_name_no].any?).to eq(true)
+      expect(property.errors[:name_or_number].any?).to eq(true)
     end
   end
 
@@ -38,7 +38,7 @@ describe 'a property' do
 
   it "rejects a street name with non alphnumerics" do
 
-  	tests = %w[23? <!> (MYHOUSEst) #fortytwoAvenue]
+  	tests = %w[23? <!> #fortytwoAvenue]
   	tests.each do |test|
       property = Property.new(property_attributes(address1: test))
       property.valid?
@@ -55,9 +55,9 @@ describe 'a property' do
     expect(property.errors[:address2].any?).to eq(true)
   end
 
-  it "rejects a street name with non alphnumerics" do
+  it "rejects a city name with non alphnumerics" do
 
-  	tests = %w[23? <!> (MYHOUSEst) #fortytwoAvenue]
+  	tests = %w[23? <!> #fortytwoAvenue]
   	tests.each do |test|
       property = Property.new(property_attributes(address2: test))
       property.valid?
@@ -110,5 +110,12 @@ describe 'a property' do
       
       expect(property.errors[:rent_per_week].any?).to eq(true)
     end
+  end
+
+  it "last_day_of_rent_period must be set if rent_period_start is no set" do
+      property = Property.new(property_attributes(last_day_of_rent_period: "", first_day_of_next_rent_period:""))
+      property.valid?
+      
+      expect(property.errors[:last_day_of_rent_period].any?).to eq(true)
   end
 end

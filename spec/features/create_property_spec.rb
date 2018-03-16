@@ -13,7 +13,8 @@ describe 'Creating a Property' do
     fill_in "Address 1", with: "golf drive"
     fill_in "Address 2", with: "brIgHton"
     fill_in "Postcode", with: "Bn1 7hz"
-    fill_in "Current Rent per week £", with: "70.00"  
+    fill_in "Current Rent per week £", with: "70.00" 
+    select Date.today - 1.week, :from => "Last day of current rent period." 
 
     click_button 'Submit'
 

@@ -8,9 +8,9 @@ describe 'a calendar event' do
 	  end 
 
 	  it "requires a date and time" do
-	    event = Calendar.new(calendar_attributes(when: ""))
+	    event = Calendar.new(calendar_attributes(date_time: ""))
 	    event.valid?
-	    expect(event.errors[:when].any?).to eq(true)
+	    expect(event.errors[:date_time].any?).to eq(true)
 	  end
 
 	  it "requires a title" do
@@ -20,7 +20,7 @@ describe 'a calendar event' do
 	  end
 
 	  it "rejects improperly formatted titles" do
-  	names = [ "!ks<>", " ", "1-2-2!!!"]
+  	names = [ "!ks<>", " ", "1-2-2!!!#"]
   	names.each do |name|
 		    event = Calendar.new(calendar_attributes(title: name))
 		    event.valid?
@@ -35,7 +35,7 @@ describe 'a calendar event' do
 	  end
 
 	  it "rejects improperly formatted wheres" do
-  	names = [ "!ks<>", " ", "1-2-2!!!"]
+  	names = [ "!ks<>", " ", "1-2-2!!!#$%"]
   	names.each do |name|
 		    event = Calendar.new(calendar_attributes(where: name))
 		    event.valid?
@@ -50,7 +50,7 @@ describe 'a calendar event' do
 	  end
 
 	  it "rejects improperly formatted details" do
-  	names = [ "!ks<>", " ", "1-2-2!!!"]
+  	names = [ "!ks<>", " ", "1-2-2!!!$@%&*"]
   	names.each do |name|
 		    event = Calendar.new(calendar_attributes(details: name))
 		    event.valid?

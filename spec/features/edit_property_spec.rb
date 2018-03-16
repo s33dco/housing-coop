@@ -5,13 +5,13 @@ describe "Editing a property" do
   it "updates the property and shows the property's updated details" do
     property = Property.create!(property_attributes)
 
-    visit property_url(property)
+    visit property_path(property)
 
     click_link 'Edit'
 
     expect(current_path).to eq(edit_property_path(property))
 
-    expect(find_field("Name or Number").value).to eq(property.house_name_no)
+    expect(find_field("Name or Number").value).to eq(property.name_or_number)
 
     fill_in "Name or Number", with: "50"
 
@@ -19,7 +19,7 @@ describe "Editing a property" do
 
     expect(current_path).to eq(property_path(property.reload))
 
-    expect(page).to have_text(property.house_name_no)
+    expect(page).to have_text(property.name_or_number)
     expect(page).to have_text('Property successfully updated!')
   end
 
