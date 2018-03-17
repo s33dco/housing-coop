@@ -30,7 +30,7 @@
           <%= f.label :property_id, "Choose Property" %>
           <%= f.collection_select(:property_id, Property.by_street_name_number, :id , :number_and_address1 ) %>
         </li>
-        <li>
+        <li class="required">
           <%= f.label :joined, "first moved in"%>
           <%= f.date_select :joined, { order: [ :day, :month, :year], 
                                                 start_year: Date.today.year - 25, 
