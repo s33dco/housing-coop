@@ -11,7 +11,7 @@ describe "Editing a person" do
     person.property = @property
     person.save
 
-    visit person_url(person)
+    visit person_path(person)
 
     click_link 'Edit'
 
@@ -25,7 +25,7 @@ describe "Editing a person" do
 
     expect(current_path).to eq(person_path(person.reload))
 
-    expect(page).to have_text(person.lastname)
+    expect(page).to have_text(person.firstname)
     expect(page).to have_text('Person successfully updated!')
   end
 
