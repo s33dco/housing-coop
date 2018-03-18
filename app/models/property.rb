@@ -61,7 +61,7 @@ class Property < ApplicationRecord
 				# reset balances_created to nil if not already
 				self.update_columns(balance_created:nil) unless self.balance_created == nil
 				# calculate rent position (rent_paid - rent_due) + self.rent_balance
-				balance = self.rents.select{|rent| rent.date > self.rent_period_start}.sum{|amount| amount.payment} - (self.rent_per_week / 7) * ((Time.now.to_date - self.rent_period_start ).to_i + 1) + self.rent_balance
+				balance = self.rents.select{|rent| rent.date >= self.rent_period_start}.sum{|amount| amount.payment} - (self.rent_per_week / 7) * ((Time.now.to_date - self.rent_period_start ).to_i + 1) + self.rent_balance
 			else
 		# over a rent change period
 				unless self.balance_created.present?
