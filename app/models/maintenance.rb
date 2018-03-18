@@ -19,7 +19,7 @@ class Maintenance < ApplicationRecord
 							presence: true,
 							format: {with: /\A[A-Za-z0-9\/\.\'\&\£\+\-\,\s]+\z/, message:"- you've used an invalid character"}
 
-	scope :first_job_first, ->{order(date: :desc).joins(:property).merge(Property.order(address1: :asc).order(house_name_no: :asc))}
+	scope :first_job_first, ->{order(date: :desc).joins(:property).merge(Property.order(address1: :asc).order(name_or_number: :asc))}
 	scope :first_job_date, ->{order(date: :desc).last.date}
 
 	has_many :roles, ->{ order(role_end: :desc).joins(:job).merge(Job.order(title: :asc))}

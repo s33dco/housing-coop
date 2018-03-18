@@ -23,11 +23,9 @@
   <body>
     <%= render "layouts/header" %>
 
-    <div id="container">
-
       <%= render "layouts/flashes" %>
 
-      <main>
+      <main class='page'>
         <aside class="sidebar">
           <%= render "layouts/sidebar" %>
         </aside>
@@ -36,10 +34,10 @@
         </section>
       </main>
 
-      <footer class='footer'>
-        <%= render "layouts/footer" %>
-      </footer>
+    <footer class='footer'>
+      <%= render "layouts/footer" %>
+    </footer>
 
-    </div>
+    
   </body>
 </html>
