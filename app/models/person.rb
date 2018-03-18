@@ -23,6 +23,7 @@ class Person < ApplicationRecord
   validates :phone,     numericality:  {message: "- just digits no spaces"},
   											length: {minimum: 10, maximum: 14},
                         allow_blank: true
+  validate :member_must_have_join_date
 
   before_validation :downcase_email
   after_validation :tidy_name
@@ -47,6 +48,11 @@ def event_percent
 end  
 
 private
+
+  def member_must_have_join_date
+    errors.add(:joined, "- If person a member they must have a first moved in date.") if member == true && joined.blank?
+  end
+
   def tidy_words
     self.words = self.words.humanize unless self.words.blank?
   end

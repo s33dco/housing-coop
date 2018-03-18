@@ -8,16 +8,17 @@
 
 	<section class='detail'>
 		<% @events.each do | event | %>
-		<div class="event">
-			<p><%= time_day(event.date_time) %></p>
-			<p><%= event.title %> - <%= event.where %></p>
-			<p><%= event.details %></p>
-			<p><%= event.link %></p>
-			<p><%=link_to 'more details', calendar_path(event) %></p>
+			<div class="event">
+				<h2><%= time_day(event.date_time) %></h2>
+				<h3><%= event.title %> - <%= event.where %></h3>
+				<p><%= event.details %></p>
+				<p><%= event.link %></p>
+				<p><%=link_to 'more details', calendar_path(event) %></p>
+			</div>
 		<% end %>
-		</div>
 	</section>
 
 	<div class="page-actions">
 	</div>
+
 </article>

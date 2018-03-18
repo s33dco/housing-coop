@@ -2,7 +2,6 @@
 
 fieldset {
   margin: 0 0 10px 0;
-  padding: 10px 20px;
   background-color: $fieldset-color;
   border: 0;
   box-shadow: #aaa 0 0 8px;
@@ -15,11 +14,10 @@ fieldset {
 
   ul {
     list-style: none;
-    margin: 0;
-    padding: 1vh 1vw;
+    padding: 3vh 3vw;
 
     li {
-      margin: 0 0 10px 0;
+      margin: 0 0 15px 0;
       padding: 0;
 
       &.required label {

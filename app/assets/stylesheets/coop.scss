@@ -1,0 +1,149 @@
+ @import "colors";
+
+  /*-----------GLOBAL--------------*/
+
+  body {
+    display : flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  .page {
+      flex-grow: 1;
+      margin: 2vh 0;
+    }
+
+  a {
+    text-decoration: none;
+  }
+
+  .page table {
+    margin : 2vh auto;
+    background-color: $table-color;
+    border: 0;
+    box-shadow: #aaa 0 0 8px;
+  }
+
+  .page table td {
+    padding: 0.25em 0.5em;
+  }
+
+  .page table .money{
+    text-align: right;
+  }
+
+  /*-----------HEADER--------------*/
+
+  .masthead {
+    display :flex;
+    padding: 1vh 2.5vw;
+  }
+
+  .masthead h1 {
+    flex: 1;
+    font-size: 2.5rem;
+  }
+
+  .masthead nav {
+    flex: 1;
+  }
+
+  .main-nav {
+        display: flex;
+        list-style: none;
+        padding: 0.5em;
+  }
+
+  .main-nav li {
+    flex: 1;
+    padding:  0 1em;
+    text-align: right;
+  }
+
+
+  /*-----------MAIN----------------*/
+
+  .page {
+    display : flex;
+    flex-direction: row-reverse;
+  }
+
+  .sidebar {
+    flex: 0 0 15%;
+  }
+
+  .content {
+    flex: 1 1 85%;
+    padding: 2vh 2.5vw;
+  }
+
+  .content .header h1{
+    font-size: 1.75rem;
+  }
+
+  .detail > h2 {
+    font-size: 1em;
+  }
+
+  article  div {
+    margin: 2em 0;
+    padding: 1vh 2vw;
+  }
+
+  article  div h2{
+    font-size: 1.5em;
+  }
+
+  /*----------FOOTER---------------*/
+
+  .footer {
+    padding: 2vh 2.5vw;
+  }
+
+  .footer h2 {
+    font-size: 1.2rem;
+  }
+
+  .name,
+  .text,
+  .address {
+    font-size: 0.9em; 
+    text-align: center;
+  }
+
+  .copy {
+    margin-top: -0.2em;
+    text-align: right;
+  }
+
+  /*----------SIDEBAR--------------*/
+
+  .admin-nav {
+    list-style: none;
+    padding-top: 2vh;
+  }
+
+  .admin-nav > li{
+    font-size: 1rem;
+    margin-bottom: 0.25em;
+    padding : 0.25em 0.5em;
+  }
+
+  .admin-nav a:hover {
+    color : $primary-link-color
+  }
+
+  /*----------PAGE-ACTIONS----------*/
+
+  .page-actions {
+    margin-top: 5vh;
+    text-align: center;
+  }
+
+  .page-actions a {
+    padding: 1em;
+  }
+
+  .page-actions a:hover {
+    color : $primary-link-color
+  }

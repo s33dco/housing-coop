@@ -6,6 +6,7 @@
 	  <%= render "shared/errors", object: @role %>
 
 		<fieldset>
+			<ul>
 			<li class="required">
 			  <%= f.label :person_id, "Person" %>
 			  <%= f.collection_select(:person_id, Person.members, :id , :full_name ) %>
@@ -33,6 +34,7 @@
 			<p>
 				<%= f.submit 'Submit' %> 
 			</p>
+		</ul>
 		</fieldset>
 	<% end %>
 <% end %>

@@ -7,6 +7,7 @@
 	  <%= render "shared/errors", object: @maintenance %>
 
 		<fieldset>
+		<ul>
 			<li>
 			  <%= f.label :date, "Date Job Completed"%>
 			  <%= f.date_select :date, { order: [ :day, :month, :year], 
@@ -35,6 +36,7 @@
 			  <%= f.label :cost, "Cost £" %>         
 			  <%= f.number_field :cost, size: 40 ,step: :any, placeholder: 'just numbers no spaces'%>
 			</li>
+		</ul>
 			<p>
 				<%= f.submit 'Submit' %> 
 			</p>

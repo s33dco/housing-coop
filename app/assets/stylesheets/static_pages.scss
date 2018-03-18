@@ -1,3 +1,18 @@
-// Place all the styles related to the StaticPages controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+@import "colors";
+
+.static_pages .sidebar {
+	display : none;
+}
+
+.static_pages .header {
+	text-align: center;
+}
+
+.static_pages .detail {
+	padding: 2vh 5vw;
+}
+
+.static_pages p {
+	line-height: 1.5;
+	margin-bottom: 1em;
+}

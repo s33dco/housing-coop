@@ -13,7 +13,11 @@
  *= require_tree .
  *= require_self
  *= require reset
- *= require layout
+ *= require coop
  *= require forms
- *= require events
+ *= require infos
+ *= require people
+ *= require static_pages
+ *= require properties
+
  */

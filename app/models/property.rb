@@ -24,6 +24,8 @@ class Property < ApplicationRecord
 
 	validate :no_dates
 
+	
+
 	before_save :smarten_address
 
 	scope :by_street_name_number, ->{where("coop_house = ?", true).order(address1: :asc).order(name_or_number: :asc)}
@@ -92,6 +94,8 @@ end
 
 
 private
+
+
 
 	def no_dates
 	  errors.add(:rent_period_start, "and last day of rent period cannot both be blank, (either can individually), if the house is empty set last day of rent period to the last day the property was let, or the day before you wish to start calculating the void rent.") if rent_period_start.blank? && last_day_of_rent_period.blank? 

@@ -1,3 +1,16 @@
-// Place all the styles related to the calendars controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+@import "colors";
+
+  /*-----------CALENDARS--------------*/
+
+.event {
+	margin-bottom: 5vh;
+}
+
+.event h2 {
+	font-size: 1.5rem;
+}
+
+.event h3 {
+	font-size: 1.1em;
+	margin-bottom: 0.5em;
+}

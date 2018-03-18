@@ -25,8 +25,8 @@
 
       <%= render "layouts/flashes" %>
 
-      <main class='page'>
-        <aside class="sidebar">
+      <main class='page  <%= controller.controller_name %>'>
+        <aside class="sidebar" >
           <%= render "layouts/sidebar" %>
         </aside>
         <section class="content">

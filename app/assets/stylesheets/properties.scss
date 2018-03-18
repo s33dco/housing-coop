@@ -1,3 +1,9 @@
-// Place all the styles related to the properties controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+@import "colors";
+
+.properties .hide {
+	display : none;
+}
+
+.basic-info {
+	font-size: 1.1em;
+}

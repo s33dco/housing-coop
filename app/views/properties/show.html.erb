@@ -12,9 +12,7 @@
 		<div class="basic-info">
 			<p>
 				Rent is currently charged at <%= show_money(@property.rent_per_week)%> per week. 
-				(Pro rata <%= rent_per_month(@property.rent_per_week)%> per month / <%= rent_per_day(@property.rent_per_week)%> per day)
-
-				<% unless @property.new_rent_value.nil? %>. 
+				(Pro rata <%= rent_per_month(@property.rent_per_week)%> per month / <%= rent_per_day(@property.rent_per_week)%> per day)<% unless @property.new_rent_value.nil? %>. 
 <% description("property details for #{@property.number_and_address1} - #{ENV['COOP_FULL_NAME']}")%>
 					This is scheduled to change to <%= show_money(@property.new_rent_value)%> per week<% end %><% unless @property.first_day_of_next_rent_period.nil? %> as of the <%=nice_short_date(@property.first_day_of_next_rent_period)%><% end %>.</p>
 
