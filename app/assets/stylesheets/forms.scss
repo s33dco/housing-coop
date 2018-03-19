@@ -1,7 +1,7 @@
 @import "colors";
 
 fieldset {
-  margin: 0 0 10px 0;
+  margin: 2vh 2vw;
   background-color: $fieldset-color;
   border: 0;
   box-shadow: #aaa 0 0 8px;
@@ -50,7 +50,9 @@ fieldset {
     }
   }
 
+
   input[type="checkbox"] {
+
     width: 16px;
     height: 16px;
   }
