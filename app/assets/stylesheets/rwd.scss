@@ -39,13 +39,16 @@
 	}
 
 	.name,
-	.text,
-	.address {
+	.text {
 	  font-size: 0.9em; 
 	  text-align: center;
 	  margin-bottom: 0.2em;
 	}
 
+	.address {
+		display :none;
+	}
+	
 	.copy {
 	  font-size: 0.8em;
 	  text-align: right;
@@ -57,7 +60,7 @@
   .page {
     display : flex;
     flex-direction: column;
-    margin-top : 2vh;
+    margin-top : 1vh;
   }
 
   .sidebar {
@@ -78,8 +81,14 @@
     text-align: center;
   }
 
+  .content .header p{
+    font-size: 1rem;
+    text-align: center;
+  }
+
   .detail > h2 {
     font-size: 1em;
+    text-align: center;
   }
 
   article  div {
@@ -89,6 +98,7 @@
   article  div h2{
     font-size: 1.25em;
     margin-bottom: 0.5em;
+    text-align: center;
   }
 
   .admin-nav {
@@ -96,9 +106,9 @@
   }
 
   .admin-nav > li{
-    font-size: 1rem;
+    font-size: 1.2rem;
     margin-bottom: 0.25em;
-    padding : 0.5em 0.5em;
+    padding : 0.75em 0.75em;
     text-align: center;
   }
 
@@ -148,5 +158,28 @@ fieldset {
     border: 1px solid $subdued-color;
   }
 }
+
+
+/* people pages*/
+
+.detail .contact-details p {
+		font-size: 1.1em;
+		line-height: 2;
+		margin-bottom: 0.25em;
+	
+}
+
+.detail .contact-details p i {
+		padding: 0 0.5em;
+	}
+
+.detail .bio p ,
+.detail .roles p {
+		line-height: 1.5;
+		padding: 0 1em;
+		margin-bottom: 2em;
+	}
+
+
 
 }

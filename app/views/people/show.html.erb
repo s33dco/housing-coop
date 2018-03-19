@@ -43,10 +43,11 @@
 			<p>
 				<% @roles.each do |role | %> <%= role.job.title %> (<%= nice_short_date(role.role_start) %> - <%= nice_short_date(role.role_end) %>),<% end %> thanks for your participation.
 			</p>
+	
+		<% end %>
+		<p><%= @person.firstname %> has attended <%= @person.events.size %> events and held <%= @person.roles.size %> roles in <%= @person.years_in_coop %> years.</p>
+		<% end %>
 		</div>
-		<% end %>
-		<p><%= @person.firstname %> has attended <%= @person.events.size %>events and held <%= @person.roles.size %> roles in <%= @person.years_in_coop %> years.</p>
-		<% end %>
 	</section>
 
 	<div class="page-actions">
