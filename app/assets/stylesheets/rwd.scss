@@ -1,0 +1,152 @@
+@import "colors";
+@media (max-width: 800px){
+
+	/*-----------HEADER--------------*/
+	.masthead {
+	  display :flex;
+	  flex-direction: column-reverse;
+	  margin: 0;
+	  padding: 0;
+	}
+
+	.masthead h1 {
+	  flex: 1;
+	  font-size: 2.1rem;
+	  text-align: center;
+	}
+
+	.masthead .main-nav {
+	  display: flex;
+	  flex: 1;
+	  list-style: none;
+	}
+
+	.masthead .main-nav li {
+	  flex: 1;
+	  text-align: center;
+	  padding: 0.5em 0.5em;
+	}
+
+	/*----------FOOTER---------------*/
+
+	.footer {
+	  padding: 1vh 1vw;
+	  margin-bottom: 2vh;
+	}
+
+	.footer h2 {
+	  font-size: 1.5rem;
+	}
+
+	.name,
+	.text,
+	.address {
+	  font-size: 0.9em; 
+	  text-align: center;
+	  margin-bottom: 0.2em;
+	}
+
+	.copy {
+	  font-size: 0.8em;
+	  text-align: right;
+	  padding-bottom: 0.1em;
+	}
+
+ /*-----------MAIN----------------*/
+
+  .page {
+    display : flex;
+    flex-direction: column;
+    margin-top : 2vh;
+  }
+
+  .sidebar {
+    flex: 1;
+  }
+
+  .content {
+    flex: 1;
+    margin: 0;
+  }
+
+  .content .header {
+    margin-bottom: 5vh;
+  }
+
+  .content .header h1{
+    font-size: 1.5rem;
+    text-align: center;
+  }
+
+  .detail > h2 {
+    font-size: 1em;
+  }
+
+  article  div {
+    margin-bottom: 2.5vh;
+  }
+
+  article  div h2{
+    font-size: 1.25em;
+    margin-bottom: 0.5em;
+  }
+
+  .admin-nav {
+    list-style: none;
+  }
+
+  .admin-nav > li{
+    font-size: 1rem;
+    margin-bottom: 0.25em;
+    padding : 0.5em 0.5em;
+    text-align: center;
+  }
+
+  .admin-nav a:hover {
+    color : $primary-link-color
+  }
+
+/* form */
+
+fieldset {
+  margin: 0;
+  background-color: $fieldset-color;
+  border: 0;
+  box-shadow: #aaa 0 0 8px;
+
+  label {
+    font-size: 1em;
+    display: block;
+    margin-bottom: .25em;
+  }
+
+  ul {
+    list-style: none;
+    padding: 3vh 3vw;
+
+    li {
+      margin: 0 0 15px 0;
+      padding: 0;
+
+      &.required label {
+        font-weight: bold;
+      }
+    }
+  }
+
+  input,
+  label {
+    display: block;
+  }
+
+  input,
+  textarea {
+    font-size:     14px;
+    padding:       5px;
+    border-radius: 6px;
+    box-shadow:    0px;
+    border: 1px solid $subdued-color;
+  }
+}
+
+}
