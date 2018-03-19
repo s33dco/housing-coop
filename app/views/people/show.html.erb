@@ -39,22 +39,9 @@
 		<% unless @roles.empty? %>
 		<div class="roles">
 			<h2><%=@person.firstname%>'s previous roles.</h2>
-			<table>
-				<% @roles.each do |role | %>
-				<tr>
-					<td>
-						<%= role.job.title %>
-					</td>
-					<td>
-						<%= nice_short_date(role.role_start) %>
-					</td>
-					<td> - </td>
-					<td>
-						<%= nice_short_date(role.role_end) %>
-					</td>
-				</tr>
-				<% end %>
-			</table>
+			<p>
+				<% @roles.each do |role | %> <%= role.job.title %> (<%= nice_short_date(role.role_start) %> - <%= nice_short_date(role.role_end) %>),<% end %> thanks for your participation.
+			</p>
 		</div>
 		<% end %>
 	</section>

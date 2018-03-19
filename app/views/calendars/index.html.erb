@@ -9,9 +9,9 @@
 	<section class='detail'>
 		<table>
 			<tr>
-				<td>date</td>
-				<td>title</td>
-				<td>location</td>
+				<td>when</td>
+				<td>what</td>
+				<td>where</td>
 				<td>details</td>
 				<td></td>
 				<td></td>
@@ -20,7 +20,7 @@
 			
 			<% @events.each do | event | %>
 			<tr>
-				<td><%= short_date(event.date_time) %></td>
+				<td><%= time_date(event.date_time) %></td>
 				<td><%= event.title %></td>
 				<td><%= event.where %></td>
 				<td><%= truncate(event.details, length: 30, separator: ' ')%></td>

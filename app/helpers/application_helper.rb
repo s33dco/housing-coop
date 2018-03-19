@@ -59,6 +59,10 @@ module ApplicationHelper
 		d.strftime("%d/%m/%y")	
 	end
 
+	def time_date(d)
+		d.strftime("%l:%M %p, %A #{d.day.ordinalize} %B %Y")	
+	end
+
 	def month_year(d)
 		d.strftime("%B '%y")	
 	end
