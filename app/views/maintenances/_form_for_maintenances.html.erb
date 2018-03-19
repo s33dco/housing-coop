@@ -18,15 +18,15 @@
 			</li>
 			<li class="required">
 			  <%= f.label :property_id, "Property" %>
-			  <%= f.collection_select(:property_id, Property.by_street_name_number, :id , :number_and_address1 ) %>
+			  <%= f.collection_select(:property_id, Property.by_street_name_number, :id , :number_and_address1, prompt: "Choose Property" ) %>
 			</li>
 			<li class="required">
 			  <%= f.label :worktype_id, "Category of work" %>
-			  <%= f.collection_select(:worktype_id, Worktype.alphabetically, :id , :title ) %>
+			  <%= f.collection_select(:worktype_id, Worktype.alphabetically, :id , :title , prompt: "Choose Category" ) %>
 			</li>
 			<li class="required">
 			  <%= f.label :contractor_id, "Contractor" %>
-			  <%= f.collection_select(:contractor_id, Contractor.alphabetically, :id , :name ) %>
+			  <%= f.collection_select(:contractor_id, Contractor.alphabetically, :id , :name , prompt: "Choose Contractor") %>
 			</li>
 			<li class="required">
 			  <%= f.label :details, "Details" %>         

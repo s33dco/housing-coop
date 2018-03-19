@@ -9,11 +9,11 @@
 			<ul>
 			<li class="required">
 			  <%= f.label :person_id, "Person" %>
-			  <%= f.collection_select(:person_id, Person.members, :id , :full_name ) %>
+			  <%= f.collection_select(:person_id, Person.members, :id , :full_name, prompt: "Choose Person" ) %>
 			</li>
 			<li class="required">
 			  <%= f.label :job_id, "Role" %>
-			  <%= f.collection_select(:job_id, Job.alphabetically, :id , :title) %>
+			  <%= f.collection_select(:job_id, Job.alphabetically, :id , :title, prompt: "Choose Role") %>
 			</li>
 			<li>
 			  <%= f.label :role_start, "From"%>
