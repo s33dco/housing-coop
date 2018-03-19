@@ -67,6 +67,7 @@
   .page {
     display : flex;
     flex-direction: row-reverse;
+    margin-top : 2vh;
   }
 
   .sidebar {
@@ -75,7 +76,11 @@
 
   .content {
     flex: 1 1 85%;
-    padding: 2vh 2.5vw;
+    margin: 0 5vw;
+  }
+
+  .content .header {
+    margin-bottom: 5vh;
   }
 
   .content .header h1{
@@ -87,12 +92,12 @@
   }
 
   article  div {
-    margin: 2em 0;
-    padding: 0.5vh 2vw;
+    margin-bottom: 2.5vh;
   }
 
   article  div h2{
-    font-size: 1.5em;
+    font-size: 1.25em;
+    margin-bottom: 0.5em;
   }
 
   /*----------FOOTER---------------*/
@@ -123,7 +128,6 @@
 
   .admin-nav {
     list-style: none;
-    padding-top: 2vh;
   }
 
   .admin-nav > li{
@@ -139,7 +143,7 @@
   /*----------PAGE-ACTIONS----------*/
 
   .page-actions {
-    margin-top: 5vh;
+    margin: 5vh 0;
     text-align: center;
   }
 

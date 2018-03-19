@@ -10,7 +10,7 @@
 	</tr>
 	<% @payments.each do | rent | %>
 	<tr>
-		<td><%=nice_short_date(rent.date)%></td>
+		<td><%=short_date(rent.date)%></td>
 		<td class='hide'><%=link_to "#{rent.property.number_and_address1}", rent.property%></td>
 		<td class='money'><%=show_money(rent.payment)%></td>
 		<td><%=truncate(rent.notes, length: 40, separator: ' ')%></td>
