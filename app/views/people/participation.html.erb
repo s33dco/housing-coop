@@ -11,7 +11,7 @@
 		<table>
 			<% @people.each do |person| %>
 				<tr>
-				<p><%= person.full_name %>, attended <%= person.events.size %> out of <%= person.events_since_joined(@events)%> events, held <%= person.roles.size %> Officer roles.</p>
+				<p><%= person.full_name %>, attended <%= person.events.size %> out of <%= person.events_since_joined(@events)%> events, held <%= person.roles.size %> roles over <%= person.years_in_coop %> years.</p>
 			<% end %>
 		</table>
 	</section>

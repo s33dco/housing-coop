@@ -36,6 +36,7 @@
 			<% end %>
 		</div>	
 
+		<%if @person.member? %>
 		<% unless @roles.empty? %>
 		<div class="roles">
 			<h2><%=@person.firstname%>'s previous roles.</h2>
@@ -43,6 +44,8 @@
 				<% @roles.each do |role | %> <%= role.job.title %> (<%= nice_short_date(role.role_start) %> - <%= nice_short_date(role.role_end) %>),<% end %> thanks for your participation.
 			</p>
 		</div>
+		<% end %>
+		<p><%= @person.firstname %> has attended <%= @person.events.size %>events and held <%= @person.roles.size %> Roles over <%= @person.years_in_coop %> years.</p>
 		<% end %>
 	</section>
 

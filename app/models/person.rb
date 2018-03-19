@@ -37,8 +37,11 @@ class Person < ApplicationRecord
   scope :under18s, ->{ where("housed = ?",true).where("child = ?",true).first_name_last }
   scope :members_adults_children, ->{ where("housed = ?", true).order("member desc").order("child asc").first_name_last }
 
-def events_since_joined(events)
+def years_in_coop
+  (Time.now.year - self.joined.year).to_i
+end
 
+def events_since_joined(events)
   events.select{|event| event.date_time > self.joined}.size
 end
 
