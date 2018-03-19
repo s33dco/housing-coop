@@ -10,7 +10,7 @@
 
   .page {
       flex-grow: 1;
-      margin: 2vh 0;
+      margin: 2vh 2.5vw;
     }
 
   a {
@@ -21,11 +21,14 @@
     margin : 2vh auto;
     background-color: $table-color;
     border: 0;
-    box-shadow: #aaa 0 0 8px;
+    box-shadow: #aaa 0 0 4px;
   }
 
+  .page table tr~tr{
+    border-bottom: solid 1px rgba(0,0,0,0.1); 
+    }
   .page table td {
-    padding: 0.25em 0.5em;
+    padding: 0.5em 0.5em;
   }
 
   .page table .money{
@@ -36,6 +39,7 @@
 
   .masthead {
     display :flex;
+    margin-bottom: 2vh 0;
     padding: 1vh 2.5vw;
   }
 
@@ -78,7 +82,7 @@
   }
 
   .content .header h1{
-    font-size: 1.75rem;
+    font-size: 1.5rem;
   }
 
   .detail > h2 {

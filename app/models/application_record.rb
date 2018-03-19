@@ -5,6 +5,10 @@ class ApplicationRecord < ActiveRecord::Base
 		"#{self.name_or_number} #{self.address1}"
 	end
 
+  def full_address
+		"#{self.name_or_number} #{self.address1} #{self.address2} #{self.postcode}"
+	end	
+
 	def full_name
 		"#{self.firstname} #{self.lastname}"
 	end
