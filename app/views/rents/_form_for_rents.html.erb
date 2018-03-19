@@ -5,13 +5,13 @@
         <ul>
            <li class="required">
             <%= f.label :property_id, "Property" %>
-            <%= f.collection_select(:property_id, Property.by_street_name_number, :id , :number_and_address1 ) %>
+            <%= f.collection_select(:property_id, Property.by_street_name_number, :id , :number_and_address1, prompt: "Choose Property" ) %>
           </li>
           <li>
             <%= f.label :date, "Date (on statement)"%>
-            <%= f.date_select :date, { order: [ :day, :month, :year], 
+            <%= f.date_select :date , { order: [ :day, :month, :year], 
                                                   start_year: Date.today.year - 2, 
-                                                  end_year: Date.today.year,
+                                                  end_year: Date.today.year, 
                                                 } %>
           </li>
           <li class="required">

@@ -35,7 +35,7 @@
 	<div class="page-actions">
 		<%=link_to 'Edit This Payment', edit_rent_path(@rent) %>
 		<%=link_to 'Delete This Payment', @rent, method: :delete, data: { confirm: 'Are you sure?' } %>
-		<%=link_to 'Rent Home', rents_path(@rent) %>
+		<%=link_to 'Add A New Rent Payment', new_rent_path %>
 		</div>
 
 </article>

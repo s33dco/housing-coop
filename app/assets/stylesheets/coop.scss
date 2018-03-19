@@ -55,7 +55,7 @@
   }
 
   .main-nav li {
-    flex: 1;
+    flex: 1 1 0;
     padding:  0 1em;
     text-align: right;
   }
@@ -87,7 +87,7 @@
 
   article  div {
     margin: 2em 0;
-    padding: 1vh 2vw;
+    padding: 0.5vh 2vw;
   }
 
   article  div h2{
@@ -97,7 +97,7 @@
   /*----------FOOTER---------------*/
 
   .footer {
-    padding: 2vh 2.5vw;
+    padding: 1vh 2.5VW;
   }
 
   .footer h2 {
@@ -112,6 +112,7 @@
   }
 
   .copy {
+    font-size: 0.8em;
     margin-top: -0.2em;
     text-align: right;
   }
