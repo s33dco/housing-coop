@@ -62,6 +62,11 @@
 
  /*-----------MAIN----------------*/
 
+ .content {
+ display : flex;
+ flex-direction: column-reverse;
+ }
+
   .page {
     display : flex;
     flex-direction: column;

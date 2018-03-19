@@ -64,6 +64,19 @@
 
   /*-----------MAIN----------------*/
 
+  .content {
+  display : flex;
+  flex-direction: column;
+  }
+
+  .content article {
+  flex : 1
+  }
+
+  .content .page-actions {
+  flex : 1
+  }
+
   .page {
     display : flex;
     flex-direction: row-reverse;

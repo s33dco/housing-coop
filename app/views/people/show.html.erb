@@ -50,10 +50,11 @@
 		</div>
 	</section>
 
+
+</article>
 	<div class="page-actions">
-		<%=link_to 'Edit Details', edit_person_path(@person) %>
+		<%=link_to 'Edit', edit_person_path(@person) %>
 		<%= link_to 'Delete', @person, 
 	                  class: 'button',
 	                  method: :delete, data: { confirm: 'Are you sure?' } %>
 	 </div>
-</article>

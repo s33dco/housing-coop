@@ -39,11 +39,11 @@
 			<% end %>
 		</table>
 	</section>
-
-	<div class="page-actions">
-		<%=link_to 'Edit This Job', edit_maintenance_path(@maintenance) %>
-		<%=link_to 'Delete This Job', @maintenance, method: :delete, data: { confirm: 'Are you sure?' } %>
-		<%=link_to 'Maintenance Home', rents_path(@maintenance) %>
-		</div>
-
 </article>
+
+<div class="page-actions">
+	<%=link_to 'Edit This Job', edit_maintenance_path(@maintenance) %>
+	<%=link_to 'Delete This Job', @maintenance, method: :delete, data: { confirm: 'Are you sure?' } %>
+	<%=link_to 'Maintenance Home', rents_path(@maintenance) %>
+	</div>
+	
