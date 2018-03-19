@@ -8,7 +8,7 @@
 
 		<fieldset>
 		<ul>
-			<li>
+			<li class="required">
 			  <%= f.label :date, "Date Job Completed"%>
 			  <%= f.date_select :date, { order: [ :day, :month, :year], 
 			                                        start_year: Date.today.year - 1, 

@@ -15,7 +15,7 @@
 			  <%= f.label :job_id, "Role" %>
 			  <%= f.collection_select(:job_id, Job.alphabetically, :id , :title, prompt: "Choose Role") %>
 			</li>
-			<li>
+			<li class="required">
 			  <%= f.label :role_start, "From"%>
 			  <%= f.date_select :role_start, { order: [ :day, :month, :year], 
 			                                        start_year: Date.today.year - 1, 
@@ -23,7 +23,7 @@
 			                                        autofocus: true 
 			                                      } %>
 			</li>
-			<li>
+			<li class="required">
 			  <%= f.label :role_end, "To"%>
 			  <%= f.date_select :role_end, { order: [ :day, :month, :year], 
 			                                        start_year: Date.today.year - 1, 

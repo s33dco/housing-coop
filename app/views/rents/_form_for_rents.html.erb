@@ -7,7 +7,7 @@
             <%= f.label :property_id, "Property" %>
             <%= f.collection_select(:property_id, Property.by_street_name_number, :id , :number_and_address1, prompt: "Choose Property" ) %>
           </li>
-          <li>
+          <li class="required">
             <%= f.label :date, "Date (on statement)"%>
             <%= f.date_select :date , { order: [ :day, :month, :year], 
                                                   start_year: Date.today.year - 2, 

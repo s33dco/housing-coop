@@ -6,7 +6,6 @@
           <%= f.label :date_time, "When" %> 
           <%= f.datetime_select :date_time, :ampm => true, :minute_step => 15, :order => [:day, :month, :year]  %>
         </li>
-        </li>
         <li class="required">
           <%= f.label :title, "Title" %>         
           <%= f.text_field :title, size: 40 , placeholder: 'e.g General Meeting'%>
