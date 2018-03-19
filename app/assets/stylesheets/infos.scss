@@ -28,6 +28,10 @@ section#errors {
   padding: 1em;
   background: $errors-background-color;
 
+  ul {
+    list-style: none;
+  }
+
   h2 {
     color: $errors-text-color;
     font-size: 1.25em;
