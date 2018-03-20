@@ -1,4 +1,6 @@
-<% unless Property.by_street_name_number.blank? %>
+<% if Property.by_street_name_number.blank? %>
+  <p>A property must be added before a rent payment allocated, <%=link_to 'please add a property', properties_path%> first.</p>
+<% else %> 
   <%= form_for [@rent] do |f| %>
     <%= render "shared/errors", object: @rent %>
       <fieldset>
@@ -29,6 +31,4 @@
         </ul>
       </fieldset>
     <% end %>
-<% else %>
-  <p>A property must be added before a rent payment allocated, <%=link_to 'please add a property', properties_path%> first.</p>
 <% end %>

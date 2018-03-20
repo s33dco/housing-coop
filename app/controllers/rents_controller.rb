@@ -14,12 +14,12 @@ class RentsController < ApplicationController
 	end
 
 	def create
-		@payment = Rent.new(rent_params)
-    if @payment.save
-      redirect_to @payment, notice: "Payment successfully added!"
+		@rent = Rent.new(rent_params)
+    if @rent.save
+      redirect_to @rent, notice: "Payment successfully added!"
     else
       render :new
-      @payment.errors.full_messages
+      @rent.errors.full_messages
     end
 	end
 
