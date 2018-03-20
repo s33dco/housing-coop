@@ -199,11 +199,12 @@ fieldset {
 /* table*/
 
 .page table {
-  margin : 2vh auto;
+  margin : 2vh 0.5vw;
   background-color: $table-color;
   border: 0;
   box-shadow: #aaa 0 0 2px;
   font-size: 0.8em;
+  width: 100%;
 }
 
 .page table tr {
