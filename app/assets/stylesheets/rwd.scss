@@ -112,6 +112,12 @@
     text-align: center;
   }
 
+  .detail p {
+  line-height: 1.5;
+  margin-bottom: 1.5em;
+  text-align: center;
+  }
+
   .detail > h2 {
     font-size: 1em;
     text-align: center;
@@ -137,6 +143,7 @@
     margin: 0;
     display: block;
     flex : 0;
+    font-size: 1.2rem;
   }
 
   .show-mobile-menu {
@@ -144,9 +151,11 @@
     font-weight: bold;
     margin-top: 0;
     padding: 0.5em;
-    position: relative;
     text-align: center;
-    text-transform: uppercase;
+  }
+
+  .show-mobile-menu img {
+    height: 100%;
   }
 
   .admin-nav {
@@ -162,7 +171,6 @@
 
 
   .admin-nav > li{
-    font-size: 1em;
     margin: 0;
     padding : 0.75em 0.75em;
     text-align: center;
@@ -179,11 +187,11 @@
     padding: 0;
     text-align: center;
     flex : 0;
+    font-size: 1rem;
   }
 
   .page-actions a {
     display: block;
-    font-size: 1em;
     padding: 0.75em 0.75em;
   }
 

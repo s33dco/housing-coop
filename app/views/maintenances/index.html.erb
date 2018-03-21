@@ -3,7 +3,7 @@
 <% description("Maintenance home #{ENV['COOP_FULL_NAME']}")%>
 <article>
 	<header class="header">
-		<h1><%= ENV['COOP_SHORT_NAME']%> Maintenance Home - <%= pluralize(@maintenances.size, 'job') %>.</h1>
+		<h1>Maintenance - <%= pluralize(@maintenances.size, 'job') %>.</h1>
 		<% unless @maintenances.empty? %>
 		<p><%= nice_short_date(@maintenances.first_job_date)%> - <%= nice_short_date(Time.now.to_date) %>, (<%= pluralize(@maintenances.size, 'job') %> completed at a cost of <%= show_money(@money)%>).</p>
 		<% end %>

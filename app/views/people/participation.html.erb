@@ -5,12 +5,12 @@
 
 <article>
 	<header class="header">
-		<h1><%= ENV['COOP_SHORT_NAME']%> Participation</h1>
+		<h1>Participation</h1>
 	</header>
 	<section class='detail'>
 			<% @people.each do |person| %>
 				
-				<p><%= person.full_name %>, attended <%= person.events.size %> out of <%= person.events_since_joined(@events)%> events, held <%= person.roles.size %> roles in <%= person.years_in_coop %> years.</p>
+				<p><%= person.full_name %> had attended <%= person.events.size %> out of <%= person.events_since_joined(@events)%> events and held <%= person.roles.size %> roles in <%= person.years_in_coop %> years.</p>
 			<% end %>
 
 	</section>
