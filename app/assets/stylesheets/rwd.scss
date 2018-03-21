@@ -14,9 +14,7 @@
 	}
 
 	.masthead h1 {
-	  flex: 1;
-	  font-size: 2rem;
-	  text-align: center;
+    display :none;
 	}
 
 	.masthead .header p {
@@ -26,7 +24,6 @@
 
 	.masthead .main-nav {
 	  display: flex;
-	  flex: 1;
 	  list-style: none;
     width: 90%;
 	}
@@ -40,10 +37,9 @@
 	/*----------FOOTER---------------*/
 
 	.footer {
-	  padding: 1vh 5vw;
-	  margin-bottom: 2vh;
-    width: 90%;
-    margin: 0 auto;
+	  padding: 1vh 2vw;
+	  margin-bottom: 5vh;
+
 	}
 
 	.footer h2 {
@@ -71,9 +67,9 @@
  /*-----------MAIN----------------*/
 
  .content {
- display : flex;
- flex-direction: column-reverse;
- padding: 0 1vw;
+   display : flex;
+   flex-direction: column-reverse;
+   padding: 0 1vw;
  }
 
   .page {
@@ -83,11 +79,11 @@
   }
 
   .sidebar {
-    flex: 1;
+    flex: 0;
   }
 
   .content {
-    flex: 1;
+    flex: 0;
     margin: 0;
   }
 
@@ -130,9 +126,35 @@
     text-align: center;
   }
 
-  .admin-nav {
-    list-style: none;
+  /* SIDEBAR MOBILE MENU*/
+
+  .sidebar {
+    margin: 0;
+    display: block;
+    flex : 0;
   }
+
+  .show-mobile-menu {
+    display: block;
+    font-weight: bold;
+    margin-top: 0;
+    padding: 1.5em;
+    position: relative;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  .admin-nav {
+    max-height: 0;
+    list-style: none;
+    overflow: hidden;
+    padding: 0;
+    transition: all 0.5s ease-in-out;
+  }
+  .mobile-menu-check:checked ~ .admin-nav {
+    max-height: 1000px;
+  }
+
 
   .admin-nav > li{
     font-size: 1em;
@@ -145,6 +167,23 @@
     color : $primary-link-color
   }
 
+  /*----------PAGE-ACTIONS----------*/
+
+  .page-actions {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    flex : 0;
+  }
+
+  .page-actions a {
+    display: block;
+    padding: 0.75em 0.75em;
+  }
+
+  .page-actions a:hover {
+    color : $primary-link-color
+  }
 /* form */
 
 fieldset {
