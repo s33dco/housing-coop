@@ -15,6 +15,8 @@
 
 	.masthead h1 {
     display :none;
+    padding: 0;
+    margin: 0;
 	}
 
 	.masthead .header p {
@@ -56,6 +58,8 @@
 
 	.address {
 		display :none;
+    padding: 0;
+    margin: 0;
 	}
 
 	.copy {
@@ -75,7 +79,8 @@
   .page {
     display : flex;
     flex-direction: column;
-    margin-top : 1vh;
+    margin: 0 1vw;
+    padding: 0;
   }
 
   .sidebar {
@@ -138,7 +143,7 @@
     display: block;
     font-weight: bold;
     margin-top: 0;
-    padding: 1.5em;
+    padding: 0.5em;
     position: relative;
     text-align: center;
     text-transform: uppercase;
@@ -178,6 +183,7 @@
 
   .page-actions a {
     display: block;
+    font-size: 1em;
     padding: 0.75em 0.75em;
   }
 
@@ -258,8 +264,9 @@ fieldset {
 .page table {
   background-color: $table-color;
   border: 0;
-  box-shadow: #aaa 0 0 2px;
+  box-shadow: #aaa 0 0 1px;
   font-size: 0.75em;
+  margin: 2.5vh 0;
   width: 100%;
 }
 
@@ -270,7 +277,7 @@ fieldset {
   border-top: solid 1px rgba(0,0,0,0.1); 
   }
 .page table td {
-  padding: 0.5em 0.25em;
+  padding: 0.5em 0.2em;
 }
 
 }
