@@ -100,8 +100,8 @@
     font-size: 1.5rem;
   }
 
-  .detail > h2 {
-    font-size: 1em;
+  .detail  h2 {
+    font-size: 1.5rem;
   }
 
   .detail p {
@@ -142,22 +142,25 @@
     text-align: right;
   }
 
- /*------rentbook/maintenance------*/
+ /*------rentbook/maintenance/directory------*/
 
 .rentbook-check,
 .maintenance-check,
-.residents-check {
+.residents-check,
+.peoplelist-check{
   display: none;
 }
 .show-rentbook,
 .show-maintenance,
-.show-residents {
+.show-residents,
+.show-peoplelist {
   display: block;
 }
 
 .renthistory,
 .maintenancehistory,
-.residentlist {
+.residentlist,
+.directory {
   max-height: 0;
   overflow: hidden;
   padding: 0;
@@ -165,13 +168,15 @@
 }
 .rentbook-check:checked ~ .renthistory,
 .maintenance-check:checked ~ .maintenancehistory,
-.residents-check:checked ~ .residentlist {
+.residents-check:checked ~ .residentlist,
+.peoplelist-check:checked ~ .directory {
   max-height: 1000px;
 }
 
 
-.property label {
-  font-size: 1.5em;
+.property label,
+.people label {
+  font-size: 1.5rem;
 }
   /*----------SIDEBAR--------------*/
 

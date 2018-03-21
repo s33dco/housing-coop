@@ -23,19 +23,22 @@
 				</table>
 		</div>
 
-		<div class="directory">
-			<h2>Directory</h2>
-			<table>
-				<% @people.each do | person | %>
-					<tr>
-						<td><%= link_to person.full_name, person_path(person) %></td>
-						<td><%=link_to 'Edit', edit_person_path(person) %></td>
-						<td><%= link_to 'Delete', person, 
-			                  class: 'button',
-			                  method: :delete, data: { confirm: 'Are you sure?' } %></td>
-					</tr>
-				<% end %>
-			</table>
+		<div class="people">
+				<input type="checkbox" id="peoplelist" class="peoplelist-check">
+				<label for="peoplelist" class="show-peoplelist">Directory</label>
+				<div class="directory">
+				<table>
+					<% @people.each do | person | %>
+						<tr>
+							<td><%= link_to person.full_name, person_path(person) %></td>
+							<td><%=link_to 'Edit', edit_person_path(person) %></td>
+							<td><%= link_to 'Delete', person, 
+				                  class: 'button',
+				                  method: :delete, data: { confirm: 'Are you sure?' } %></td>
+						</tr>
+					<% end %>
+				</table>
+				</div>
 		</div>
 	</section>
 
