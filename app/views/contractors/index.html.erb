@@ -19,7 +19,6 @@
 				<td><%= contractor.email %></td>
 				<td><%=link_to 'Edit', edit_contractor_path(contractor) %></td>
 				<td><%=link_to 'Delete', contractor, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-				<!-- <td><%= contractor.details %></td> -->
 			</tr>
 			<% end %>
 		</table>

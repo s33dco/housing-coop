@@ -162,9 +162,7 @@
     text-align: center;
   }
 
-  .show-mobile-menu img {
-    height: 100%;
-  }
+
 
   .admin-nav {
     max-height: 0;
@@ -276,6 +274,10 @@ fieldset {
   text-align: center;
 }
 
+label.show-peoplelist{
+  text-align: center;
+}
+
 /* table*/
 
 .page table {
@@ -283,8 +285,7 @@ fieldset {
   border: 0;
   box-shadow: #aaa 0 0 1px;
   font-size: 0.75em;
-  margin: 2.5vh 0;
-  width: 100%;
+  margin: 2.5vh auto;
 }
 
 .page table tr {
@@ -294,7 +295,54 @@ fieldset {
   border-top: solid 1px rgba(0,0,0,0.1); 
   }
 .page table td {
-  padding: 1em 0.2em;
+  padding: 1em 0.5em;
 }
+
+/* page table tweaking */
+
+.properties table td {
+  font-size: 1.7em;
+}
+
+.people table td {
+  font-size: 1.3em;
+}
+
+.people table td {
+  font-size: 1.3em;
+}
+
+.contractors table td {
+  font-size: 1.5em;
+}
+
+.rents table {
+  width :100%;
+}
+
+.rents table td{
+  padding: 0.25em 0.25em;
+}
+.rents .report .hide {
+  display: none;
+}
+.rents .report table td {
+  font-size: 1.5em;
+  padding: 0.5em 0.25em;
+
+}
+
+.maintenances table {
+  width :100%;
+}
+
+.showmaintenance table {
+  font-size: 1.5em;
+}
+.maintenances table td{
+  font-size: 0.8em;
+  padding: 0.25em 0.25em;
+}
+
 
 }

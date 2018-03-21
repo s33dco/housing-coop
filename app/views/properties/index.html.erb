@@ -13,7 +13,7 @@
 		<table>
 			<% @properties.each do | property | %>
 				<tr>
-					<td><%= link_to "#{property.full_address}", property_path(property)%></td>
+					<td><%= link_to "#{property.number_and_address1}", property_path(property)%></td>
 					<td><%=link_to 'Edit', edit_property_path(property) %></td>
 					<td><%= link_to 'Delete', property, 
 		                  class: 'button',
