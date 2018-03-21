@@ -16,7 +16,10 @@ class Calendar < ApplicationRecord
 	scope :past, -> {where("date_time < ?" , Time.now).order(date_time: :desc)}
 	scope :future_to_past, ->{order(date_time: :desc)}
 
-
+	def past?
+		Time.now.to_date > date_time
+	end
+	
 private
 
 	def clean_title

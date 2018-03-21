@@ -16,10 +16,11 @@
 		<p><%= @event.details %></p>
 		<p><%= @event.link %></p>
 
-
+	<% if @event.past? %>
 		<p>Who was there : <% @event.people.each do |person| %>
 			<%= person.full_name %>,<% end %><br>
 		Thanks for participating!</p>
+		<% end %>
 	</section>
 
 

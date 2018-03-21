@@ -142,6 +142,37 @@
     text-align: right;
   }
 
+ /*------rentbook/maintenance------*/
+
+.rentbook-check,
+.maintenance-check,
+.residents-check {
+  display: none;
+}
+.show-rentbook,
+.show-maintenance,
+.show-residents {
+  display: block;
+}
+
+.renthistory,
+.maintenancehistory,
+.residentlist {
+  max-height: 0;
+  overflow: hidden;
+  padding: 0;
+  transition: all 0.5s ease-in-out;
+}
+.rentbook-check:checked ~ .renthistory,
+.maintenance-check:checked ~ .maintenancehistory,
+.residents-check:checked ~ .residentlist {
+  max-height: 1000px;
+}
+
+
+.property label {
+  font-size: 1.5em;
+}
   /*----------SIDEBAR--------------*/
 
   /* MOBILE MENU */

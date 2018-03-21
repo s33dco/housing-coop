@@ -12,7 +12,7 @@
 	</tr>
 	<% @maintenances.each do | maintenance | %>
 	<tr>
-		<td><%= nice_short_date(maintenance.date) %></td>
+		<td><%= short_date(maintenance.date) %></td>
 		<td class='hide'><%=link_to "#{maintenance.property.number_and_address1}", maintenance.property%></td>
 		<td><%= maintenance.worktype.title %></td>
 		<td class='hide money'><%= show_money(maintenance.cost) %></td>

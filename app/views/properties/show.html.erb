@@ -24,11 +24,13 @@
 			<% end %>
 		</div>
 
-		<div class="residents">	
+		<div class="residents">
+			<input type="checkbox" id="residents" class="residents-check">
+			<label for="residents" class="show-residents">Residents</label>
+		<div class="residentlist">	
 			<% if @people.empty? %>
 				<h2>This property has been empty for <%= empty(@property)%>.</h2>
 			<% else %>
-				<h2><%= pluralize(@people.size, 'Resident') %></h2>
 				<table>
 					<% @people.each do | person |%>
 						<tr>
@@ -40,19 +42,26 @@
 					<% end %>
 				</table>
 			<% end %>
+			</div>
 		</div>
 
 		<div class="rent">
 			<% unless @payments.blank? %>
-			<h2>Rent Payments</h2>
-				<%= render "layouts/rentbook" %>
+			<input type="checkbox" id="rentbook" class="rentbook-check">
+			<label for="rentbook" class="show-rentbook">Rent Book</label>
+				<div class="renthistory">
+					<%= render "layouts/rentbook" %>
+				</div>
 			<% end %>
 		</div>
 
 		<div class="maintenance">
 			<% unless @property.maintenances.empty? %>
-			<h2>Maintenance History</h2>
-				<%= render "layouts/maintenance" %>
+			<input type="checkbox" id="maintenance" class="maintenance-check">
+			<label for="maintenance" class="show-maintenance">Maintenance</label>
+				<div class="maintenancehistory">
+					<%= render "layouts/maintenance" %>
+				</div>
 			<% end %>
 		</div>
 	</section>
