@@ -16,7 +16,7 @@
 				<td><%=job.title %></td>
 				<td><%=job.email %></td>
 				<td><%=link_to 'Edit', edit_job_path(job) %></td>
-				<td><%= link_to 'Delete', @job, 
+				<td><%= link_to 'Delete', job, 
 		                  class: 'button',
 		                  method: :delete, data: { confirm: 'Are you sure?' } %></td>
 			</tr>
