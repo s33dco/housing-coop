@@ -1,0 +1,28 @@
+<!-- for meta data -->
+<% title("#{@contractor.name} previous work")%>
+<% description("#{@contractor.name} #{ENV['COOP_FULL_NAME']}")%>
+
+<article>
+
+	<header class="header">
+		<h1><%= @contractor.name %> - previous work</h1>
+	</header>
+
+	<section class='detail'>
+		<table>
+			<% @previous_work.each do |job| %>
+			<tr>
+				<td><%= job.worktype.title %></td>
+				<td><%=	job.details %></td>
+				<td class='hide money'><%= show_money(job.cost) %></td>
+			</tr>
+			<% end %>
+		</table>
+	</section>
+
+
+
+</article>
+	<div class="page-actions">
+		<%=link_to 'Contractor List', contractors_list_path%>
+		</div>

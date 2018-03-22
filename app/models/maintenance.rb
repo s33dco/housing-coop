@@ -21,8 +21,8 @@ class Maintenance < ApplicationRecord
 
 	scope :first_job_first, ->{order(date: :desc).joins(:property).merge(Property.order(address1: :asc).order(name_or_number: :asc))}
 	scope :first_job_date, ->{order(date: :desc).last.date}
+	scope :worktype, ->(type){order(date: :desc).joins(:worktype).merge(Worktype.where('worktype_id = ?',type))}
 
-	has_many :roles, ->{ order(role_end: :desc).joins(:job).merge(Job.order(title: :asc))}
 
 	def self.total
 		self.sum{|maintenance| maintenance.cost}
