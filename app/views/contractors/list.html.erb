@@ -17,6 +17,7 @@
 				<td><%=	contractor.details %></td>
 				<td><%= contractor.phone %></td>
 				<td class='hide'><%= contractor.email %></td>
+				<td><%=link_to 'previous work', contractor_path(contractor) %></td>
 			</tr>
 			<% end %>
 		</table>

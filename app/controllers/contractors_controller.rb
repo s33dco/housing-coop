@@ -8,6 +8,11 @@ class ContractorsController < ApplicationController
 			@contractors = Contractor.alphabetically
 		end
 
+		def show
+			@contractor = Contractor.find(params[:id])
+	    @previous_work = @contractor.maintenances
+		end
+
 		def new
 			@contractor = Contractor.new
 		end
