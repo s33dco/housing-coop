@@ -1,7 +1,7 @@
 @import "colors";
 
 fieldset {
-  margin: 2vh 2vw;
+  margin: 2.5vh 2.5vw;
   background-color: $fieldset-color;
   border: 0;
   box-shadow: #aaa 0 0 8px;
@@ -28,12 +28,17 @@ fieldset {
 
   input,
   label {
+    display: block;
+  }
+
+  .buttons label,
+  .buttons input {
     display: inline-block;
   }
 
   input,
   textarea {
-    font-size:     14px;
+    font-size:     1em;
     padding:       5px;
     border-radius: 6px;
     box-shadow:    0px;
@@ -52,7 +57,13 @@ fieldset {
 
 
   input[type="checkbox"] {
+    
+    width: 16px;
+    height: 16px;
+  }
 
+  input[type="radio"] {
+    display: inline-block;
     width: 16px;
     height: 16px;
   }

@@ -1,16 +1,12 @@
 @import "colors";
 @media (max-width: 800px){
 
- body {
- width: 100%;
- }
-
-	/*-----------HEADER--------------*/
+/*-----------HEADER---------------*/
 	.masthead {
-	  display :flex;
-	  flex-direction: column-reverse;
+	  display :block;
 	  margin: 0;
-	  padding: 0 1vh;
+	  padding: 0 0.5vh;
+    width: 100%;
 	}
 
 	.masthead h1 {
@@ -19,141 +15,53 @@
     margin: 0;
 	}
 
-	.masthead .header p {
-		padding-top: 2.5vh 0;
-		text-align: center;
-	}
-
 	.masthead .main-nav {
 	  display: flex;
 	  list-style: none;
+    text-align: center;
     width: 90%;
 	}
 
 	.masthead .main-nav li {
+    font-size: 1rem;
 	  flex: 1;
 	  text-align: center;
 	  padding: 0.5em 0.5em;
 	}
+/*--------------------------------*/  
 
-	/*----------FOOTER---------------*/
-
+/*-----------FOOTER---------------*/
 	.footer {
 	  padding: 1vh 2vw;
-	  margin-bottom: 5vh;
-
+	  margin-bottom: 3.5vh;
 	}
-
 	.footer h2 {
 	  font-size: 1.1em;
 	}
-
-	.name,
 	.text {
 	  font-size: 0.8em; 
 	  text-align: center;
 	  margin-bottom: 0.2em;
-    padding: 0 1em;
+    padding: 0 0.5em;
 	}
-
 	.address {
 		display :none;
     padding: 0;
     margin: 0;
 	}
-
 	.copy {
 	  font-size: 0.8em;
-	  text-align: right;
-    padding-right: 0.75em;
+    padding-top: 0.2em;
+	  text-align: center;
 	}
+/*--------------------------------*/
 
- /*-----------MAIN----------------*/
-
- .content {
-   display : flex;
-   flex-direction: column-reverse;
-   padding: 0 1vw;
- }
-
-  .page {
-    display : flex;
-    flex-direction: column;
-    margin: 0 1vw;
-    padding: 0;
-  }
-
-  .sidebar {
-    flex: 0;
-  }
-
-  .content {
-    flex: 0;
-    margin: 0;
-  }
-
-  .static_pages .detail {
-  padding: 0;
-  }
-
-  .content .header {
-    margin: 2vh 0;
-  }
-
-  .content .header h1{
-    font-size: 1.5rem;
-    padding: 0;
-    text-align: center;
-  }
-
-  .content .header p{
-    font-size: 1rem;
-    padding: 0.5em 0;
-    text-align: center;
-  }
-
-  .basic-info {
-  text-align: center;
-  }
-
-  .detail p {
-  line-height: 1.5;
-  margin-bottom: 1em;
-  text-align: center;
-  }
-
-  .detail > h2 {
-    font-size: 1em;
-    text-align: center;
-  }
-
-  .detail {
-  padding: 0;
-  }
-
-  article  div {
-    margin-bottom: 2.5vh;
-  }
-
-  article  div h2{
-    font-size: 1.25em;
-    margin-bottom: 0.5em;
-    text-align: center;
-  }
-
-  .property label {
-    text-align: center;
-  }
-
-  /* SIDEBAR MOBILE MENU*/
-
+/*-----SIDEBAR MOBILE MENU--------*/
   .sidebar {
     margin: 0;
     display: block;
-    flex : 0;
     font-size: 1.2rem;
   }
-
   .show-mobile-menu {
     display: block;
     font-weight: bold;
@@ -161,9 +69,6 @@
     padding: 0.5em;
     text-align: center;
   }
-
-
-
   .admin-nav {
     max-height: 0;
     list-style: none;
@@ -175,43 +80,122 @@
   .mobile-menu-check:checked ~ .admin-nav {
     max-height: 1000px;
   }
-
-
   .admin-nav > li{
     margin: 0;
     padding : 0.75em 0.75em;
     text-align: center;
   }
-
   .admin-nav a:hover {
     color : $primary-link-color
   }
+/*--------------------------------*/
 
-  /*----------PAGE-ACTIONS----------*/
+/*-----------MAIN-PAGES-----------*/
+  .page {
+    flex-direction: column;
+    /* to place menu above content */
+    flex: 1;
+    margin: 0 1vw;
+    padding: 0;
+  }
+ .content {
+   display : flex;
+   flex: 0;
+   flex-direction: column-reverse;
+   /* to place page actions above page */
+   margin: 0;
+   padding: 0 1vw;
+ }
+  .content .header {
+    margin: 2vh 0;
+  }
+  .content .header h1{
+    font-size: 1.5rem;
+    padding: 0;
+    text-align: center;
+  }
 
+  .content .header p{
+    font-size: 1rem;
+    padding: 0.5em 0;
+    text-align: center;
+  }
+/*--------------------------------*/
+
+/*----------PAGE-ACTIONS----------*/
+  .sidebar {
+    display :block;
+  }
   .page-actions {
     margin: 0;
     padding: 0;
     text-align: center;
-    flex : 0;
     font-size: 1rem;
   }
-
   .page-actions a {
     display: block;
     padding: 0.75em 0.75em;
   }
-
   .page-actions a:hover {
     color : $primary-link-color
   }
-/* form */
+/*--------------------------------*/
+
+/*-HIDE ELEMENTS ON SMALL SCREENS-*/
+  .contractor-list .hide {
+    display :none;
+  }
+  .rents .report .hide {
+    display: none;
+  }
+/*--------------------------------*/
+
+
+
+
+
+
+/*----------------------*/
+
+
+
+  .static_pages .detail {
+  padding: 0;
+  }
+  .basic-info {
+  text-align: center;
+  }
+  .detail p {
+  line-height: 1.5;
+  margin-bottom: 1em;
+  text-align: center;
+  }
+  .detail  h2 {
+    font-size: 1em;
+    text-align: center;
+  }
+  .detail {
+  padding: 0;
+  }
+  article  div {
+    margin-bottom: 3vh;
+  }
+  article  div h2{
+    text-align: center;
+  }
+  .property label {
+    text-align: center;
+  }
+
+
+
+
 
 fieldset {
-  margin: 0;
   background-color: $fieldset-color;
   border: 0;
   box-shadow: #aaa 0 0 4px;
+  margin: 2vh 0vw;
 
   label {
     font-size: 1em;
@@ -221,7 +205,7 @@ fieldset {
 
   ul {
     list-style: none;
-    padding: 3vh 3vw;
+    padding: 3vh 1vw;
 
     li {
       margin: 0 0 15px 0;
@@ -249,13 +233,13 @@ fieldset {
 }
 
 
-/* people pages*/
+
+
 
 .detail .contact-details p {
 		font-size: 1.1em;
 		line-height: 2;
 		margin-bottom: 0.25em;
-	
 }
 
 .detail .contact-details p i {
@@ -278,7 +262,10 @@ label.show-peoplelist{
   text-align: center;
 }
 
-/* table*/
+
+
+
+
 
 .page table {
   background-color: $table-color;
@@ -295,27 +282,8 @@ label.show-peoplelist{
   border-top: solid 1px rgba(0,0,0,0.1); 
   }
 .page table td {
-  font-size: 1.3em;
-  padding: 1em 0.25em;
-}
-
-/* page table tweaking */
-
-.rents table {
-  width :100%;
-}
-
-.rents .report .hide {
-  display: none;
-}
-
-.maintenances table {
-  width :100%;
-}
-
-.maintenances table td{
-  font-size: 0.8em;
-  padding: 0.25em 0.25em;
+  font-size: 0.9rem;
+  padding: 1em 0.2em;
 }
 
 

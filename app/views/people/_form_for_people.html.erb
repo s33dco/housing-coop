@@ -38,6 +38,7 @@
                                                 include_blank: true
                                               } %>
         </li>
+        <div class="buttons">
         <li class="required">
           <%= f.label :member, "Member"%>
           <%= f.radio_button(:member, 'true', checked: false) %>
@@ -81,6 +82,7 @@
           <%= f.radio_button(:admin, 'false', checked: true) %>
           <%= f.label(:admin, "No") %>
         </li>
+        </div>
       <%= f.submit 'Submit' %> 
     </ul>
     </fieldset>

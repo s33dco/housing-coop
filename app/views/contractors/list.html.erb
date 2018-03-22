@@ -9,13 +9,14 @@
 		<h1>Contractor List</h1>
 	</header>
 
-	<section class='detail'>
+	<section class='contractor-list'>
 		<table>
 			<% @contractors.each do |contractor| %>
 			<tr>
 				<td><%= contractor.name %></td>
 				<td><%=	contractor.details %></td>
 				<td><%= contractor.phone %></td>
+				<td class='hide'><%= contractor.email %></td>
 			</tr>
 			<% end %>
 		</table>

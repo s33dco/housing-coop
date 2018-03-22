@@ -16,8 +16,8 @@
 		<td class='hide'><%=link_to "#{maintenance.property.number_and_address1}", maintenance.property%></td>
 		<td><%= maintenance.worktype.title %></td>
 		<td class='hide money'><%= show_money(maintenance.cost) %></td>
-		<td><%= truncate(maintenance.details, length: 40, separator: ' ')%></td>
-		<td class='hide money'><%= maintenance.contractor.name %></td>
+		<td><%= truncate(maintenance.details, length: 65, separator: ' ')%></td>
+		<td class='hide'><%= maintenance.contractor.name %></td>
 		<td><%=link_to 'view', maintenance_path(maintenance) %></td>
 		<td class='hide'><%=link_to 'edit', edit_maintenance_path(maintenance) %></td>
 		<td class='hide'><%= link_to 'delete', maintenance, 
