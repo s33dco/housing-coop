@@ -18,11 +18,18 @@
 		<td class='hide money'><%= show_money(maintenance.cost) %></td>
 		<td><%= truncate(maintenance.details, length: 65, separator: ' ')%></td>
 		<td class='hide'><%= maintenance.contractor.name %></td>
-		<td><%=link_to 'view', maintenance_path(maintenance) %></td>
-		<td class='hide'><%=link_to 'edit', edit_maintenance_path(maintenance) %></td>
-		<td class='hide'><%= link_to 'delete', maintenance, 
-                class: 'button',
-                method: :delete, data: { confirm: 'Are you sure?' } %></td>
+		<td><%=link_to maintenance_path(maintenance) do %>
+			<i class="fas fa-binoculars"></i>
+			<% end %>
+		</td>
+		<td class='hide'><%=link_to  edit_maintenance_path(maintenance) do %>
+			<i class="fas fa-edit"></i>
+		<% end %>
+		</td>
+		<td class='hide'><%= link_to  maintenance, method: :delete, data: { confirm: 'Are you sure?' } do %>
+			<i class="fas fa-trash"></i>
+			<% end %>
+		</td>
 	</tr>
 	<% end %>
 	</table>

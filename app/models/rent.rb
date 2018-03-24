@@ -14,7 +14,7 @@ class Rent < ApplicationRecord
 	scope :last_first, ->{order(date: :desc).joins(:property).merge(Property.order(address1: :asc).order(name_or_number: :asc))}
 
 	scope :first_payment_date, ->{last_first.last.date}
-	scope :by_house, ->(number){order(date: :desc).joins(:property).merge(Property.where('property_id = ?',number))}
+	scope :by_house, ->(number){order(date: :desc).includes(:property).merge(Property.where('property_id = ?',number))}
 
 
 	def self.total

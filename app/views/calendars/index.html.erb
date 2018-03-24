@@ -24,11 +24,20 @@
 				<td><%= event.title %></td>
 				<td><%= event.where %></td>
 				<td><%= truncate(event.details, length: 30, separator: ' ')%></td>
-				<td><%=link_to 'view', calendar_path(event) %></td>
-				<td><%=link_to 'edit', edit_calendar_path(event) %></td>
-				<td><%= link_to 'delete', event, 
+				<td><%=link_to calendar_path(event) do %>
+					<i class="fas fa-binoculars"></i>
+					<% end %>
+				</td>
+				<td><%=link_to edit_calendar_path(event) do %>
+					<i class="fas fa-edit"></i>
+					<% end %>
+				</td>
+				<td><%= link_to event, 
 				                class: 'button',
-				                method: :delete, data: { confirm: 'Are you sure?' } %></td>
+				                method: :delete, data: { confirm: 'Are you sure?' } do %>
+				                	<i class="fas fa-trash"></i>
+				                	<% end %>
+				                </td>
 			</tr>
 			<% end %>
 		</table>

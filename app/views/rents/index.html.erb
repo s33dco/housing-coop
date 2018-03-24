@@ -1,26 +1,24 @@
 <!-- for meta data -->
 <% title("#{controller_name.titleize}")%>
 <% description("Rent - #{ENV['COOP_FULL_NAME']}")%>
-
-
 <article>
-
 	<header class="header">
 		<h1>Rent Home</h1>
 		<% unless @payments.empty? %>
-		<p><%= nice_short_date(@payments.first_payment_date)%> - <%= nice_short_date(Time.now.to_date) %>, (<%= pluralize(@payments.size, 'payment') %> made, <%= show_money(@money)%> received).</p>
+		<p><%= nice_short_date(@payments.first_payment_date)%> - <%= nice_short_date(Time.now.to_date) %>, (<%= pluralize(@payments.size, 'payment') %> made, <%= show_money(@money)%> received).
 		<% end %>
-		</header>
+		<span class="filter">
 
+
+
+				
+			</span></p>
+	</header>
 	<section class='detail'>
 		<%= render "layouts/rentbook" %>
-		</section>
-
-
-
+	</section>
 </article>
 	<div class="page-actions">
 		<%=link_to 'Add Payment', new_rent_path %>
 		<%=link_to 'Rent Report', rent_report_path %>
-		
-		</div>
+	</div>

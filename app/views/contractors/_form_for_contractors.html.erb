@@ -19,6 +19,7 @@
           <%= f.text_area :details, cols: 40, rows: 7, 
            placeholder:"start with category of work(s), then any other details." %>
         </li>
+        <div class="buttons">
         <li class="required">
           <%= f.label :use, "Display"%>
           <%= f.radio_button(:use, 'true', checked: true) %>
@@ -26,6 +27,7 @@
           <%= f.radio_button(:use, 'false', checked: false) %>
           <%= f.label(:use, "No") %>
         </li>
+        </div>
         <%= f.submit 'Submit' %> 
       </ul>
     </fieldset>

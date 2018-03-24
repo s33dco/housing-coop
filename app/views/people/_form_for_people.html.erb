@@ -41,9 +41,9 @@
         <div class="buttons">
         <li class="required">
           <%= f.label :member, "Member"%>
-          <%= f.radio_button(:member, 'true', checked: false) %>
+          <%= f.radio_button(:member, 'true', checked: true) %>
           <%= f.label(:member, "Yes") %>
-          <%= f.radio_button(:member, 'false', checked: true) %>
+          <%= f.radio_button(:member, 'false', checked: false) %>
           <%= f.label(:member, "No") %>
         </li>
         <li class="required">

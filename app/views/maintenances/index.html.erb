@@ -7,11 +7,14 @@
 		<% unless @maintenances.empty? %>
 		<p><%= nice_short_date(@maintenances.first_job_date)%> - <%= nice_short_date(Time.now.to_date) %>, (<%= pluralize(@maintenances.size, 'job') %> completed at a cost of <%= show_money(@money)%>).</p>
 		<% end %>
+		<span class="filter">
+
+			</span>
+
 	</header>
 
 	<section class='detail'>
-		<div class="filters">
-		</div>
+		
 
 
 		<%= render "layouts/maintenance" %>

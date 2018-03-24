@@ -34,18 +34,21 @@
   .page table .money{
     text-align: right;
   }
+  p .filter {
+  float :right;
+  }
 
   /*-----------HEADER--------------*/
 
   .masthead {
     display :flex;
     margin: 1vh 0;
-    padding: 1vh 2.5vw;
+    padding: 1vh 1vw;
   }
 
   .masthead h1 {
     flex: 1;
-    font-size: 2.5rem;
+    font-size: 4.1vw;
   }
 
   .masthead .main-nav {
@@ -103,6 +106,7 @@
   .detail p {
   line-height: 1.5;
   margin-bottom: 1em;
+  display: inline-block;
   }
 
   article  div {

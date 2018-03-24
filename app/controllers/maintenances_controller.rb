@@ -1,6 +1,6 @@
 class MaintenancesController < ApplicationController
 			def index
-				@maintenances = Maintenance.first_job_first 
+				@maintenances = Maintenance.first_job_first
 				@money = @maintenances.total
 			end
 
@@ -47,6 +47,7 @@ class MaintenancesController < ApplicationController
 		  def maintenance_params
 		    params.require(:maintenance).permit(:worktype_id, :contractor_id, :cost, :property_id, :details, :date)
 		  end
+
 
 	end
 

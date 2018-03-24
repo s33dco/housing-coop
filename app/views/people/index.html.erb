@@ -5,13 +5,13 @@
 
 <article>
 	<header class="header">
-		<h1><%= ENV['COOP_SHORT_NAME']%> is home to <%= pluralize(@people.size, 'person') %></h1>
+		<h1><%= ENV['COOP_SHORT_NAME']%> is home to <%= pluralize(@people.size, 'person') %>.</h1>
 	</header>
 
 	<section class='persons'>
 
 		<div class="officers">
-			<h2>Current Officers</h2>
+			<h2>Current Officers.</h2>
 				<table>
 				<% @roles.each do |role | %>
 				<tr>
@@ -25,7 +25,7 @@
 
 		<div class="people">
 				<input type="checkbox" id="peoplelist" class="peoplelist-check">
-				<label for="peoplelist" class="show-peoplelist">Directory</label>
+				<label for="peoplelist" class="show-peoplelist">Directory.</label>
 				<div class="directory">
 				<table>
 					<% @people.each do | person | %>

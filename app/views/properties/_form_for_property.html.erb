@@ -26,6 +26,7 @@
                                                 include_blank: true
                                               } %>
         </li>
+        <div class="buttons">
         <li class="required">
           <%= f.label :coop_house, "Managed by Coop"%>
           <%= f.radio_button(:coop_house, 'true', checked: true) %>
@@ -33,6 +34,7 @@
           <%= f.radio_button(:coop_house, 'false', checked: false) %>
           <%= f.label(:coop_house, "No") %>
         </li>
+        </div>
         <li class="required">
           <%= f.label :rent_per_week ,"Current Rent per week £"%>         
           <%= f.number_field :rent_per_week, step: :any, placeholder: 'just numbers'%>
