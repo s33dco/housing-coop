@@ -23,7 +23,7 @@
 				<td><%= time_date(event.date_time) %></td>
 				<td><%= event.title %></td>
 				<td><%= event.where %></td>
-				<td><%= truncate(event.details, length: 30, separator: ' ')%></td>
+				<td><%= truncate(event.details, length: 55, separator: ' ')%></td>
 				<td><%=link_to calendar_path(event) do %>
 					<i class="fas fa-binoculars"></i>
 					<% end %>

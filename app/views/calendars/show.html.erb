@@ -1,31 +1,24 @@
 <!-- for meta data -->
 <% title("#{@event.title} - #{time_day(@event.date_time)}")%>
 <% description("#{@event.title} - #{time_day(@event.date_time)} - #{ENV['COOP_FULL_NAME']}")%>
-
-
 <article>
-
 	<header class="header">
-		<h1><%=@event.title %> - <%= time_day(@event.date_time)%></h1>
-		</header>
-
+		<h1><%= time_day(@event.date_time)%> - <%=@event.title %></h1>
+	</header>
 	<section class='detail'>
-		<p><%= @event.title %></p>
-		<p><%= time_day(@event.date_time) %></p>
-		<p><%= @event.where %><p>
-		<p><%= @event.details %></p>
-		<p><%= @event.link %></p>
-
-	<% if @event.past? %>
-		<p>Who was there : <% @event.people.each do |person| %>
-			<%= person.full_name %>,<% end %><br>
-		Thanks for participating!</p>
-		<% end %>
+		<div class="event">
+			<p><%= @event.details %></p>
+			<p><%= @event.link %></p>
+			<% if @event.past? %>
+				<h3>Who was there :</h3>
+					<%@event.people.each do |person| %>
+						<p><%= person.full_name %>,</p>
+					<% end %>	
+				<p>thanks for participating!</p>
+			<% end %>
+		</div>
 	</section>
-
-
 </article>
-
 	<div class="page-actions">
 		<%=link_to 'back to calendar', upcoming_events_path%>
 		<%=link_to 'Calendar Admin', calendars_path%>

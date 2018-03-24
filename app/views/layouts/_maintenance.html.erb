@@ -1,11 +1,11 @@
 <table class="maintenance">
-	<tr td class='hide'>
+	<tr class='hide'>
 		<td>Date of Work</td>
 		<td>Property</td>
 		<td>Category</td>
 		<td>Cost</td>
 		<td>Details</td>
-		<td>Contractor</td>
+		<td class='hide-name'>Contractor</td>
 
 		<td></td>
 		<td></td>
@@ -16,8 +16,8 @@
 		<td class='hide'><%=link_to "#{maintenance.property.number_and_address1}", maintenance.property%></td>
 		<td><%= maintenance.worktype.title %></td>
 		<td class='hide money'><%= show_money(maintenance.cost) %></td>
-		<td><%= truncate(maintenance.details, length: 65, separator: ' ')%></td>
-		<td class='hide'><%= maintenance.contractor.name %></td>
+		<td><%= truncate(maintenance.details, length: 60, separator: ' ')%></td>
+		<td class='hide hide-name'><%= maintenance.contractor.name %></td>
 		<td><%=link_to maintenance_path(maintenance) do %>
 			<i class="fas fa-binoculars"></i>
 			<% end %>

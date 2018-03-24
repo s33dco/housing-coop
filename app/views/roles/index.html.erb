@@ -24,8 +24,14 @@
 			<td><%=short_date(role.role_start)%></td>
 			<td> - </td>
 			<td><%=short_date(role.role_end)%></td>
-			<td><%=link_to 'Edit', edit_role_path(role) %></td>
-			<td><%=link_to 'Delete', role, method: :delete, data: { confirm: 'Are you sure?' } %></td>		
+			<td><%=link_to edit_role_path(role) do %>
+				<i class="fas fa-edit"></i>
+				<% end %>
+			</td>
+			<td><%=link_to role, method: :delete, data: { confirm: 'Are you sure?' } do %>
+				<i class="fas fa-trash"></i>
+				<% end %>
+			</td>		
 		</tr>
 		<% end %>
 		</table>

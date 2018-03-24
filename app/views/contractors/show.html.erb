@@ -9,7 +9,7 @@
 	<section class='detail'>
 			<% @previous_work.each do |job| %>
 			<div class="work">
-				<h2><%= nice_short_date(job.date)%> - <%= job.worktype.title %> (<%= show_money(job.cost)%>)</h2>
+				<h2><%= nice_short_date(job.date)%>, <%= link_to job.property.number_and_address1, property_path(job.property)%> - <%= job.worktype.title %> (<%= show_money(job.cost)%>)</h2>
 				<p><%=	job.details %></p>
 			</div>
 			<% end %>

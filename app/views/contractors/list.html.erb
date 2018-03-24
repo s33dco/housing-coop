@@ -14,7 +14,7 @@
 			<% @contractors.each do |contractor| %>
 			<tr>
 				<td><%= contractor.name %></td>
-				<td><%=	contractor.details %></td>
+				<td><%=	truncate(contractor.details, length: 90, separator: ' ') %></td>
 				<td><%= contractor.phone %></td>
 				<td class='hide'><%= contractor.email %></td>
 				<td><%=link_to pluralize(contractor.maintenances.size, 'job'), contractor_path(contractor) %></td>

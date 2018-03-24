@@ -4,40 +4,19 @@
 
 
 <article>
-
 	<header class="header">
-		<h1>Maintenance for <%= @maintenance.property.number_and_address1%></h1>
+		<h1>Maintenance job for <%= link_to @maintenance.property.number_and_address1, property_path(@maintenance) %></h1>
 		</header>
 
-	<section class='showmaintenance'>
-		<table>
-			<tr>
-				<td>Date</td>
-				<td><%= nice_short_date(@maintenance.date) %></td>
-			</tr>
-			<tr>
-				<td>Category of Work</td>
-				<td><%= @maintenance.worktype.title %></td>
-			</tr>
-			<tr>
-				<td>Contractor</td>
-				<td><%= @maintenance.contractor.name %></td>
-			</tr>
-			<tr>
-				<td>Property</td>
-				<td><%=link_to @maintenance.property.number_and_address1, @maintenance.property%></<td>
-			</tr>
-			<tr>
-				<td>Cost</td>
-				<td><%= show_money(@maintenance.cost) %></td>
-			</tr>
-			<% unless @maintenance.details.blank? %>
-			<tr>
-				<td>Details</td>
-				<td><%= @maintenance.details%></td>
-			</tr>
-			<% end %>
-		</table>
+	<section class='detail'>
+		<div class="job">
+				<h2><%= nice_short_date(@maintenance.date)%> <%= @maintenance.worktype.title %>, (<%= link_to @maintenance.contractor.name, contractor_path(@maintenance.contractor) %>) - <%= show_money(@maintenance.cost) %></h2>
+
+				<% unless @maintenance.details.blank? %>
+
+					<p><%= @maintenance.details%></p>
+				<% end %>
+		</div>
 	</section>
 </article>
 
