@@ -1,7 +1,11 @@
 class RentsController < ApplicationController
 
 	def index
-		@payments = Rent.last_first
+		if params[:property_id].in? Property.by_street_name_number.map{|p| p.id.to_s}
+			@payments = Rent.by_house(params[:property_id])
+		else
+			@payments = Rent.last_first
+		end
 		@money = @payments.total
 	end
 
@@ -52,6 +56,6 @@ private
   def rent_params
     params.require(:rent).permit(:property_id, :date, :payment, :notes)
   end
-  
+ 
 
 end

@@ -3,7 +3,19 @@
 <% description("Officer Roles #{ENV['COOP_FULL_NAME']}")%>
 <article>
 	<header class="header">
-		<h1><%= ENV['COOP_SHORT_NAME']%> Officers.</h1>
+		<h1><%= ENV['COOP_SHORT_NAME']%> Officers.
+		<span class="filter">
+							<%= form_with url: roles_path, method: :get, local: :true do |f| %>
+							<%= f.collection_select(:job_id, Job.alphabetically, :id , :title, prompt: "All Roles") %>
+			 			<%= f.button type: 'submit' do %>
+			 			        <i class="fas fa-arrow-right"></i>
+			 			        <% end %>
+				 			<% end %></span>
+		</h1>
+
+
+
+
 	</header>
 
 	<section class='detail'>

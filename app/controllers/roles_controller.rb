@@ -1,7 +1,11 @@
 class RolesController < ApplicationController
 			def index
-				@roles = Role.current
-			end
+					if params[:job_id].in? Job.all.map{|j| j.id.to_s}
+						@roles = Role.role_type(params[:job_id])
+					else
+						@roles = Role.by_title_going_back
+					end
+				end
 
 			def new
 				@role = Role.new

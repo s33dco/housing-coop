@@ -3,18 +3,25 @@
 <% description("Rent - #{ENV['COOP_FULL_NAME']}")%>
 <article>
 	<header class="header">
-		<h1>Rent Home</h1>
-		<% unless @payments.empty? %>
-		<p><%= nice_short_date(@payments.first_payment_date)%> - <%= nice_short_date(Time.now.to_date) %>, (<%= pluralize(@payments.size, 'payment') %> made, <%= show_money(@money)%> received).
-		<% end %>
+		<h1>Rent Home
 		<span class="filter">
+							<%= form_with url: rents_path, method: :get, local: :true do |f| %>
+				 			<%= f.collection_select(:property_id, Property.by_street_name_number, :id , :number_and_address1, prompt: "All Properties" ) %>
+				 			<%= f.button type: 'submit' do %>
+				 			        <i class="fas fa-arrow-right"></i>
+				 			    <% end %>
 
 
 
-				
-			</span></p>
+				 			<% end %></span></h1>
+				 			
+		<% unless @payments.empty? %>
+		<p><%= nice_short_date(@payments.first_payment_date)%> - <%= nice_short_date(Time.now.to_date) %>, (<%= pluralize(@payments.size, 'payment') %> made, <%= show_money(@money)%> received).				</p>
+
+		<% end %>
 	</header>
 	<section class='detail'>
+
 		<%= render "layouts/rentbook" %>
 	</section>
 </article>

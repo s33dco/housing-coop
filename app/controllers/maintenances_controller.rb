@@ -1,6 +1,10 @@
 class MaintenancesController < ApplicationController
 			def index
-				@maintenances = Maintenance.first_job_first
+				if params[:worktype_id].in? Worktype.all.map{|w| w.id.to_s}
+					@maintenances = Maintenance.worktype(params[:worktype_id])
+				else
+					@maintenances = Maintenance.first_job_first
+				end
 				@money = @maintenances.total
 			end
 

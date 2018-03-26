@@ -3,7 +3,16 @@
 <% description("Maintenance home #{ENV['COOP_FULL_NAME']}")%>
 <article>
 	<header class="header">
-		<h1>Maintenance - <%= pluralize(@maintenances.size, 'job') %>.</h1>
+		<h1>Maintenance - <%= pluralize(@maintenances.size, 'job') %>.
+			<span class="filter">
+								<%= form_with url: maintenances_path, method: :get, local: :true do |f| %>
+								<%= f.collection_select(:worktype_id, Worktype.alphabetically, :id , :title , prompt: "All Categories" ) %>	<%= f.button type: 'submit' do %>
+				 			        <i class="fas fa-arrow-right"></i>
+				 			        <% end %>
+					 			<% end %></span>
+
+
+		</h1>
 		<% unless @maintenances.empty? %>
 		<p><%= nice_short_date(@maintenances.first_job_date)%> - <%= nice_short_date(Time.now.to_date) %>, (<%= pluralize(@maintenances.size, 'job') %> completed at a cost of <%= show_money(@money)%>).</p>
 		<% end %>
