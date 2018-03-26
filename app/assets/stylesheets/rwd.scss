@@ -60,10 +60,10 @@
   .sidebar {
     margin: 0;
     display: block;
-    font-size: 1.2rem;
+    font-size: 5vw;
   }
   .sidebar i {
-    font-size: 3.5rem;
+    font-size: 20vw;
   }
   .show-mobile-menu {
     display: block;
@@ -118,7 +118,7 @@
     margin: 2vh 0;
   }
   .content .header h1{
-    font-size: 1.5rem;
+    font-size: 7vw;
     padding: 0;
     text-align: center;
   }
@@ -126,6 +126,12 @@
   .content .header .filter {
   display: block;
   float: none;
+  padding: 0.5em;
+  }
+
+  .header .filter select,
+  .header .filter button {
+  font-size: 3.75vw;
   }
 
   .content .header p{
@@ -144,7 +150,7 @@
     margin: 0;
     padding: 0;
     text-align: center;
-    font-size: 1rem;
+    font-size: 5vw;
   }
   .page-actions a {
     display: block;
@@ -251,7 +257,9 @@ fieldset {
 }
 
 
-
+.participation h2 a {
+  font-size: 5vw;
+}
 
 
 .detail .contact-details p {
@@ -280,11 +288,6 @@ label.show-peoplelist{
   text-align: center;
 }
 
-
-
-
-
-
 .page table {
   background-color: $table-color;
   border: 0;
@@ -300,9 +303,16 @@ label.show-peoplelist{
   border-top: solid 1px rgba(0,0,0,0.1); 
   }
 .page table td {
-  font-size: 0.9rem;
+  font-size: 4.5vw;
   padding: 1em 0.2em;
 }
 
+.rents .rentbook td {
+  font-size: 4vw;
+}
+
+.maintenances .maintenance td {
+  font-size: 3.75vw;
+}
 
 }
