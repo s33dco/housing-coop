@@ -6,6 +6,11 @@ class MaintenancesController < ApplicationController
 					@maintenances = Maintenance.first_job_first
 				end
 				@money = @maintenances.total
+
+				respond_to do |format|
+					format.html
+					format.csv { send_data @maintenances.to_csv }
+				end
 			end
 
 			def show

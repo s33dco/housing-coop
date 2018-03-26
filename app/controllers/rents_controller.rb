@@ -7,6 +7,11 @@ class RentsController < ApplicationController
 			@payments = Rent.last_first
 		end
 		@money = @payments.total
+		
+		respond_to do |format|
+			format.html
+			format.csv { send_data @payments.to_csv }
+		end
 	end
 
 	def show
