@@ -307,12 +307,10 @@ label.show-peoplelist{
   padding: 1em 0.2em;
 }
 
-.rents .rentbook td {
-  font-size: 4vw;
+.rents .rentbook td,
+.maintenances .maintenance td {
+  font-size: 3.5vw;
 }
 
-.maintenances .maintenance td {
-  font-size: 3.75vw;
-}
 
 }
