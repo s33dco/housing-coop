@@ -7,7 +7,7 @@
 		<span class="filter">
 							<%= form_with url: rents_path, method: :get, local: :true do |f| %>
 				 			<%= f.collection_select(:property_id, Property.by_street_name_number, :id , :number_and_address1, prompt: "All Properties" ) %>
-				 			<%= f.button type: 'submit' do %>
+				 			<%= f.submit 'go' do %>
 				 			        <i class="fas fa-arrow-right"></i>
 				 			    <% end %>
 

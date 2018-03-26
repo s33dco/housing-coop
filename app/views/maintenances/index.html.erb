@@ -6,7 +6,8 @@
 		<h1>Maintenance - <%= pluralize(@maintenances.size, 'job') %>.
 			<span class="filter">
 								<%= form_with url: maintenances_path, method: :get, local: :true do |f| %>
-								<%= f.collection_select(:worktype_id, Worktype.alphabetically, :id , :title , prompt: "All Categories" ) %>	<%= f.button type: 'submit' do %>
+								<%= f.collection_select(:worktype_id, Worktype.alphabetically, :id , :title , prompt: "All Categories" ) %>	
+								<%= f.submit 'go' do %>
 				 			        <i class="fas fa-arrow-right"></i>
 				 			        <% end %>
 					 			<% end %></span>
