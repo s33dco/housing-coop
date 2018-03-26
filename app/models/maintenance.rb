@@ -32,7 +32,7 @@ class Maintenance < ApplicationRecord
 		CSV.generate do |csv|
 			csv << ["Maintenance ID", "Property", "Date", "Cost", "Category", "Contractor", "Details"]
 			all.each do |result|
-					row = [result.id, result.property.number_and_address1, result.date, result.cost, result.worktype.title, result.contractor.name, result.details ]
+					row = [result.id, result.property.full_address, result.date, result.cost, result.worktype.title, result.contractor.name, result.details ]
 					csv << row
 			end
 		end

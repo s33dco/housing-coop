@@ -25,7 +25,7 @@ class Rent < ApplicationRecord
 		CSV.generate do |csv|
 			csv << ["Payment ID", "Property", "Date", "Amount", "Notes"]
 			all.each do |rent|
-					row = [rent.id, rent.property.number_and_address1, rent.date, rent.payment, rent.notes ]
+					row = [rent.id, rent.property.full_address, rent.date, rent.payment, rent.notes ]
 					csv << row
 			end
 		end
