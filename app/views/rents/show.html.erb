@@ -6,7 +6,7 @@
 <article>
 
 	<header class="header">
-		<h1>Payment for <%= @rent.property.number_and_address1%></h1>
+		<h1>Payment for <%=link_to @rent.property.number_and_address1, @rent.property%></h1>
 		</header>
 
 	<section class='detail'>
@@ -16,10 +16,6 @@
 				<td><%= nice_short_date(@rent.date) %></td>
 			</tr>
 			<tr>
-				<td>Property</td>
-				<td><%=link_to @rent.property.number_and_address1, @rent.property%></<td>
-			</tr>
-			<tr>
 				<td>Amount Paid</td>
 				<td><%= show_money(@rent.payment) %></td>
 			</tr>
@@ -27,6 +23,10 @@
 			<tr>
 				<td>Notes</td>
 				<td><%= @rent.notes%></td>
+			</tr>
+			<tr>
+				<td>Updated On</td>
+				<td><%= nice_short_date(@rent.updated_at %></td>
 			</tr>
 			<% end %>
 		</table>
