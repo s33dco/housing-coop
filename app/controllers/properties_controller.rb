@@ -1,11 +1,12 @@
 class PropertiesController < ApplicationController
+  before_action :set_property, only: [:show, :edit, :update, :destroy]
+
 
 	def index
 		@properties = Property.by_street_name_number
 	end
 
 	def show
-		@property = Property.find(params[:id])
     @people = @property.people.members_adults_children
     @payments = @property.rent_paid_by_tenant
     @rent_balance = @property.balance
@@ -27,11 +28,9 @@ class PropertiesController < ApplicationController
 	end
 
 	def edit
-		@property = Property.find(params[:id])
 	end
 
   def update
-    @property = Property.find(params[:id])
     if @property.update(property_params)
       redirect_to @property, notice: "Property successfully updated!"
     else
@@ -40,14 +39,16 @@ class PropertiesController < ApplicationController
   end
 
 	def destroy
-    @property = Property.find(params[:id])
-    @property.coop_house = false
     @property.destroy
     redirect_to properties_url, alert: "Property successfully deleted!"
 	end
 
 
 private
+
+  def set_property
+    @property = Property.find_by!(slug: params[:id])
+  end
 
   def property_params
     params.require(:property).

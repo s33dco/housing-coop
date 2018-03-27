@@ -5,6 +5,9 @@ class Property < ApplicationRecord
 	has_many :maintenances, -> { order(date: :desc)}
 	has_many :contractors, through: :maintenances
 
+	validates :slug, uniqueness: {message: "The same address is already in use"}
+
+
 	validates :name_or_number,:address1, :address2,	
 						presence: true,
 						format: {with: /\A[a-z0-9\s\-\,\.\(\)\/]+\Z/i , message:"- you've used an invalid character"}
@@ -25,7 +28,7 @@ class Property < ApplicationRecord
 	validate :no_dates
 
 	
-
+	before_validation :generate_slug
 	before_save :smarten_address
 
 	scope :by_street_name_number, ->{where("coop_house = ?", true).order(address1: :asc).order(name_or_number: :asc)}
@@ -92,10 +95,16 @@ class Property < ApplicationRecord
 	return balance
 end
 
+def to_param
+  slug
+end
+
+def generate_slug
+  self.slug ||= self.full_address.parameterize if name_or_number && address1 && address2 && postcode
+  self.slug = self.full_address.parameterize if slug != self.full_address.parameterize
+end
 
 private
-
-
 
 	def no_dates
 	  errors.add(:rent_period_start, "and last day of rent period cannot both be blank, (either can individually), if the house is empty set last day of rent period to the last day the property was let, or the day before you wish to start calculating the void rent.") if rent_period_start.blank? && last_day_of_rent_period.blank? 

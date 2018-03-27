@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180327090744) do
+ActiveRecord::Schema.define(version: 20180327103336) do
 
   create_table "calendars", force: :cascade do |t|
     t.datetime "date_time"
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 20180327090744) do
     t.string "email"
     t.text "notes"
     t.boolean "use"
+    t.string "slug"
   end
 
   create_table "jobs", force: :cascade do |t|
@@ -102,6 +103,7 @@ ActiveRecord::Schema.define(version: 20180327090744) do
     t.decimal "rent_balance", default: "0.0"
     t.datetime "balance_created"
     t.decimal "end_of_tenancy"
+    t.string "slug"
   end
 
   create_table "rents", force: :cascade do |t|

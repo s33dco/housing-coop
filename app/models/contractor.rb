@@ -2,6 +2,8 @@ class Contractor < ApplicationRecord
 	has_many :maintenances
 	has_many :properties, through: :maintenances
 
+    validates :slug, uniqueness: {message: "The same contractor name is already in use"}
+
 		validates :name,	
 								presence: true,
 								format: { with: /\A[a-z0-9\s\-]+\Z/i, message: "- you've used an invalid character" }
@@ -20,11 +22,19 @@ class Contractor < ApplicationRecord
                 format: { with: /\A[a-z0-9\s\-\,\.\(\)\/\£\']+\Z/i, message: "- you've used an invalid character" },
                 allow_blank: true
                 
-
+    before_validation :generate_slug
     before_validation :downcase_email, :clean_name
 
     scope :alphabetically, ->{ order(name: :asc)}
 
+    def to_param
+      slug
+    end
+
+    def generate_slug
+      self.slug ||= self.name.parameterize if name
+      self.slug = self.name.parameterize if slug != self.name.parameterize
+    end
 
 private
 

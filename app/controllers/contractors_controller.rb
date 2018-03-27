@@ -1,4 +1,5 @@
 class ContractorsController < ApplicationController
+			before_action :set_contractor, only: [:show, :edit, :update, :destroy]
 
 		def index
 			@contractors = Contractor.alphabetically
@@ -9,7 +10,6 @@ class ContractorsController < ApplicationController
 		end
 
 		def show
-			@contractor = Contractor.find(params[:id])
 	    @previous_work = @contractor.maintenances
 		end
 
@@ -28,11 +28,9 @@ class ContractorsController < ApplicationController
 		end
 
 		def edit
-			@contractor = Contractor.find(params[:id])
 		end
 
 		def update
-		  @contractor = Contractor.find(params[:id])
 		  if @contractor.update(contractor_params)
 		    redirect_to contractors_path, notice: "Contractor successfully updated!"
 		  else
@@ -41,14 +39,17 @@ class ContractorsController < ApplicationController
 		end
 
 		def destroy
-			fail
-	    @contractor = Contractor.find(params[:id])
-	    @contractor.update(use:false)
+	    @contractor.destroy
 	    redirect_to contractors_path, alert: "Contractor successfully deleted!"
 		end
 
 
 	private
+
+	def set_contractor
+	  @contractor = Contractor.find_by!(slug: params[:id])
+	end
+
 	  def contractor_params
 	    params.require(:contractor).permit(:name, :details, :email, :details, :use, :phone)
 	  end

@@ -60,6 +60,7 @@ end
 
 def generate_slug
   self.slug ||= self.full_name.parameterize if firstname && lastname
+  self.slug = self.full_name.parameterize if slug != self.full_name.parameterize
 end
 
 private
