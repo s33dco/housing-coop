@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180315235922) do
+ActiveRecord::Schema.define(version: 20180327090744) do
 
   create_table "calendars", force: :cascade do |t|
     t.datetime "date_time"
@@ -81,6 +81,7 @@ ActiveRecord::Schema.define(version: 20180315235922) do
     t.integer "property_id"
     t.text "words"
     t.boolean "child"
+    t.string "slug"
     t.index ["property_id"], name: "index_people_on_property_id"
   end
 

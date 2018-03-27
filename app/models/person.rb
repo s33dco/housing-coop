@@ -7,6 +7,8 @@ class Person < ApplicationRecord
   has_many :participations
   has_many :events, through: :participations, source: :calendar
 
+  validates :slug, uniqueness: {message: "The same combination of first and family names is already in use, add or use an initial"}
+
 	validates :firstname, presence: true,
 											  format: { with: /\A[a-z\s]+\Z/i, message: "only letters" }
 
@@ -26,6 +28,8 @@ class Person < ApplicationRecord
   validate :member_must_have_join_date
 
   before_validation :downcase_email
+  before_validation :generate_slug
+
   after_validation :tidy_name
   after_validation :tidy_words
 
@@ -50,8 +54,16 @@ def event_percent
   (self.events.size.to_f/Calendar.all.select{|event| event.date_time > eventsattended}.size)*(100)  
 end  
 
-private
+def to_param
+  slug
+end
 
+def generate_slug
+  self.slug ||= self.full_name.parameterize if firstname && lastname
+end
+
+private
+  
   def member_must_have_join_date
     errors.add(:joined, "- If person a member they must have a first moved in date.") if member == true && joined.blank?
   end

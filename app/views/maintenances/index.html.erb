@@ -7,7 +7,7 @@
 			<span class="filter">
 								<%= form_with url: maintenances_path, method: :get, local: :true do |f| %>
 								<%= f.collection_select(:worktype_id, Worktype.alphabetically, :id , :title , prompt: "All Categories" ) %>	
-								<%= f.submit 'go' do %>
+								<%= f.button do %>
 				 			        <i class="fas fa-arrow-right"></i>
 				 			        <% end %>
 					 			<% end %></span>

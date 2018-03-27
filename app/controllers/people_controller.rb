@@ -1,4 +1,6 @@
 class PeopleController < ApplicationController
+  before_action :set_person, only: [:show, :edit, :update, :destroy]
+
 	def index
 		@people = Person.housed
     @roles = Role.current
@@ -10,7 +12,6 @@ class PeopleController < ApplicationController
   end
 
 	def show
-		@person = Person.find(params[:id])
     @roles = @person.roles
 	end
 
@@ -29,11 +30,9 @@ class PeopleController < ApplicationController
 	end
 
 	def edit
-		@person = Person.find(params[:id])
 	end
 
   def update
-    @person = Person.find(params[:id])
     if @person.update(person_params)
       redirect_to @person, notice: "Person successfully updated!"
     else
@@ -42,12 +41,15 @@ class PeopleController < ApplicationController
   end
 
 	def destroy
-    @person = Person.find(params[:id])
     @person.destroy
     redirect_to properties_url, alert: "Person successfully deleted!"
 	end
 
 private
+
+  def set_person
+    @person = Person.find_by!(slug: params[:id])
+  end
 
   def person_params
     params.require(:person).
