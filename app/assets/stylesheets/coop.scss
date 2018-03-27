@@ -164,6 +164,8 @@
 .show-residents,
 .show-peoplelist {
   display: block;
+  color : $primary-link-color; 
+  cursor: pointer;
   font-size: 1.5rem;
   margin-bottom: 0.5em;
 }
