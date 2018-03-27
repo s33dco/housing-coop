@@ -23,7 +23,7 @@
 	}
 
 	.masthead .main-nav li {
-    font-size: 1rem;
+    font-size: 1vw;
 	  flex: 1;
 	  text-align: center;
 	  padding: 0.5em 0.5em;
@@ -36,10 +36,10 @@
 	  margin-bottom: 3.5vh;
 	}
 	.footer h2 {
-	  font-size: 1.1em;
+	  font-size: 5.5vw;
 	}
 	.text {
-	  font-size: 0.8em; 
+	  font-size: 3vw; 
 	  text-align: center;
 	  margin-bottom: 0.2em;
     padding: 0 0.5em;
@@ -50,7 +50,7 @@
     margin: 0;
 	}
 	.copy {
-	  font-size: 0.8em;
+	  font-size: 4vw;
     padding-top: 0.2em;
 	  text-align: center;
 	}
@@ -83,7 +83,8 @@
   .mobile-menu-check:checked ~ .admin-nav {
     max-height: 1000px;
   }
-  .admin-nav > li{
+  .admin-nav li{
+    font-size: 5vw;
     margin: 0;
     padding : 0.75em 0.75em;
     text-align: center;
@@ -135,7 +136,7 @@
   }
 
   .content .header p{
-    font-size: 1rem;
+    font-size: 5vw;
     padding: 0.5em 0;
     text-align: center;
   }
@@ -154,6 +155,7 @@
   }
   .page-actions a {
     display: block;
+    font-size: 5vw;
     padding: 0.75em 0.75em;
   }
   .page-actions a:hover {
@@ -190,12 +192,13 @@
   text-align: center;
   }
   .detail p {
+  font-size: 4vw;
   line-height: 1.5;
   margin-bottom: 1em;
   text-align: center;
   }
   .detail  h2 {
-    font-size: 1em;
+    font-size: 5vw;
     text-align: center;
   }
   .detail {
@@ -263,7 +266,7 @@ fieldset {
 
 
 .detail .contact-details p {
-		font-size: 1.1em;
+		font-size: 4.75vw;
 		line-height: 2;
 		margin-bottom: 0.25em;
 }
@@ -277,6 +280,7 @@ fieldset {
 		line-height: 1.5;
 		padding: 0 1em;
 		margin-bottom: 2em;
+    text-align: center;
 	}
 
 .event h3,
