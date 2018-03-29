@@ -14,10 +14,15 @@
 		<% @worktypes.each do | worktype | %>
 			<tr>
 				<td><%= worktype.title %></td>
+				<% if sec_rights? %>
 				<td><%=link_to 'Edit', edit_worktype_path(worktype) %></td>
+				<%if admin_rights?%>
 				<td><%= link_to 'Delete', worktype, 
 	                  class: 'button',
-	                  method: :delete, data: { confirm: 'Are you sure?' } %></td>				
+	                  method: :delete, data: { confirm: 'Are you sure?' } %>
+	                  </td>	
+	                  <% end %>	
+	       <% end %>		
 			</tr>
 		<% end %>
 		</table>

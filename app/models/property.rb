@@ -1,5 +1,5 @@
 class Property < ApplicationRecord
-
+	
 	has_many :people
 	has_many :rents, -> { order(date: :desc).order(notes: :asc) }
 	has_many :maintenances, -> { order(date: :desc)}

@@ -1,4 +1,5 @@
 class Rent < ApplicationRecord
+	
   belongs_to :property
 
 	validates_numericality_of :payment, 								

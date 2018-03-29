@@ -31,10 +31,14 @@
 					<% @people.each do | person | %>
 						<tr>
 							<td><%= link_to person.full_name, person_path(person) %></td>
-							<td><%=link_to 'Edit', edit_person_path(person) %></td>
-							<td><%= link_to 'Delete', person, 
-				                  class: 'button',
-				                  method: :delete, data: { confirm: 'Are you sure?' } %></td>
+							<% if sec_rights? %>
+								<td><%=link_to 'Edit', edit_person_path(person) %></td>
+								<% if admin_rights? %>
+									<td><%= link_to 'Delete', person, 
+						                  class: 'button',
+						                  method: :delete, data: { confirm: 'Are you sure?' } %></td>
+					      <% end %>
+				      <% end %>
 						</tr>
 					<% end %>
 				</table>
@@ -44,7 +48,9 @@
 
 
 </article>
-	<div class="page-actions">
-		<%=link_to 'Add a Person', new_person_path %>
-	</div>
+	<% if sec_rights? %>
+		<div class="page-actions">
+			<%=link_to 'Add a new person', new_person_path %>
+		</div>
+	<% end %>
 	

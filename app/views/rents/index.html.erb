@@ -16,7 +16,7 @@
 				 			<% end %></span></h1>
 				 			
 		<% unless @payments.empty? %>
-		<p><%= nice_short_date(@payments.first_payment_date)%> - <%= nice_short_date(Time.now.to_date) %>, (<%= pluralize(@payments.size, 'payment') %> made - <%= show_money(@money)%> received).				</p>
+		<p><%= nice_short_date(@payments.first_payment_date)%> - <%= nice_short_date(Time.now.to_date) %>, (<%= pluralize(@payments.size, 'payment') %> made, <%= show_money(@money)%> collected).</p>
 
 		<% end %>
 	</header>
@@ -25,8 +25,10 @@
 		<%= render "layouts/rentbook" %>
 	</section>
 </article>
+<% if rent_rights? %>
 	<div class="page-actions">
 		<%=link_to 'Add Payment', new_rent_path %>
 		<%=link_to 'Rent Report', rent_report_path %>
 		<%=link_to 'Download CSV', rents_path(format: "csv") %>
 	</div>
+<% end %>

@@ -36,15 +36,19 @@
 			<td><%=short_date(role.role_start)%></td>
 			<td> - </td>
 			<td><%=short_date(role.role_end)%></td>
+			<% if sec_rights? %>
 			<td><%=link_to edit_role_path(role) do %>
 				<i class="fas fa-edit"></i>
 				<% end %>
 			</td>
+			<% if admin_rights? %>
 			<td><%=link_to role, method: :delete, data: { confirm: 'Are you sure?' } do %>
 				<i class="fas fa-trash"></i>
 				<% end %>
-			</td>		
+			</td>	
+			<% end %>	
 		</tr>
+		<% end %>
 		<% end %>
 		</table>
 
@@ -53,8 +57,9 @@
 
 
 </article>
+	<% if sec_rights? %>
 	<div class="page-actions">
 		<%= link_to	"Allocate Role", new_role_path %>
 		<%=link_to 'Manage Titles', jobs_path%>
-
 	</div>
+	<% end %>

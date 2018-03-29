@@ -1,4 +1,5 @@
 class MaintenancesController < ApplicationController
+	before_action :authenticate_person!
 			def index
 				if params[:worktype_id].in? Worktype.all.map{|w| w.id.to_s}
 					@maintenances = Maintenance.worktype(params[:worktype_id])

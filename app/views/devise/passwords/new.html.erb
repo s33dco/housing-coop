@@ -1,0 +1,29 @@
+<article>
+  <header class="header">
+    <h1><%= ENV['COOP_SHORT_NAME']%> - Forgot your password?</h1>
+  </header>
+  <section>
+    <div class="form-wrapper">
+      <fieldset>
+      	<ul>
+
+				<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+
+  <%= render "shared/errors", object: resource %>
+
+				  <li class="required">
+				    <%= f.label :email %>
+				    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+				  </li>
+
+				  <li class="required">
+				    <%= f.submit "Send me reset password instructions" %>
+				  </li>
+				<% end %>
+				</ul>
+			</fieldset>
+		</div>
+	</section>
+</article>
+
+

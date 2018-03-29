@@ -1,4 +1,5 @@
 class RentsController < ApplicationController
+	before_action :authenticate_person!
 
 	def index
 		if params[:property_id].in? Property.by_street_name_number.map{|p| p.id.to_s}

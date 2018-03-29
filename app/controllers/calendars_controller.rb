@@ -1,4 +1,6 @@
 class CalendarsController < ApplicationController
+	before_action :authenticate_person!
+	
 	def index
 		@events = Calendar.future_to_past
 	end

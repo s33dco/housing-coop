@@ -69,9 +69,11 @@
 
 
 </article>
+<% if property_rights? %>
 	<div class="page-actions">
 		<%=link_to 'Edit', edit_property_path(@property) %>
 		<%= link_to 'Delete', @property, 
 	                  class: 'button',
 	                  method: :delete, data: { confirm: 'Are you sure?' } %>
 	</div>
+<% end %>

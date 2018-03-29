@@ -26,9 +26,11 @@
       <%= render "layouts/flashes" %>
 
       <main class='page  <%= controller.controller_name %>'>
-        <aside class="sidebar" >
-          <%= render "layouts/sidebar" %>
-        </aside>
+        <% if person_signed_in? %>
+          <aside class="sidebar" >
+            <%= render "layouts/sidebar" %>
+          </aside>
+        <% end %>
         <section class="content">
           <%= yield %>
         </section>

@@ -19,9 +19,10 @@
 		</div>
 	</section>
 </article>
-
+<% if maintenance_rights? %>
 <div class="page-actions">
 	<%=link_to 'Edit This Job', edit_maintenance_path(@maintenance) %>
 	<%=link_to 'Delete This Job', @maintenance, method: :delete, data: { confirm: 'Are you sure?' } %>
 	</div>
+<% end %>
 	

@@ -11,9 +11,15 @@
 			<li>
 				<%=link_to 'Contact', contact_path%>
 			</li>
-			<li>
-				<%=link_to 'Members', properties_path%>
-			</li>
+			<% if person_signed_in? %>
+				<li>
+					<%=link_to 'SignOut', destroy_person_session_path, method: :delete %>
+				</li>
+				<% else %>
+					<li>
+						<%=link_to 'Members', new_person_session_path%>
+					</li>
+				<% end %>
 		</ul>
 	</nav>
 </header>

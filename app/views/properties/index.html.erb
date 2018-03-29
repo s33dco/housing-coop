@@ -14,19 +14,25 @@
 			<% @properties.each do | property | %>
 				<tr>
 					<td><%= link_to "#{property.number_and_address1}", property_path(property)%></td>
+					<% if property_rights? %>
 					<td><%=link_to 'Edit', edit_property_path(property) %></td>
+					<% if admin_rights? %>
 					<td><%= link_to 'Delete', property, 
 		                  class: 'button',
 		                  method: :delete, data: { confirm: 'Are you sure?' } %></td>
+				<% end %>
+		    <% end %>
 				</tr>
 			<% end %>
 		</table>
 		</section>
 
 </article>
-
+<% if property_rights? %>
 	<div class="page-actions">
 		<%=link_to 'Add a Property', new_property_path %>
 		</div>
+<% end %>
+
 
 		

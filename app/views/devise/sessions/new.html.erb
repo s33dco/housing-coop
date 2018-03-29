@@ -1,0 +1,36 @@
+
+<article>
+  <header class="header">
+    <h1>Member Sign In</h1>
+  </header>
+  <section>
+    <div class="form-wrapper">
+      <fieldset>
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+          <ul> 
+            <li class="field">
+              <%= f.label :email %>
+              <%= f.email_field :email, size: 40, autofocus: true, autocomplete: "email" %>
+            </li>
+            <li class="field">
+              <%= f.label :password %>
+              <%= f.password_field :password, size: 40, autocomplete: "off" %>
+            </li>
+          <% if devise_mapping.rememberable? -%>
+            <li class="field">
+              <%= f.check_box :remember_me %>
+              <%= f.label :remember_me %>
+            </li>
+          <% end -%>
+            <li class="actions">
+              <%= f.submit "Sign In" %>
+            </li>
+          </ul>
+        <% end %>
+      </fieldset>
+    </div>
+  </section>
+  </article>
+<div class="page-actions">
+  <%= render "devise/shared/links" %>
+</div>

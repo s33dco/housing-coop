@@ -1,4 +1,9 @@
 class Person < ApplicationRecord
+ 
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable and :omniauthable
+  devise :database_authenticatable, :recoverable, 
+          :rememberable, :trackable
 
   belongs_to :property
 
@@ -25,6 +30,19 @@ class Person < ApplicationRecord
   validates :phone,     numericality:  {message: "- just digits no spaces"},
   											length: {minimum: 10, maximum: 14},
                         allow_blank: true
+
+  validates :password, presence: true,
+                       confirmation: true,
+                       length: {:within => 8..40},
+                       on:  :create
+
+  validates :password, 
+                       confirmation: true,
+                       length:  {:within => 8..40},
+                       allow_blank: true,
+                       on: :update
+
+
   validate :member_must_have_join_date
 
   before_validation :downcase_email

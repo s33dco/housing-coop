@@ -1,4 +1,5 @@
 class JobsController < ApplicationController
+		before_action :authenticate_person!
 
 		def index
 			@jobs = Job.alphabetically

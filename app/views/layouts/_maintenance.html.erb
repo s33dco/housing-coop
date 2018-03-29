@@ -22,12 +22,16 @@
 			<i class="fas fa-binoculars"></i>
 			<% end %>
 		</td>
+		<% if maintenance_rights? %>
 		<td class='hide'><%=link_to  edit_maintenance_path(maintenance) do %>
 			<i class="fas fa-edit"></i>
 		<% end %>
 		</td>
+		<% if admin_rights? %>
 		<td class='hide'><%= link_to  maintenance, method: :delete, data: { confirm: 'Are you sure?' } do %>
 			<i class="fas fa-trash"></i>
+			<% end %>
+			<% end %>
 			<% end %>
 		</td>
 	</tr>

@@ -1,4 +1,5 @@
 class PropertiesController < ApplicationController
+  before_action :authenticate_person!
   before_action :set_property, only: [:show, :edit, :update, :destroy]
 
 

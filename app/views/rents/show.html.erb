@@ -35,8 +35,10 @@
 
 
 </article>
+<% if rent_rights? %>
 	<div class="page-actions">
 		<%=link_to 'Edit', edit_rent_path(@rent) %>
 		<%=link_to 'Delete', @rent, method: :delete, data: { confirm: 'Are you sure?' } %>
 		<%=link_to 'Add', new_rent_path %>
+<% end %>
 		</div>

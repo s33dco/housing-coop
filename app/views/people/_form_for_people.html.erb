@@ -26,63 +26,84 @@
           <%= f.text_area :words, cols: 40, rows: 7, 
            placeholder:"Please say a few words, what you enter here will appear on your profile page, this will only be visible to logged in members" %>
         </li>
-         <li class="required">
-          <%= f.label :property_id, "Choose Property" %>
-          <%= f.collection_select(:property_id, Property.by_street_name_number, :id , :number_and_address1, prompt: "Choose Property" ) %>
+        <li class="required">
+          <%= f.label :password %> <i>(leave blank if you don't want to change it)</i>
+          <%= f.password_field :password, size: 40, autocomplete: "off" %>
+          <% if @minimum_password_length %>
+            <br />
+            <em><%= @minimum_password_length %> characters minimum</em>
+          <% end %>
         </li>
         <li class="required">
-          <%= f.label :joined, "first moved in"%>
-          <%= f.date_select :joined, { order: [ :day, :month, :year], 
-                                                start_year: Date.today.year - 25, 
-                                                end_year: Date.today.year, 
-                                                include_blank: true
-                                              } %>
+          <%= f.label :password_confirmation %>
+          <%= f.password_field :password_confirmation, size: 40, autocomplete: "off" %>
         </li>
-        <div class="buttons">
-        <li class="required">
-          <%= f.label :member, "Member"%>
-          <%= f.radio_button(:member, 'true', checked: true) %>
-          <%= f.label(:member, "Yes") %>
-          <%= f.radio_button(:member, 'false', checked: false) %>
-          <%= f.label(:member, "No") %>
-        </li>
-        <li class="required">
-          <%= f.label :housed, "Housed"%>
-          <%= f.radio_button(:housed, 'true', checked: true) %>
-          <%= f.label(:housed, "Yes") %>
-          <%= f.radio_button(:housed, 'false', checked: false) %>
-          <%= f.label(:housed, "No") %>
-        </li>
-        <li class="required">
-          <%= f.label :child, "Child"%>
-          <%= f.radio_button(:child, 'true', checked: false) %>
-          <%= f.label(:child, "Yes") %>
-          <%= f.radio_button(:child, 'false', checked: true) %>
-          <%= f.label(:child, "No") %>
-        </li>
-  <!-- add p/word p/word conf -->
-        <li class="required">
-          <%= f.label :secretary, "Secretary"%>
-          <%= f.radio_button(:secretary, 'true', checked: false) %>
-          <%= f.label(:secretary, "Yes") %>
-          <%= f.radio_button(:secretary, 'false', checked: true) %>
-          <%= f.label(:secretary, "No") %>
-        </li>
-        <li class="required">
-          <%= f.label :rent_officer, "Rent Officer"%>
-          <%= f.radio_button(:rent_officer, 'true', checked: false) %>
-          <%= f.label(:rent_officer, "Yes") %>
-          <%= f.radio_button(:rent_officer, 'false', checked: true) %>
-          <%= f.label(:rent_officer, "No") %>
-        </li>
-        <li class="required">
-          <%= f.label :admin, "Web Admin"%>
-          <%= f.radio_button(:admin, 'true', checked: false) %>
-          <%= f.label(:admin, "Yes") %>
-          <%= f.radio_button(:admin, 'false', checked: true) %>
-          <%= f.label(:admin, "No") %>
-        </li>
-        </div>
+        <% if sec_rights? %>
+          <li class="required">
+            <%= f.label :property_id, "Choose Property" %>
+            <%= f.collection_select(:property_id, Property.by_street_name_number, :id , :number_and_address1, prompt: "Choose Property" ) %>
+          </li>
+          <li class="required">
+            <%= f.label :joined, "first moved in"%>
+            <%= f.date_select :joined, { order: [ :day, :month, :year], 
+                                                  start_year: Date.today.year - 25, 
+                                                  end_year: Date.today.year, 
+                                                  include_blank: true
+                                                } %>
+          </li>
+          <div class="buttons">
+            <li class="required">
+              <%= f.label :member, "Member"%>
+              <%= f.radio_button(:member, 'true', checked: true) %>
+              <%= f.label(:member, "Yes") %>
+              <%= f.radio_button(:member, 'false', checked: false) %>
+              <%= f.label(:member, "No") %>
+            </li>
+            <li class="required">
+              <%= f.label :housed, "Housed"%>
+              <%= f.radio_button(:housed, 'true', checked: true) %>
+              <%= f.label(:housed, "Yes") %>
+              <%= f.radio_button(:housed, 'false', checked: false) %>
+              <%= f.label(:housed, "No") %>
+            </li>
+            <h3 class="required">Each of the below default to no, select which should be yes.</h3>
+            <li class="required">
+              <%= f.label :child, "Child"%>
+              <%= f.radio_button(:child, 'true', checked: false) %>
+              <%= f.label(:child, "Yes") %>
+              <%= f.radio_button(:child, 'false', checked: true) %>
+              <%= f.label(:child, "No") %>
+            </li>
+            <li class="required">
+              <%= f.label :secretary, "Secretary"%>
+              <%= f.radio_button(:secretary, 'true', checked: false) %>
+              <%= f.label(:secretary, "Yes") %>
+              <%= f.radio_button(:secretary, 'false', checked: true) %>
+              <%= f.label(:secretary, "No") %>
+            </li>
+            <li class="required">
+              <%= f.label :rent_officer, "Rent"%>
+              <%= f.radio_button(:rent_officer, 'true', checked: false) %>
+              <%= f.label(:rent_officer, "Yes") %>
+              <%= f.radio_button(:rent_officer, 'false', checked: true) %>
+              <%= f.label(:rent_officer, "No") %>
+            </li>
+            <li class="required">
+              <%= f.label :maintenance, "Maintenance"%>
+              <%= f.radio_button(:maintenance, 'true', checked: false) %>
+              <%= f.label(:maintenance, "Yes") %>
+              <%= f.radio_button(:maintenance, 'false', checked: true) %>
+              <%= f.label(:maintenance, "No") %>
+            </li>
+            <li class="required">
+              <%= f.label :admin, "Admin"%>
+              <%= f.radio_button(:admin, 'true', checked: false) %>
+              <%= f.label(:admin, "Yes") %>
+              <%= f.radio_button(:admin, 'false', checked: true) %>
+              <%= f.label(:admin, "No") %>
+            </li>
+          </div>
+        <% end %>
       <%= f.submit 'Submit' %> 
     </ul>
     </fieldset>

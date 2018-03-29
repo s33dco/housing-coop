@@ -1,4 +1,5 @@
 class ContractorsController < ApplicationController
+			before_action :authenticate_person!
 			before_action :set_contractor, only: [:show, :edit, :update, :destroy]
 
 		def index

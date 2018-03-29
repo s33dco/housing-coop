@@ -30,9 +30,11 @@
 		<%= render "layouts/maintenance" %>
 	</section>
 </article>
+<% if maintenance_rights? %>
 <div class="page-actions">
 	<%=link_to 'Add Job', new_maintenance_path %>
 	<%=link_to 'Contractors', contractors_path %>
 	<%=link_to 'Categories', worktypes_path %>
 	<%=link_to 'Download CSV', maintenances_path(format: "csv") %>
 </div>
+<% end %>

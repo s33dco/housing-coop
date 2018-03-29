@@ -52,9 +52,8 @@
 
 
 </article>
-	<div class="page-actions">
-		<%=link_to 'Edit', edit_person_path(@person) %>
-		<%= link_to 'Delete', @person, 
-	                  class: 'button',
-	                  method: :delete, data: { confirm: 'Are you sure?' } %>
-	 </div>
+	<% if my_rights?(@person) %>
+		<div class="page-actions">
+			<%=link_to 'Edit my details', edit_person_path(@person) %>
+		</div>
+	<% end %>

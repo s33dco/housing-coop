@@ -19,13 +19,18 @@
 			<i class="fas fa-binoculars"></i>
 			<% end %>
 		</td>	
+		<%if rent_rights? %>
 		<td class='hide'><%=link_to edit_rent_path(rent) do %>
 			<i class="fas fa-edit"></i>
 			<% end %>
 		</td>
+		<%if admin_rights? %>
 		<td class='hide'><%=link_to rent, method: :delete, data: { confirm: 'Are you sure?' } do %>
 			<i class="fas fa-trash"></i>
 			<% end %>
+			<% end %>
+			<% end %>
+
 		</td>
 	</tr>
 	<% end %>

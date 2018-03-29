@@ -1,4 +1,5 @@
 class Worktype < ApplicationRecord
+	
   has_many :maintenances
 
   	validates :title, 		uniqueness: true,

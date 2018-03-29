@@ -1,4 +1,5 @@
 class PeopleController < ApplicationController
+  before_action :authenticate_person!
   before_action :set_person, only: [:show, :edit, :update, :destroy]
 
 	def index
@@ -22,7 +23,7 @@ class PeopleController < ApplicationController
 	def create
 		@person = Person.new(person_params)
     if @person.save
-      redirect_to @person, notice: "Person successfully created!"
+      redirect_to @person, notice: "#{@person.firstname} #{@person.lastname} successfully created!"
     else
       render :new
       @person.errors.full_messages
@@ -34,7 +35,7 @@ class PeopleController < ApplicationController
 
   def update
     if @person.update(person_params)
-      redirect_to @person, notice: "Person successfully updated!"
+      redirect_to @person, notice: "#{@person.firstname} #{@person.lastname} successfully updated!"
     else
       render :edit
     end
@@ -42,7 +43,7 @@ class PeopleController < ApplicationController
 
 	def destroy
     @person.destroy
-    redirect_to properties_url, alert: "Person successfully deleted!"
+    redirect_to people_path, alert: "#{@person.firstname} #{@person.lastname} successfully deleted!"
 	end
 
 private
@@ -53,7 +54,7 @@ private
 
   def person_params
     params.require(:person).
-      permit(:firstname, :lastname, :email, :phone, :joined, :exit, :member, :housed, :child, :secretary, :rent_officer, :admin, :words, :property_id)
-  end
+      permit(:firstname, :lastname, :email, :phone, :joined, :exit, :member, :housed, :child, :secretary, :rent_officer, :admin, :words, :property_id, :password_confirmation, :password)
+    end
 
 end

@@ -1,4 +1,5 @@
 class WorktypesController < ApplicationController
+	before_action :authenticate_person!
 
 		def index
 			@worktypes = Worktype.alphabetically
