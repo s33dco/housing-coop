@@ -1,6 +1,8 @@
 class PeopleController < ApplicationController
   before_action :authenticate_person!
   before_action :set_person, only: [:show, :edit, :update, :destroy]
+  before_action :require_people_rights, except: [:index, :show, :participation]
+
 
 	def index
 		@people = Person.housed
@@ -35,6 +37,7 @@ class PeopleController < ApplicationController
 
   def update
     if @person.update(person_params)
+      bypass_sign_in(@person)
       redirect_to @person, notice: "#{@person.firstname} #{@person.lastname} successfully updated!"
     else
       render :edit

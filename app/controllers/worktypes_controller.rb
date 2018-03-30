@@ -1,5 +1,6 @@
 class WorktypesController < ApplicationController
 	before_action :authenticate_person!
+	before_action :require_sec_rights, except: [:index, :show]
 
 		def index
 			@worktypes = Worktype.alphabetically

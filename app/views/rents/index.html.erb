@@ -3,7 +3,7 @@
 <% description("Rent - #{ENV['COOP_FULL_NAME']}")%>
 <article>
 	<header class="header">
-		<h1>Rent Home
+		<h1>Rent</h1>
 		<span class="filter">
 							<%= form_with url: rents_path, method: :get, local: :true do |f| %>
 				 			<%= f.collection_select(:property_id, Property.by_street_name_number, :id , :number_and_address1, prompt: "All Properties" ) %>

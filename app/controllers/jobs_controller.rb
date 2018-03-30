@@ -1,5 +1,6 @@
 class JobsController < ApplicationController
 		before_action :authenticate_person!
+		before_action :require_maintenance_rights, except: [:index]
 
 		def index
 			@jobs = Job.alphabetically

@@ -1,5 +1,7 @@
 class RolesController < ApplicationController
 	before_action :authenticate_person!
+	before_action :require_sec_rights, except: [:index, :show]
+	
 			def index
 					if params[:job_id].in? Job.all.map{|j| j.id.to_s}
 						@roles = Role.role_type(params[:job_id])

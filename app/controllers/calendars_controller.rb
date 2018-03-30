@@ -1,5 +1,6 @@
 class CalendarsController < ApplicationController
 	before_action :authenticate_person!
+	before_action :require_sec_rights, except: [:index, :show, :upcoming]
 	
 	def index
 		@events = Calendar.future_to_past

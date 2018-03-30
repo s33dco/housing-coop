@@ -1,7 +1,6 @@
 class Person < ApplicationRecord
  
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
+  # :lockable and :omniauthable
   devise :database_authenticatable, :recoverable, 
           :rememberable, :trackable
 
@@ -59,27 +58,27 @@ class Person < ApplicationRecord
   scope :under18s, ->{ where("housed = ?",true).where("child = ?",true).first_name_last }
   scope :members_adults_children, ->{ where("housed = ?", true).order("member desc").order("child asc").first_name_last }
 
-def years_in_coop
-  (Time.now.year - self.joined.year).to_i
-end
+  def years_in_coop
+    (Time.now.year - self.joined.year).to_i
+  end
 
-def events_since_joined(events)
-  events.select{|event| event.date_time > self.joined}.size
-end
+  def events_since_joined(events)
+    events.select{|event| event.date_time > self.joined}.size
+  end
 
-def event_percent
-  eventsattended = self.joined
-  (self.events.size.to_f/Calendar.all.select{|event| event.date_time > eventsattended}.size)*(100)  
-end  
+  def event_percent
+    eventsattended = self.joined
+    (self.events.size.to_f/Calendar.all.select{|event| event.date_time > eventsattended}.size)*(100)  
+  end  
 
-def to_param
-  slug
-end
+  def to_param
+    slug
+  end
 
-def generate_slug
-  self.slug ||= self.full_name.parameterize if firstname && lastname
-  self.slug = self.full_name.parameterize if slug != self.full_name.parameterize
-end
+  def generate_slug
+    self.slug ||= self.full_name.parameterize if firstname && lastname
+    self.slug = self.full_name.parameterize if slug != self.full_name.parameterize
+  end
 
 private
   
