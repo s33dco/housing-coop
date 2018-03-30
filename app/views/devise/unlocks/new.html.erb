@@ -1,16 +1,29 @@
-<h2>Resend unlock instructions</h2>
+<article>
+  <header class="header">
+    <h1>Resend unlock instructions</h1>
+  </header>
+  <section>
+    <div class="form-wrapper">
+      <fieldset>
+      	<ul>
 
 <%= form_for(resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post }) do |f| %>
   <%= devise_error_messages! %>
 
-  <div class="field">
-    <%= f.label :email %><br />
+  <li class="required">
+    <%= f.label :email %>
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+  </li>
 
-  <div class="actions">
+  <li class="required">
     <%= f.submit "Resend unlock instructions" %>
-  </div>
+  </li>
 <% end %>
+				</ul>
+			</fieldset>
+		</div>
+	</section>
+	<%= render "devise/shared/links" %>
+</article>
 
-<%= render "devise/shared/links" %>
+

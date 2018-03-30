@@ -1,8 +1,8 @@
 class Person < ApplicationRecord
  
-  # :lockable and :omniauthable
+  #  and :omniauthable
   devise :database_authenticatable, :recoverable, 
-          :rememberable, :trackable
+          :rememberable, :trackable, :lockable
 
   belongs_to :property
 

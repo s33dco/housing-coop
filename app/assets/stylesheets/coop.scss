@@ -199,6 +199,18 @@
   color : $primary-link-color
  }
 
+ /*----------AUTH ACTIONS--------------*/
+.auth-actions {
+  text-align: center;
+}
+ .auth-actions a {
+  padding: 2rem;
+ }
+
+.auth-actions a :hover{
+  color : $primary-link-color
+ }
+
   /*----------SIDEBAR--------------*/
 
   /* MOBILE MENU */
