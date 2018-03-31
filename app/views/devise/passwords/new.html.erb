@@ -1,6 +1,6 @@
 <article>
   <header class="header">
-    <h1><%= ENV['COOP_SHORT_NAME']%> - Forgot your password?</h1>
+    <h1>Forgot your password?</h1>
   </header>
   <section>
     <div class="form-wrapper">
@@ -13,11 +13,11 @@
 
 				  <li class="required">
 				    <%= f.label :email %>
-				    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+				    <%= f.email_field :email, size: 30, autofocus: true, autocomplete: "email" %>
 				  </li>
 
 				  <li class="required">
-				    <%= f.submit "Help me" %>
+				    <%= f.submit "Send me reset link" %>
 				  </li>
 				<% end %>
 				</ul>

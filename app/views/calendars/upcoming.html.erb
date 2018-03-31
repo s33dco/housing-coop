@@ -8,9 +8,9 @@
 
 	<section class='detail'>
 		<% @events.each do | event | %>
-			<div class="event">
-				<h2><%= time_day(event.date_time) %> - <%= event.title %></h2>
-				<h3><%= event.where %></h3>
+			<div class="event vevent">
+				<h2><span class='dstart'><%= time_day(event.date_time) %></span> - <span class="summary"><%= event.title %></span></h2>
+				<h3 class='location'><%= event.where %></h3>
 				<p><%= event.details %></p>
 				<p><%= event.link %></p>
 			</div>

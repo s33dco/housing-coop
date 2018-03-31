@@ -1,10 +1,12 @@
 @import "colors";
 
-fieldset {
-  margin: 2.5vh 2.5vw;
+ fieldset {
   background-color: $fieldset-color;
   border: 0;
   box-shadow: #aaa 0 0 8px;
+
+
+
 
   label {
     font-size: 1em;
@@ -15,6 +17,7 @@ fieldset {
   ul {
     list-style: none;
     padding: 3vh 3vw;
+
 
     li {
       margin: 0 0 15px 0;

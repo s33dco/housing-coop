@@ -18,11 +18,11 @@
           </li>
           <li class="required">
             <%= f.label :payment, "Payment Amount £" %>         
-            <%= f.number_field :payment, size: 40 , step: :any, placeholder: 'just numbers no spaces'%>
+            <%= f.number_field :payment, size: 30 , step: :any, placeholder: 'just numbers no spaces'%>
           </li>
           <li class="required">
             <%= f.label :notes, "Notes" %>         
-            <%= f.text_field :notes, size: 40, placeholder: "any additional information" %>
+            <%= f.text_field :notes, size: 30, placeholder: "any additional information" %>
           </li>
           <%= f.submit 'Submit' %> 
         </ul>

@@ -30,11 +30,11 @@
 			</li>
 			<li class="required">
 			  <%= f.label :details, "Details" %>         
-			  <%= f.text_area :details, cols: 40, rows: 7, placeholder: "details of the work completed" %>
+			  <%= f.text_area :details, cols: 30, rows: 7, placeholder: "details of the work completed" %>
 			</li>
 			<li class="required">
 			  <%= f.label :cost, "Cost £" %>         
-			  <%= f.number_field :cost, size: 40 ,step: :any, placeholder: 'just numbers no spaces'%>
+			  <%= f.number_field :cost, size: 30 ,step: :any, placeholder: 'just numbers no spaces'%>
 			</li>
 				<%= f.submit 'Submit' %> 
 			</ul>

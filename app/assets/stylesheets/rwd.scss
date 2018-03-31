@@ -225,7 +225,8 @@ fieldset {
   background-color: $fieldset-color;
   border: 0;
   box-shadow: #aaa 0 0 4px;
-  margin: 2vh 0vw;
+  margin: 3vh auto;
+  width : 80vw;
 
   label {
     font-size: 1em;
@@ -235,7 +236,9 @@ fieldset {
 
   ul {
     list-style: none;
-    padding: 3vh 1vw;
+    padding: 3vh 0;
+    margin: 0 auto;
+    width: 82%;
 
     li {
       margin: 0 0 15px 0;

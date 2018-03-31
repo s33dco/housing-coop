@@ -4,31 +4,29 @@
     <h1>Member Sign In</h1>
   </header>
   <section>
-    <div class="form-wrapper">
       <fieldset>
         <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
           <ul> 
-            <li class="field">
+            <li class="required">
               <%= f.label :email %>
-              <%= f.email_field :email, size: 40, autofocus: true, autocomplete: "email" %>
+              <%= f.email_field :email, size: 30, autofocus: true, autocomplete: "email" %>
             </li>
-            <li class="field">
+            <li class="required">
               <%= f.label :password %>
-              <%= f.password_field :password, size: 40, autocomplete: "off" %>
+              <%= f.password_field :password, size: 30, autocomplete: "off" %>
             </li>
           <% if devise_mapping.rememberable? -%>
-            <li class="field">
+            <li class="required">
               <%= f.check_box :remember_me %>
               <%= f.label :remember_me %>
             </li>
           <% end -%>
-            <li class="actions">
+            <li class="required">
               <%= f.submit "Sign In" %>
             </li>
           </ul>
         <% end %>
       </fieldset>
-    </div>
   </section>
   <%= render "devise/shared/links" %>
 </article>

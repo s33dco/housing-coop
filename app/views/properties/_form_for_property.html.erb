@@ -4,19 +4,19 @@
       <ul>
         <li class="required">
           <%= f.label :name_or_number, "Name or Number" %>         
-          <%= f.text_field :name_or_number, size: 40, placeholder: "Property name or number", autofocus: true %>
+          <%= f.text_field :name_or_number, size: 30, placeholder: "Property name or number", autofocus: true %>
         </li>
         <li class="required">
           <%= f.label :address1, "Address 1" %>         
-          <%= f.text_field :address1, size: 40 , placeholder: 'Road or Street name'%>
+          <%= f.text_field :address1, size: 30 , placeholder: 'Road or Street name'%>
         </li>
         <li class="required">
           <%= f.label :address2, "Address 2" %>         
-          <%= f.text_field :address2, size: 40 , placeholder: 'Town or City'%>
+          <%= f.text_field :address2, size: 30 , placeholder: 'Town or City'%>
         </li>
         <li class="required">
           <%= f.label :postcode, "Postcode" %>         
-          <%= f.text_field :postcode, size: 40 , placeholder: 'Postcode'%>
+          <%= f.text_field :postcode, size: 30 , placeholder: 'Postcode'%>
         </li>
         <li class="required">
           <%= f.label :kitchen_upgrade, "Kitchen upgrade due :"%>
@@ -68,10 +68,12 @@
                                                     include_blank: true
                                                   } %>
             </li>
+            <% if admin_rights? %>
             <li class="required">
               <%= f.label :rent_balance ,"Balance from previous period, auto updates"%>         
               <%= f.number_field :rent_balance, step: :any%>
             </li>
+            <% end %>
           <% end %>
         <%= f.submit 'Submit' %> 
        </ul>

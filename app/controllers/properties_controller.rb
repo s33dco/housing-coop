@@ -1,6 +1,6 @@
 class PropertiesController < ApplicationController
   before_action :authenticate_person!
-  before_action :property_rights, except: [:index, :show]
+  before_action :require_property_rights, except: [:index, :show]
   before_action :set_property, only: [:show, :edit, :update, :destroy]
 
 

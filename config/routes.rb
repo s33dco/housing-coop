@@ -7,10 +7,10 @@ Rails.application.routes.draw do
 	get  "welcome" => "static_pages#welcome", as: 'welcome'
 	get  "allocations" => "static_pages#allocations", as: 'allocations'
 	get  "contact" => "static_pages#contact", as: 'contact'
-	get  "rents/report" => "rents#report", as: 'rent_report'
-  get  "contractors/list" => "contractors#list", as: 'contractors_list'
-  get  "calendars/upcoming" => "calendars#upcoming", as: 'upcoming_events'
-  get  "people/participation" => "people#participation", as: 'participation'
+	get  "rent-report" => "rents#report", as: 'rent_report'
+  get  "contractor-list" => "contractors#list", as: 'contractors_list'
+  get  "upcoming-events" => "calendars#upcoming", as: 'upcoming_events'
+  get  "participation" => "people#participation", as: 'participation'
 
   resources :properties
   resources :people

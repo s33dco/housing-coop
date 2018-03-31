@@ -38,7 +38,7 @@ class PeopleController < ApplicationController
   def update
     if @person.update(person_params)
       bypass_sign_in(@person)
-      redirect_to @person, notice: "#{@person.firstname} #{@person.lastname} successfully updated!"
+      redirect_to @person, notice: "Successfully updated!"
     else
       render :edit
     end

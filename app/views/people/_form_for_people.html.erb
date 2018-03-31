@@ -3,32 +3,35 @@
 <% else %>
   <%= form_for [@person] do |f| %>
     <%= render "shared/errors", object: @person %>
+    <div class="form-wrapper">
     <fieldset>
       <ul>
         <li class="required">
           <%= f.label :firstname, "First Name(s)" %>         
-          <%= f.text_field :firstname, size: 40, placeholder: "your first name(s)", autofocus: true %>
+          <%= f.text_field :firstname, size: 30, placeholder: "your first name(s)", autofocus: true %>
         </li>
         <li class="required">
           <%= f.label :lastname, "Family Name" %>         
-          <%= f.text_field :lastname, size: 40 , placeholder: 'your family name(s)'%>
+          <%= f.text_field :lastname, size: 30 , placeholder: 'your family name(s)'%>
         </li>
         <li class="required">
           <%= f.label :email, "Email" %>         
-          <%= f.text_field :email, size: 40 , placeholder: 'must enter to be able to log in'%>
+          <%= f.text_field :email, size: 30 , placeholder: 'must enter to be able to log in'%>
         </li>
-        <li class="required">
-          <%= f.label :phone, "Phone #" %>         
-          <%= f.telephone_field :phone, size: 40 , placeholder: 'just numbers no spaces'%>
-        </li>
-        <li class="required">
-          <%= f.label :words, "Say a few words" %>         
-          <%= f.text_area :words, cols: 40, rows: 7, 
-           placeholder:"Please say a few words, what you enter here will appear on your profile page, this will only be visible to logged in members" %>
-        </li>
+        <% if my_rights?(@person) %>
+          <li class="required">
+            <%= f.label :phone, "Phone #" %>         
+            <%= f.telephone_field :phone, size: 30 , placeholder: 'just numbers no spaces'%>
+          </li>
+          <li class="required">
+            <%= f.label :words, "Say a few words" %>         
+            <%= f.text_area :words, cols: 30, rows: 7, 
+             placeholder:"Please say a few words, what you enter here will appear on your profile page, this will only be visible to logged in members" %>
+          </li>
+        <% end %>
         <li class="required">
           <%= f.label :password %> <i>(leave blank if you don't want to change it)</i>
-          <%= f.password_field :password, size: 40, autocomplete: "off" %>
+          <%= f.password_field :password, size: 30, autocomplete: "off" %>
           <% if @minimum_password_length %>
             <br />
             <em><%= @minimum_password_length %> characters minimum</em>
@@ -36,7 +39,7 @@
         </li>
         <li class="required">
           <%= f.label :password_confirmation %>
-          <%= f.password_field :password_confirmation, size: 40, autocomplete: "off" %>
+          <%= f.password_field :password_confirmation, size: 30, autocomplete: "off" %>
         </li>
         <% if sec_rights? %>
           <li class="required">
@@ -66,7 +69,7 @@
               <%= f.radio_button(:housed, 'false', checked: false) %>
               <%= f.label(:housed, "No") %>
             </li>
-            <h3 class="required">Each of the below default to no, select which should be yes.</h3>
+            <h3 class="required">Each of the below default to no,<br> select which should be yes.</h3>
             <li class="required">
               <%= f.label :child, "Child"%>
               <%= f.radio_button(:child, 'true', checked: false) %>
@@ -95,18 +98,20 @@
               <%= f.radio_button(:maintenance, 'false', checked: true) %>
               <%= f.label(:maintenance, "No") %>
             </li>
-            <li class="required">
+            <!-- uncomment below to make admin boolean availble for secretary -->
+<!--             <li class="required">
               <%= f.label :admin, "Admin"%>
               <%= f.radio_button(:admin, 'true', checked: false) %>
               <%= f.label(:admin, "Yes") %>
               <%= f.radio_button(:admin, 'false', checked: true) %>
               <%= f.label(:admin, "No") %>
-            </li>
+            </li> -->
           </div>
         <% end %>
       <%= f.submit 'Submit' %> 
     </ul>
     </fieldset>
+    </div>
   <% end %>
 <% end %>
 

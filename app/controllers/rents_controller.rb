@@ -1,6 +1,6 @@
 class RentsController < ApplicationController
 	before_action :authenticate_person!
-	before_action :rent_rights, except: [:index, :show, :report]
+	before_action :require_rent_rights, except: [:index, :show, :report]
 
 	def index
 		if params[:property_id].in? Property.by_street_name_number.map{|p| p.id.to_s}
