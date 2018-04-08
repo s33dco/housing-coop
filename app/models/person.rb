@@ -23,8 +23,7 @@ class Person < ApplicationRecord
   validates :email, 		presence: true,
                     		format: /\A\S+@\S+\z/,
                     		uniqueness: { case_sensitive: false , 
-                    									message: "Email address already in use"},
-                        allow_blank: true
+                    									message: "Email address already in use"}
 
   validates :phone,     numericality:  {message: "- just digits no spaces"},
   											length: {minimum: 10, maximum: 14},

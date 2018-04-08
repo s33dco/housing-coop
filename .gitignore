@@ -22,3 +22,6 @@
 
 # Ignore Vars to run app locally
 /config/heroku_env.rb
+
+# Ignore RSpec examples.txt
+/spec/examples.txt

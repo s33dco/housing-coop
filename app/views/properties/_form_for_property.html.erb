@@ -35,7 +35,6 @@
           <%= f.label(:coop_house, "No") %>
         </li>
         </div>
-          <% if rent_rights? %>
             <li class="required">
               <%= f.label :rent_per_week ,"Current Rent per week £"%>         
               <%= f.number_field :rent_per_week, step: :any, placeholder: 'just numbers'%>
@@ -56,6 +55,7 @@
                                                     include_blank: true
                                                   } %>
             </li>
+            <% if rent_rights? %>
             <li class="required">
               <%= f.label :new_rent_value ,"Future Rent per week £"%>         
               <%= f.number_field :new_rent_value, step: :any, placeholder: 'just numbers'%>
@@ -73,7 +73,7 @@
               <%= f.label :rent_balance ,"Balance from previous period, auto updates"%>         
               <%= f.number_field :rent_balance, step: :any%>
             </li>
-            <% end %>
+          <% end %>
           <% end %>
         <%= f.submit 'Submit' %> 
        </ul>

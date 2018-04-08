@@ -1,16 +1,21 @@
 def person_attributes(overrides = {})
   {
-    firstname:    "Peter Delphine",
-    lastname:     "Perfect Gentleman",
-    email:        "example@example.com",
-    phone:        "07777777777"
+    firstname:                 "Percy",
+    lastname:                  "Percy",
+    email:                     "example@example.com",
+    phone:                     "07777777777",
+    password:                  "password",
+    password_confirmation:     "password",
+    admin:                    true,
+    property_id: '1'
+
   }.merge(overrides)
 end
 
 def property_attributes(overrides = {})
   {
     name_or_number: '1',
-    address1:      "Electric Avenue",
+    address1:      "Electric Street",
     address2:       "Citytown",
     postcode:       "BN1 7HZ",
     rent_per_week:  70.00,
