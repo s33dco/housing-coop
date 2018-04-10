@@ -39,10 +39,6 @@ RSpec.describe Person do
     end
   end
 
-  # the mandatory email requirement has been removed
-  # so U18 may be added without contact details 
-  # this maybe reviewed
-
   it "requires an email" do
     person.email= ""
     person.valid?

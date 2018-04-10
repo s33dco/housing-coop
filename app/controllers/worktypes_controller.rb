@@ -13,7 +13,7 @@ class WorktypesController < ApplicationController
 		def create
 			@worktype = Worktype.new(worktype_params)
 	    if @worktype.save
-	      redirect_to worktypes_path, notice: "New category added"
+	      redirect_to worktypes_path, notice: "New category added!"
 	    else
 	      render :new
 	      @worktype.errors.full_messages

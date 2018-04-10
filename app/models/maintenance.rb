@@ -8,6 +8,7 @@ class Maintenance < ApplicationRecord
 							presence: true,
 							numericality: {greater_than_or_equal_to: 0.00}
 
+	validates :date, presence: true
 
 	validates :worktype_id, presence: true
 

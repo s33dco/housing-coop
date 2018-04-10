@@ -1,6 +1,6 @@
 FactoryBot.define do
 	factory :property do
-		sequence(:name_or_number){|n| "#{n + 12}"}
+		name_or_number "12"
 		address1 "street road"
 		address2 "city town"
 		postcode "w1a 1aa"

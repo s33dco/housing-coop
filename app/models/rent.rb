@@ -8,6 +8,8 @@ class Rent < ApplicationRecord
 
 	validates :property_id, presence: true
 
+	validates :date, presence: true
+
 	validates :notes,	
 							format: {with: /\A[a-z0-9\s\-\,\.\(\)\/\£]+\Z/i, message:"- you've used an invalid character"},
 							allow_blank: true

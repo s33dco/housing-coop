@@ -8,9 +8,9 @@ FactoryBot.define do
 		member true
 		housed true
 		admin true
-		secretary false
-		rent_officer false
-		maintenance false
+		secretary true
+		rent_officer true
+		maintenance true
 		password "password"
  		password_confirmation "password"
  		association :property, strategy: :build_stubbed
