@@ -1,8 +1,8 @@
 FactoryBot.define do
 	factory :person do
-		firstname "percy"
-		sequence(:lastname, 'a'){|n|"#{n}arker"}
-		sequence(:email){|n|"#{firstname}#{n}@example.com"}
+		firstname 'percy'
+		lastname 'parker'
+		email "percyparker@example.com"
 		phone "07777777777"
 		joined {5.years.ago}
 		member true
