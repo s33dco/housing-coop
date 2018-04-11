@@ -27,8 +27,4 @@ RSpec.describe 'Add a new person' do
 		expect(current_path).to eq(person_path(Person.last))
 		expect(page).to have_content("Derek Tester successfully created!")
 	end
-
-	it 'blocks users without people rights from creating perople'
-
-
 end

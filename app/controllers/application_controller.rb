@@ -23,7 +23,7 @@ private
 
 	def require_sec_rights
 		unless sec_rights? || current_person == @person
-			redirect_to calendar_path, alert: "Admin will need to modify your details to access this area"
+			redirect_to root_path, alert: "Admin will need to modify your details to access this area"
 		end
 	end
 

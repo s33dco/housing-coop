@@ -53,17 +53,4 @@ RSpec.describe 'Adding a new property' do
 		expect(page).to have_content("12 Street Road, London, W1A 1AA")
 		expect(page).to have_content("Rent is currently charged at £100.00 per week.") 
 	end
-
-	it 'Blocks other users from adding a property' # do
-	# 	person.admin = false
-	# 	person.secretary = false
-	# 	person.maintenance = false
-	# 	person.save!
-	# 	p person
-	# 	visit properties_path
-	# 	get '/new'
-	# 	expect(response).to redirect_to(root_url)
-	# 	save_and_open_page
-	# 	expect(page).to have_content("Admin will need to modify your details to access this area")
-	# end
 end
