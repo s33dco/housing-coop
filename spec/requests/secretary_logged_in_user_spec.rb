@@ -52,9 +52,12 @@ RSpec.describe 'Secretary Rights User' do
     get new_maintenance_path
     expect(response).not_to be_successful
   end
-  
+
   it "cannot add a worktype record" do
     get new_worktype_path
     expect(response).not_to be_successful
   end
+
+  it "can edit their own details"
+  
 end

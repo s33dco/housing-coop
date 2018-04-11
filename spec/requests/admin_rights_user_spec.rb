@@ -57,4 +57,6 @@ RSpec.describe 'Admin Rights User' do
     get new_worktype_path
     expect(response).to be_successful
   end
+
+  it "can edit their own details"
 end

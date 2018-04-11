@@ -57,4 +57,7 @@ RSpec.describe 'Rent Rights User' do
     get new_worktype_path
     expect(response).not_to be_successful
   end
+
+  it "can edit their own details"
+  
 end
