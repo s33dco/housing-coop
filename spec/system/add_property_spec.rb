@@ -8,7 +8,7 @@ RSpec.describe 'Adding a new property' do
 		sign_in(person)
 	end
 
-	it 'Allows an admin to create a property with full rent details' do
+	it 'allows an admin to create a property with full rent details' do
 		visit(properties_path)
 		click_on "Add a Property"
 		fill_in("property[name_or_number]", with: '1')
@@ -16,12 +16,12 @@ RSpec.describe 'Adding a new property' do
 		fill_in("Address 2", with: 'London')
 		fill_in("Postcode", with: 'w1a 1aa')
 		fill_in("Current Rent per week £", with: '100.00')
-		select('20', :from => 'property_rent_period_start_3i')
+		select('1', :from => 'property_rent_period_start_3i')
 		select('January', :from => 'property_rent_period_start_2i')
 		select('2018', :from => 'property_rent_period_start_1i')
-		select('31', :from => 'property_last_day_of_rent_period_3i')
-		select('December', :from => 'property_last_day_of_rent_period_2i')
-		select('2018', :from => 'property_last_day_of_rent_period_1i')
+		select('31', :from => 'property_moving_out_date_3i')
+		select('December', :from => 'property_moving_out_date_2i')
+		select('2018', :from => 'property_moving_out_date_1i')
 		fill_in("Future Rent per week £", with: '200.00')
 		select('1', :from => 'property_first_day_of_next_rent_period_3i')
 		select('January', :from => 'property_first_day_of_next_rent_period_2i')
@@ -33,7 +33,7 @@ RSpec.describe 'Adding a new property' do
 		expect(page).to have_content("This is scheduled to change to £200.00 per week as of the 1st January 2019.")
 	end
 
-	it 'Allows a secretary to create a property with minimal rent details' do
+	it 'allows a secretary to create a property with minimal rent details' do
 		person.admin = false
 		person.secretary = true
 		person.save

@@ -93,18 +93,23 @@ RSpec.describe Property do
   end
 
   it "can have just a rent_period_start date" do
-      property.last_day_of_rent_period = "" 
+      property.moving_out_date = " "
+      property.rent_period_start = 4.weeks.ago
+      property.first_day_of_next_rent_period = " " 
       expect(property.valid?).to eq(true)
   end
 
-  it "can have just a last_day_of_rent_period date" do
+  it "can have just a moving_out_date date" do
+      property.moving_out_date = 4.weeks.ago
       property.rent_period_start = "" 
+      property.first_day_of_next_rent_period = ""
       expect(property.valid?).to eq(true)
   end
 
-  it "rent_period_start and last_day_of_rent_period both cannot be blank" do
+  it "rent_period_start and moving_out_date both cannot be blank" do
+      property.moving_out_date = ""
       property.rent_period_start = "" 
-      property.last_day_of_rent_period = ""
+      property.first_day_of_next_rent_period = ""
       expect(property.valid?).to eq(false)
   end
 end

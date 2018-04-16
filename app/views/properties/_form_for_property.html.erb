@@ -39,17 +39,18 @@
               <%= f.label :rent_per_week ,"Current Rent per week £"%>         
               <%= f.number_field :rent_per_week, step: :any, placeholder: 'just numbers'%>
             </li>
+
             <li class="required">
-              <%= f.label :rent_period_start, "Start of current rent period"%>
-              <%= f.date_select :rent_period_start, { order: [ :day, :month, :year], 
+              <%= f.label :moving_out_date, "Moving out date."%>
+              <%= f.date_select :moving_out_date, { order: [ :day, :month, :year], 
                                                     start_year: Date.today.year - 3, 
                                                     end_year: Date.today.year + 3, 
                                                     include_blank: true
                                                   } %>
             </li>
             <li class="required">
-              <%= f.label :last_day_of_rent_period, "Last day of current rent period."%>
-              <%= f.date_select :last_day_of_rent_period, { order: [ :day, :month, :year], 
+              <%= f.label :rent_period_start, "Start of current rent period"%>
+              <%= f.date_select :rent_period_start, { order: [ :day, :month, :year], 
                                                     start_year: Date.today.year - 3, 
                                                     end_year: Date.today.year + 3, 
                                                     include_blank: true

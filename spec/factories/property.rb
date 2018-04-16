@@ -7,9 +7,9 @@ FactoryBot.define do
 		rent_per_week 70
 		kitchen_upgrade {1.year.from_now}
 		coop_house true
-		new_rent_value 140
-		first_day_of_next_rent_period {4.weeks.from_now}
+		new_rent_value {4.weeks.from_now}
+		first_day_of_next_rent_period nil
 		rent_period_start {4.weeks.ago}
-		last_day_of_rent_period {27.days.from_now} 
+		moving_out_date nil
 	end
 end

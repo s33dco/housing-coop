@@ -10,53 +10,56 @@ RSpec.describe 'Admin Rights User' do
 
   it "can access index" do
     get people_path
-    expect(response).to be_successful
+    expect(response).to have_http_status(200)
   end
 
   it "can add a new person" do
     get new_person_path
-    expect(response).to be_successful
+    expect(response).to have_http_status(200)
   end
 
   it "can add a property" do
     get new_property_path
-    expect(response).to be_successful
+    expect(response).to have_http_status(200)
   end
 
   it "can add a rent payment" do
     get new_rent_path
-    expect(response).to be_successful
+    expect(response).to have_http_status(200)
   end
 
   it "can add a calendar event" do
     get new_calendar_path
-    expect(response).to be_successful
+    expect(response).to have_http_status(200)
   end  
 
   it "can allocate a role" do
     get new_role_path
-    expect(response).to be_successful
+    expect(response).to have_http_status(200)
   end 
 
   it "can add a job" do
     get new_job_path
-    expect(response).to be_successful
+    expect(response).to have_http_status(200)
   end 
 
   it "can add a contractor" do
     get new_contractor_path
-    expect(response).to be_successful
+    expect(response).to have_http_status(200)
   end
 
   it "can add a maintenance record" do
     get new_maintenance_path
-    expect(response).to be_successful
+    expect(response).to have_http_status(200)
   end
   
   it "can add a worktype record" do
     get new_worktype_path
-    expect(response).to be_successful
+    expect(response).to have_http_status(200)
   end
 
-  it "can edit their own details"
+  it "can edit their own details" do
+    get edit_person_path(person)
+    expect(response).to have_http_status(200)
+  end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180330224928) do
+ActiveRecord::Schema.define(version: 20180415201002) do
 
   create_table "calendars", force: :cascade do |t|
     t.datetime "date_time"
@@ -115,7 +115,7 @@ ActiveRecord::Schema.define(version: 20180330224928) do
     t.decimal "new_rent_value"
     t.date "first_day_of_next_rent_period"
     t.date "rent_period_start"
-    t.date "last_day_of_rent_period"
+    t.date "moving_out_date"
     t.decimal "rent_balance", default: "0.0"
     t.datetime "balance_created"
     t.decimal "end_of_tenancy"
