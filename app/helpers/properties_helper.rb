@@ -13,7 +13,8 @@ module PropertiesHelper
 		if property.moving_out_date == nil
 			time_ago_in_words(property.updated_at)
 		else
-			time_ago_in_words(property.moving_out_date)
+			vacant_for = property.moving_out_date + 1
+			time_ago_in_words(vacant_for)
 		end
 	end
 

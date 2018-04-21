@@ -22,14 +22,16 @@
 				<p>Kitchen refurb due <%= month_year(@property.kitchen_upgrade) %>, (<%=kitchen_year(@property)%> to go).</p>
 			<% end %>
 		</div>
-
+		<% if @property.vacant? %>
+			<h2>This property has been empty for <%= empty(@property)%>.</h2>
+			<p>The closing balance from previous tenancy was <%=show_money(@property.end_of_tenancy_balance)%></p>
+			<p>Void rent accrued since vacant <%=show_money(@property.balance)%></p>
+		<% else %>
 		<div class="residents">
 			<input type="checkbox" id="residents" class="residents-check">
 			<label for="residents" class="show-residents">Residents</label>
 		<div class="residentlist">	
-			<% if @people.empty? %>
-				<h2>This property has been empty for <%= empty(@property)%>.</h2>
-			<% else %>
+
 				<table>
 					<% @people.each do | person |%>
 						<tr>
@@ -40,7 +42,7 @@
 						</tr>
 					<% end %>
 				</table>
-			<% end %>
+
 			</div>
 		</div>
 
@@ -53,7 +55,7 @@
 				</div>
 			<% end %>
 		</div>
-
+		<% end %>
 		<div class="maintenance">
 			<% unless @property.maintenances.empty? %>
 			<input type="checkbox" id="maintenance" class="maintenance-check">

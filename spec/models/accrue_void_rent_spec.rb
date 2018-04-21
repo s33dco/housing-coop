@@ -80,10 +80,5 @@ RSpec.describe 'accrue_void_rent' do
 			expect(property.rent_increase_whilst_vacant?).to eq(true)
 			expect(property.void_rent.to_s).to eq("-230.0")
 		end
-
-
-
 	end
-
-
 end
