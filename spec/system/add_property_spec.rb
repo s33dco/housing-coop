@@ -21,7 +21,7 @@ RSpec.describe 'Adding a new property' do
 		select('2018', :from => 'property_rent_period_start_1i')
 		select('31', :from => 'property_moving_out_date_3i')
 		select('December', :from => 'property_moving_out_date_2i')
-		select('2018', :from => 'property_moving_out_date_1i')
+		select('2019', :from => 'property_moving_out_date_1i')
 		fill_in("Future Rent per week £", with: '200.00')
 		select('1', :from => 'property_first_day_of_next_rent_period_3i')
 		select('January', :from => 'property_first_day_of_next_rent_period_2i')

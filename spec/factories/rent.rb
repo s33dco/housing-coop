@@ -2,6 +2,6 @@ FactoryBot.define do
 	factory :rent do
 		property
 		payment 70
-		sequence(:date) {|n| n.month.ago}
+		date {2.weeks.ago}
 	end
 end

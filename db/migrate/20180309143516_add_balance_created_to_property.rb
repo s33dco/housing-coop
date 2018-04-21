@@ -1,5 +1,5 @@
 class AddBalanceCreatedToProperty < ActiveRecord::Migration[5.1]
   def change
-    add_column :properties, :balance_created, :timestamp
+    add_column :properties, :balance_created, :timestamp , default: nil
   end
 end

@@ -56,7 +56,7 @@ private
     params.require(:property).
       permit(:name_or_number, :address1, :address2, :postcode, :rent_per_week, 
             :kitchen_upgrade, :coop_house, :first_day_of_next_rent_period, :new_rent_value, 
-            :rent_period_start, :last_day_of_rent_period, :rent_balance)
+            :rent_period_start, :moving_out_date, :rent_balance, :end_of_tenancy_balance, :void_rent_total)
   end
 
 end

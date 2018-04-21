@@ -11,5 +11,9 @@ FactoryBot.define do
 		first_day_of_next_rent_period nil
 		rent_period_start {4.weeks.ago}
 		moving_out_date nil
+		rent_balance 0
+		end_of_tenancy_balance 0
+		balance_created nil
+		void_rent_total 0
 	end
 end

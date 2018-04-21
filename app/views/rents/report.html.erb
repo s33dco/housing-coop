@@ -16,7 +16,7 @@
 			<td><%= link_to house.number_and_address1, property_path(house) %></td>
 			<td class='money'><%= show_money(house.balance) %></td>
 			<td><%=show_balance(house.balance)%></td>
-			<td class='hide'><% if house.people.empty? && house.last_day_of_rent_period != nil%>(vacant since <%= short_date(house.last_day_of_rent_period + 1) %>)<% end %><td>
+			<td class='hide'><% if house.vacant?%>(vacant since <%= short_date(house.moving_out_date + 1) %>)<% end %><td>
 		</tr>
 		<% end %>
 		</table>

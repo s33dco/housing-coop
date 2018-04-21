@@ -33,61 +33,12 @@ class Property < ApplicationRecord
 	scope :former_coop, ->{where("coop_house = ?", false)}
 
 	def rent_paid_by_tenant
-		if self.rent_period_start.blank?
-			return nil
+		if rent_period_start.blank?
+			nil
 		else
-			moved_in = self.rent_period_start
-			return self.rents.select{|rent| rent.date >= moved_in}
+			moved_in = rent_period_start
+			rents.select{|rent| rent.date >= moved_in}
 		end
-	end
-
-		def balance
-			# if the property is empty 
-			if self.people.nil? || self.rent_period_start.nil? && Time.now.to_date >= self.last_day_of_rent_period
-				# reset rent_balance as this should have been collected before end of tenancy any money owed is stored in end_of_tenancy
-				self.update_columns(balance_created:nil) unless self.balance_created == nil
-					if self.first_day_of_next_rent_period.nil? || Time.now.to_date < self.first_day_of_next_rent_period
-						# calc lost rent at standard rate per day
-						balance = -(self.rent_per_week / 7) * ((Time.now.to_date - self.last_day_of_rent_period).to_i)
-					else
-						# calc new rent due and add it to old rent
-						balance = -((((Time.now.to_date - self.first_day_of_next_rent_period).to_i + 1) * self.new_rent_value/7) + ((self.rent_per_week / 7) * ((Time.now.to_date - self.last_day_of_rent_period).to_i - 1 )))
-					end
-			else
-			# else if property occupied and before the any rent change
-				if self.first_day_of_next_rent_period.blank? || Time.now.to_date < self.first_day_of_next_rent_period
-					# reset balances_created to nil if not already
-					self.update_columns(balance_created:nil) unless self.balance_created == nil
-					# calculate rent position (rent_paid - rent_due) + self.rent_balance
-					balance = self.rents.select{|rent| rent.date >= self.rent_period_start}.sum{|amount| amount.payment} - (self.rent_per_week / 7) * ((Time.now.to_date - self.rent_period_start ).to_i + 1) + self.rent_balance
-				else
-			# over a rent change period
-					unless self.balance_created.present?
-						# work out rent position pre change and update rent_balance
-						# pre_change_balance = (pre_change_rent_paid - pre_change_rent_due )
-						pre_change_balance = (self.rents.select{|rent| rent.date < rent.property.first_day_of_next_rent_period}.sum{|rent|rent.payment}) - ((self.rent_per_week / 7) * ((self.last_day_of_rent_period - self.rent_period_start).to_i + 1))
-						end_of_rent_period_balance = pre_change_balance + self.rent_balance
-						# update rent_balance with value, timestamp change
-						self.update_columns(rent_balance:end_of_rent_period_balance) 
-						self.update_columns(balance_created:Time.now)
-					end
-				# calculate rent position (rent_paid - rent_due) +  updated rent_balance for new period
-				post_rent_change_paid = self.rents.select{|payment| payment.date >= self.first_day_of_next_rent_period }.sum{|rent|rent.payment}
-				post_rent_change_due = (self.new_rent_value / 7) * ((Time.now.to_date - self.first_day_of_next_rent_period).to_i + 1)
-				paid_less_due = post_rent_change_paid - post_rent_change_due
-				balance = paid_less_due + self.rent_balance
-			end
-			# catch the last day of tenancy balance
-			if Time.now.to_date == self.moving_out_date
-				self.update_columns(end_of_tenancy:self.rent_balance) unless self.balance_created == nil
-			else
-				# reset end of tenancy balance if new tenant
-				if Time.now.to_date > self.rent_period_start
-					self.update_columns(end_of_tenancy:nil) unless self.balance_created == nil
-				end
-			end
-		end	
-		return balance
 	end
 
 	def to_param
@@ -99,103 +50,133 @@ class Property < ApplicationRecord
 	  self.slug = self.full_address.parameterize if slug != self.full_address.parameterize
 	end
 
-
-
-
-
-
-	# -----------------------------
-	def bunker
-		standard_rent if standard_process?
-		pre_post_rent if rent_change_period? 
-		accrue_void_rent if vacant?
-		return balance
+	def balance
+		if vacant?
+			moved_out_and_accrue_void_rent
+		else
+			if rent_change_period?
+				pre_post_rent
+			else
+				standard_rent
+			end
+		end
 	end
 
-	# when the property is empty
-	def accrue_void_rent
-		void_rent
-		moving_out!
-	end
-
-	def moving_out!
-		self.update_columns(balance_created:nil) unless self.balance_created == nil
-		# end_of_tenancy always holds the final rent position of the previous tenancy up until move out date
-		self.update_columns(end_of_tenancy:rent_balance) unless self.rent_balance == nil
-		self.update_columns(rent_balance:nil)
-	end
-
-	def void_rent
-		no_rent_increase? ? rent_due : rent_due_pre_and_post
-	end
-
-	def no_rent_increase?
-		first_day_of_next_rent_period.nil? || first_day_of_next_rent_period > Time.now.to_date  
-	end
-
-	def rent_due
-		balance = (rent_per_week / 7) * ((Time.now.to_date - moving_out_date ).to_i) + rent_balance		
-	end
-
-	def rent_due_pre_and_post
-		pre = (rent_per_week / 7) * ((Time.now.to_date - moving_out_date ).to_i)
-		post = (new_rent_value / 7) * ((Time.now.to_date - first_day_of_next_rent_period ).to_i + 1)
-		balance = pre + post
-		# issue if more than one rent change whilst vacant...
-	end
-
-	# dealing with rent change period
-	def pre_post_rent
-		rent_before unless balance_created.present?
-		balance = rent_after
-	end
-
-	def rent_before
-		paid = (self.rents.select{|rent| rent.date < first_day_of_next_rent_period}.sum{|rent|rent.payment}) 
-		due =  (self.rent_per_week / 7) * ((first_day_of_next_rent_period - rent_period_start).to_i) + rent_balance
-		end_of_period = paid - due
-		update_balance!(end_of_period)
-	end
-
-	def update_balance!(end_of_period)
-		self.update_columns(rent_balance:end_of_period) 
-		self.update_columns(balance_created:Time.now)
-	end
-
-	def rent_after
-		paid = rents.select{|rent| rent.date >= first_day_of_next_rent_period}.sum{|amount| amount.payment}
-		due = ((new_rent_value / 7) * ((Time.now.to_date - first_day_of_next_rent_period ).to_i + 1)) + rent_balance
-		balance = paid - due
-	end
-
-	# standard process - not over a rent change
-	def standard_rent
-		reset!
-		paid = rents.select{|rent| rent.date >= rent_period_start}.sum{|amount| amount.payment}
-		due = ((rent_per_week / 7) * ((Time.now.to_date - rent_period_start ).to_i + 1)) + rent_balance
-		balance = paid - due
-	end
-
-	def reset!
-		self.update_columns(balance_created:nil) unless self.balance_created == nil
-		self.update_columns(end_of_tenancy:nil) unless self.balance_created == nil
-	end
-
-	# logics
 	def vacant?
-		moving_out_date == nil ? false : people.nil? || Time.now.to_date >= moving_out_date
+		moving_out_date == nil ? false : Time.now.to_date > moving_out_date
 	end
-
-	def rent_change_period?
-		first_day_of_next_rent_period == nil ? false : (Time.now.to_date >= first_day_of_next_rent_period)
+#  could all be private under here
+	def rent_change_period? 
+		(first_day_of_next_rent_period == nil) || (Time.now.to_date > first_day_of_next_rent_period) && ( moving_out_date.nil? || Time.now.to_date > moving_out_date) ? false : (Time.now.to_date >= first_day_of_next_rent_period)
 	end
 
 	def standard_process?	
 		(first_day_of_next_rent_period.blank? || Time.now.to_date < first_day_of_next_rent_period) && (moving_out_date.nil? || Time.now.to_date < moving_out_date)
 	end
+# calculators
+	def rent_paid_on_to_day_before(from, to)
+		rents.select{|rent| rent.date >= from  }.select{|rent| rent.date < to }.sum{|amount| amount.payment}
+	end
 
+	def rent_paid_on_to_including(from, to)
+		rents.select{|rent| rent.date >= from }.select{|rent| rent.date <= to }.sum{|amount| amount.payment}
+	end
 
-# -----------------------------
+	def rent_due_before(rent_amount, from, to)
+		(rent_amount / 7) * ((to - from).to_i)
+	end
+
+	def rent_due_on_to_including(rent_amount, from, to)
+		(rent_amount / 7) * ((to - from ).to_i + 1)
+	end
+
+	def standard_rent
+		reset!
+		now = Time.now.to_date
+		paid = rent_paid_on_to_including(rent_period_start, now)
+		due = rent_due_on_to_including(rent_per_week, rent_period_start, now)
+		(paid - due) + rent_balance
+	end
+
+	def reset!
+		self.update_columns(balance_created:nil) unless self.balance_created == nil
+		lost_rent = void_rent_total
+		lost_rent = end_of_tenancy_balance + void_rent_total if end_of_tenancy_balance?
+
+		self.update_columns(void_rent_total:lost_rent)
+		self.update_columns(end_of_tenancy_balance: 0.0)
+	end
+
+	def pre_post_rent
+		rent_before if balance_created.nil?
+		balance_after_change + rent_balance
+	end
+
+	def rent_before
+		paid = rent_paid_on_to_day_before(rent_period_start, first_day_of_next_rent_period)
+		due = rent_due_before(rent_per_week, rent_period_start, first_day_of_next_rent_period)
+		end_of_period = (paid - due) + rent_balance
+		update_balance!(end_of_period)
+		end_of_period
+	end
+	
+	def update_balance!(end_of_period)
+		self.update_columns(rent_balance:end_of_period) 
+		self.update_columns(balance_created:Time.now)
+	end
+
+	def balance_after_change
+		now = Time.now.to_date
+		(rent_paid_on_to_including(first_day_of_next_rent_period, now)) - (rent_due_on_to_including(new_rent_value, first_day_of_next_rent_period, now))
+	end
+
+	def moved_out_and_accrue_void_rent
+		make_final_balance unless end_of_tenancy_balance.nil?
+		void_rent
+	end
+
+	def rent_rise_before_final_balance?
+		first_day_of_next_rent_period == nil ? false : first_day_of_next_rent_period <= moving_out_date
+	end
+
+	def make_final_balance
+		if rent_rise_before_final_balance?
+			paid = rent_paid_on_to_day_before(rent_period_start, first_day_of_next_rent_period)
+			due = rent_due_before(rent_per_week, rent_period_start, first_day_of_next_rent_period)
+			pre = (paid - due)
+			postpaid = rent_paid_on_to_including(first_day_of_next_rent_period, moving_out_date)
+			postdue = rent_due_on_to_including(new_rent_value, first_day_of_next_rent_period, moving_out_date)
+			post = (postpaid - postdue)
+			final =( post + pre) + rent_balance
+		else
+			paid = rent_paid_on_to_including(rent_period_start, moving_out_date)
+			due = rent_due_on_to_including(rent_per_week, rent_period_start, moving_out_date)
+			final = (paid - due) + rent_balance
+		end
+		moving_out!(final)
+	end
+
+	def moving_out!(final)
+		self.update_columns(end_of_tenancy_balance:final)
+		self.update_columns(balance_created:nil) unless balance_created.nil?
+		self.update_columns(rent_balance:0)
+	end
+
+	def void_rent
+		now = Time.now.to_date
+		from = moving_out_date + 1
+		if rent_increase_whilst_vacant?
+			rent_pre = (rent_due_before(rent_per_week, moving_out_date, first_day_of_next_rent_period)) 
+			rent_post = (rent_due_on_to_including(new_rent_value, first_day_of_next_rent_period, now))
+			-(rent_pre + rent_post)
+		else			
+			-(rent_due_on_to_including(rent_per_week, from, now))
+		end
+	end
+
+	def rent_increase_whilst_vacant?
+		first_day_of_next_rent_period.blank? ? false : (moving_out_date < Time.now.to_date && first_day_of_next_rent_period <= Time.now.to_date)
+	end
 
 private
 
