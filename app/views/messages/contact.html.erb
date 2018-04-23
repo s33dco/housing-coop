@@ -1,0 +1,33 @@
+<!-- for meta data -->
+<%= title("Get in touch")%>
+<%= description("Get in contact")%>
+
+<article>
+	<header class="header">
+		<h1>Get in touch with <%= ENV['COOP_SHORT_NAME'] %>.</h1>
+	</header>
+	<section class='detail'>
+	<%= form_for @message, url: create_message_url do |f| %>
+	<%= render "shared/errors", object: @message %>
+	<div class="form-wrapper">
+		<fieldset>
+		  <ul>
+			  <li class="required">
+			    <%= f.label :name, "Name" %>         
+			    <%= f.text_field :name, size: 30 %>
+			  </li>
+			  <li class="required">
+			    <%= f.label :email, "Email" %>         
+			    <%= f.text_field :email, size: 30 %>
+			  </li>
+			  <li class="required">
+			    <%= f.label :body, "Message" %>       
+			    <%= f.text_area :body, cols: 30, rows: 7 %>
+			  </li>
+			  <%= f.submit 'Send' %>
+		  </ul>
+	 </fieldset>
+	</div>
+	<% end %>
+	</section>
+</article>

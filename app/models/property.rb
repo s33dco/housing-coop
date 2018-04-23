@@ -65,7 +65,11 @@ class Property < ApplicationRecord
 	def vacant?
 		moving_out_date == nil ? false : Time.now.to_date > moving_out_date
 	end
-#  could all be private under here
+
+	def self.total_lost_rent
+		sum{|house| house.void_rent_total}
+	end
+
 	def rent_change_period? 
 		(first_day_of_next_rent_period == nil) || (Time.now.to_date > first_day_of_next_rent_period) && ( moving_out_date.nil? || Time.now.to_date > moving_out_date) ? false : (Time.now.to_date >= first_day_of_next_rent_period)
 	end
@@ -178,7 +182,7 @@ class Property < ApplicationRecord
 		first_day_of_next_rent_period.blank? ? false : (moving_out_date < Time.now.to_date && first_day_of_next_rent_period <= Time.now.to_date)
 	end
 
-private
+	private
 
 	def no_dates
 	  errors.add(:rent_period_start, "and moving out date cannot both be blank, (either can individually), if the house is empty set last day of rent period to the last day the property was let, or the day before you wish to start calculating the void rent.") if rent_period_start.blank? && moving_out_date.blank? 

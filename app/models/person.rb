@@ -14,7 +14,8 @@ class Person < ApplicationRecord
   validates :slug, uniqueness: {message: "The same combination of first and family names is already in use, add or use an initial"}
 
 	validates :firstname, presence: true,
-											  format: { with: /\A[a-z\s]+\Z/i, message: "only letters" }
+											  format: { with: /\A[a-z\s]+\Z/i, message: "only letters" },
+                        length: { minimum: 1}
 
 	validates :lastname, 	presence: true,
 											  format: { with: /\A[a-z\s]+\Z/i, message: "only letters" },

@@ -6,11 +6,12 @@ Rails.application.routes.draw do
 
 	get  "welcome" => "static_pages#welcome", as: 'welcome'
 	get  "allocations" => "static_pages#allocations", as: 'allocations'
-	get  "contact" => "static_pages#contact", as: 'contact'
 	get  "rent-report" => "rents#report", as: 'rent_report'
   get  "contractor-list" => "contractors#list", as: 'contractors_list'
   get  "upcoming-events" => "calendars#upcoming", as: 'upcoming_events'
   get  "participation" => "people#participation", as: 'participation'
+  get 'contact' => 'messages#contact', as: 'new_message'
+  post 'contact'=> 'messages#create', as: 'create_message'
 
   resources :properties
   resources :people

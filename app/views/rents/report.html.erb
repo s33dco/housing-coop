@@ -1,14 +1,10 @@
 <!-- for meta data -->
 <% title("Rent Report")%>
 <% description("Rent Report - #{ENV['COOP_FULL_NAME']}")%>
-
-
 <article>
-
 	<header class="header">
 		<h1>Rent Report (<%= nice_short_date(Time.now.to_date)%>)</h1>
 		</header>
-
 	<section class='report'>
 		<table>
 		<% @houses.each do |house| %>
@@ -20,11 +16,6 @@
 		</tr>
 		<% end %>
 		</table>
+		<p>(Total accumulated void rent for all properties <%=show_money(@total_void_rent)%>)</p>
 		</section>
-
-
-
 </article>
-	<div class="page-actions">
-		
-		</div>
