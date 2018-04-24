@@ -31,7 +31,3 @@
 
 en:
   hello: "Hello world"
-
-  message_mailer:
-    contact:
-      subject: 'message via website contact form'
