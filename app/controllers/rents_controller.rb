@@ -55,9 +55,9 @@ class RentsController < ApplicationController
 
 	def report
 	  @houses = Property.by_street_name_number
-	  @total_void_rent = @houses.total_lost_rent
-	  @total_above = @houses.current_void_rent
-	  @total_lost = @total_void_rent + @total_above
+	  # @total_void_rent = @houses.total_lost_rent
+	  # @total_above = @houses.current_void_rent
+	  # @total_lost = @total_void_rent + @total_above
 	end
 
 
