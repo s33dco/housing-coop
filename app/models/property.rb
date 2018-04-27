@@ -55,7 +55,7 @@ class Property < ApplicationRecord
 	end
 
 	def self.total_lost_rent
-		sum{|house| house.void_rent_total}
+		sum{|house| house.void_rent_total unless house.void_rent_total.nil?}
 	end
 
 	def balance
