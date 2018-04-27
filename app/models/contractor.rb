@@ -7,7 +7,7 @@ class Contractor < ApplicationRecord
 
 		validates :name,	
 								presence: true,
-								format: { with: /\A[a-z0-9\s\-]+\Z/i, message: "- you've used an invalid character" }
+								format: { with: /\A[a-z0-9\s\-\']+\Z/i, message: "- you've used an invalid character" }
 
 		validates :phone, 					
 								presence: true, numericality: true,

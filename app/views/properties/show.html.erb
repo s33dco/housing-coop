@@ -25,9 +25,13 @@
 			<% end %>
 		</div>
 		<% if @property.vacant? %>
+		<div class="empty-text">
 			<h2>This property has been empty for <%= empty(@property)%>.</h2>
+			<% if @property.end_of_tenancy_balance? %>
 			<p>The closing balance from previous tenancy was <%=show_money(@property.end_of_tenancy_balance)%></p>
+			<% end %>
 			<p>Void rent accrued since vacant <%=show_money(@property.balance)%></p>
+			</div>
 		<% else %>
 		<div class="residents">
 			<input type="checkbox" id="residents" class="residents-check">
