@@ -11,9 +11,11 @@
 	<section class='property'>
 		<div class="basic-info">
 			<p>
-				Rent is currently charged at <%= show_money(@property.rent_per_week)%> per week. 
-				(Pro rata <%= rent_per_month(@property.rent_per_week)%> per month / <%= rent_per_day(@property.rent_per_week)%> per day)<% unless @property.new_rent_value.nil? %>. 
-					This is scheduled to change to <%= show_money(@property.new_rent_value)%> per week<% end %><% unless @property.first_day_of_next_rent_period.blank? %> as of the <%=nice_short_date(@property.first_day_of_next_rent_period)%><% end %>.</p>
+				Rent is currently charged at <%= show_money(current_rent(@property))%> per week. 
+				(Pro rata <%= rent_per_month(current_rent(@property))%> per month / <%= rent_per_day(current_rent(@property))%> per day)
+				
+				<% unless @property.new_rent_value.nil? || @property.first_day_of_next_rent_period.nil? || @property.first_day_of_next_rent_period <= Time.now.to_date %>. 
+					This is scheduled to change to <%= show_money(@property.new_rent_value)%> per week as of the <%=nice_short_date(@property.first_day_of_next_rent_period)%><% end %>.</p>
 
 				<% unless @rent_balance.nil? %>
 				<p>The balance of the rent account, (as of the <%= nice_short_date(Time.now)%>), is <%=show_money(@rent_balance)%> <%=show_balance(@rent_balance)%>.<% end %>

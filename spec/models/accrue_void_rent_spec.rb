@@ -3,23 +3,30 @@ require 'rails_helper'
 RSpec.describe 'accrue_void_rent' do
 
 	context 'recognizes rent increase after moving out date' do
-		it 'recognizes a rent increase after moving out date' do
+		it 'recognizes a rent increase after moving out date(1)' do
 			property = create(:property, rent_period_start:28.days.ago, moving_out_date:14.days.ago, first_day_of_next_rent_period: 7.days.ago, new_rent_value:140)
+			expect(property.vacant?).to eq(true)
+			expect(property.rent_change_period?).to eq(false)
 			expect(property.rent_increase_whilst_vacant?).to eq(true)
 		end
 
-		it 'recognizes a rent increase after moving out date' do
+		it 'recognizes a rent increase after moving out date(2)' do
 			property = create(:property, rent_period_start:nil, moving_out_date:14.days.ago, first_day_of_next_rent_period: 7.days.ago, new_rent_value:140)
+			expect(property.vacant?).to eq(true)
+			expect(property.rent_change_period?).to eq(false)
 			expect(property.rent_increase_whilst_vacant?).to eq(true)
 		end
 
-		it 'recognizes a rent increase after moving out date' do
+		it 'recognizes a rent increase after moving out date(3)' do
 			property = create(:property, rent_period_start:nil, moving_out_date:7.days.ago, first_day_of_next_rent_period: 7.days.ago, new_rent_value:140)
+			expect(property.vacant?).to eq(true)
+			expect(property.rent_change_period?).to eq(false)
 			expect(property.rent_increase_whilst_vacant?).to eq(true)
 		end
 
-		it 'recognizes a rent increase after moving out date' do
+		it 'recognizes a rent increase after moving out date(4)' do
 			property = create(:property, rent_period_start:nil, moving_out_date:7.days.ago, first_day_of_next_rent_period: Time.now.to_date, new_rent_value:140)
+			expect(property.vacant?).to eq(true)
 			expect(property.rent_increase_whilst_vacant?).to eq(true)
 		end
 	end
@@ -27,21 +34,25 @@ RSpec.describe 'accrue_void_rent' do
 	context 'recognizes when not a rent increase after moving out date' do	
 		it 'a future rent increase' do
 			 property = create(:property, rent_period_start:7.months.ago, moving_out_date:2.months.ago, first_day_of_next_rent_period: 7.days.from_now, new_rent_value:140)
-			 expect(property.rent_increase_whilst_vacant?).to eq(false)
-		end
-
-		it 'a future rent increase' do
-			 property = create(:property, rent_period_start:7.months.ago, moving_out_date:2.months.ago, first_day_of_next_rent_period: 7.days.from_now, new_rent_value:140)
+			 expect(property.vacant?).to eq(true)
 			 expect(property.rent_increase_whilst_vacant?).to eq(false)
 		end
 
 		it 'a no increase' do
 			 property = create(:property, rent_period_start:7.months.ago, moving_out_date:2.months.ago, first_day_of_next_rent_period: nil, new_rent_value:140)
+			 expect(property.vacant?).to eq(true)
+			 expect(property.rent_increase_whilst_vacant?).to eq(false)
+		end
+
+		it 'a no increase' do
+			 property = create(:property, rent_period_start:7.months.ago, moving_out_date:2.months.ago, first_day_of_next_rent_period: 2.weeks.from_now, new_rent_value:140)
+			 expect(property.vacant?).to eq(true)
 			 expect(property.rent_increase_whilst_vacant?).to eq(false)
 		end
 
 		it 'a no rent period start, no increase' do
 			 property = create(:property, rent_period_start:nil, moving_out_date:2.months.ago, first_day_of_next_rent_period: nil, new_rent_value:140)
+			 expect(property.vacant?).to eq(true)
 			 expect(property.rent_increase_whilst_vacant?).to eq(false)
 		end
 	end

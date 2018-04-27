@@ -1,4 +1,3 @@
-
 <p>Hello <%= @email %>!</p>
 <p></p>
 <% if @resource.try(:unconfirmed_email?) %>
@@ -7,7 +6,7 @@
   <p>We're contacting you to notify you that your email has been changed to <%= @resource.email %>.</p>
 <% end %>
 <p></p>
-<p>with thanks</p>
+<p>thanks!</p>
 <p><%= ENV['COOP_SHORT_NAME'] %></p>
 <p></p>
 <h2 class='name' style="text-align: center"><%= ENV['COOP_FULL_NAME']%></h2>

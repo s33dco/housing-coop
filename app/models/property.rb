@@ -74,9 +74,6 @@ class Property < ApplicationRecord
 		(first_day_of_next_rent_period == nil) || (Time.now.to_date > first_day_of_next_rent_period) && ( moving_out_date.nil? || Time.now.to_date > moving_out_date) ? false : (Time.now.to_date >= first_day_of_next_rent_period)
 	end
 
-	def standard_process?	
-		(first_day_of_next_rent_period.blank? || Time.now.to_date < first_day_of_next_rent_period) && (moving_out_date.nil? || Time.now.to_date < moving_out_date)
-	end
 # calculators
 	def rent_paid_on_to_day_before(from, to)
 		rents.select{|rent| rent.date >= from  }.select{|rent| rent.date < to }.sum{|amount| amount.payment}
@@ -108,6 +105,7 @@ class Property < ApplicationRecord
 		lost_rent = end_of_tenancy_balance + void_rent_total if end_of_tenancy_balance?
 
 		self.update_columns(void_rent_total:lost_rent)
+		self.update_columns(balance_created:nil) unless balance_created.nil?
 		self.update_columns(end_of_tenancy_balance: 0.0)
 	end
 
@@ -179,7 +177,7 @@ class Property < ApplicationRecord
 	end
 
 	def rent_increase_whilst_vacant?
-		first_day_of_next_rent_period.blank? ? false : (moving_out_date < Time.now.to_date && first_day_of_next_rent_period <= Time.now.to_date)
+		first_day_of_next_rent_period.blank? || moving_out_date.blank? ? false : (moving_out_date < Time.now.to_date && first_day_of_next_rent_period <= Time.now.to_date)
 	end
 
 	private

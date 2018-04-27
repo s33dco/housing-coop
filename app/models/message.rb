@@ -10,5 +10,5 @@ class Message
             				format: /\A\S+@\S+\z/
 
 	validates :body,	presence: true,
-										format: {with: /\A[A-Za-z0-9\/\.\'\&\£\+\-\,\s]+\z/, message:"- you've used an invalid character"}
+										format: {with: /\A[A-Za-z0-9\/\.\'\&\£\?\+\-\,\s]+\z/, message:"- you've used an invalid character"}
 end

@@ -18,4 +18,11 @@ module PropertiesHelper
 		end
 	end
 
+	def current_rent(property)
+		if property.first_day_of_next_rent_period.nil? || property.first_day_of_next_rent_period >= Time.now.to_date
+			property.rent_per_week
+		else
+			property.new_rent_value
+		end
+	end
 end
