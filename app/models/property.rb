@@ -50,13 +50,13 @@ class Property < ApplicationRecord
 	  self.slug = self.full_address.parameterize if slug != self.full_address.parameterize
 	end
 
-	# def self.current_void_rent
-	# 	sum{|house| house.balance if house.vacant?}
-	# end
+	def self.current_void_rent
+		sum{|house| house.balance if house.vacant?}
+	end
 
-	# def self.total_lost_rent
-	# 	sum{|house| house.void_rent_total unless house.void_rent_total.nil?}
-	# end
+	def self.total_lost_rent
+		sum{|house| house.void_rent_total unless house.void_rent_total.nil?}
+	end
 
 	def balance
 		if vacant?
