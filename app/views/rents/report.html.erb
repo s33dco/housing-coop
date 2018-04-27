@@ -3,9 +3,11 @@
 <% description("Rent Report - #{ENV['COOP_FULL_NAME']}")%>
 <article>
 	<header class="header">
-		<h1>Rent Report (<%= nice_short_date(Time.now.to_date)%>)</h1>
+		<h1>Rent Reporting</h1>
 		</header>
 	<section class='report'>
+		<div class="live-report">
+			<h2>Current rent positions as of (<%= nice_short_date(Time.now.to_date)%>)</h2>
 		<table>
 		<% @houses.each do |house| %>
 		<tr>
@@ -16,6 +18,11 @@
 		</tr>
 		<% end %>
 		</table>
-		<p>(Total accumulated void rent for all properties <%=show_money(@total_void_rent)%>)</p>
+		</div>
+		<div class="voids">
+			<h2>Void Rent	</h2>
+			<p>Current void rent from above <%=show_money(@total_above)%>, Void rent between previous tenancies <%=show_money(@total_void_rent)%></p>
+			<p>Total void rent <%=show_money(@total_lost)%></p>
+		</div>
 		</section>
 </article>

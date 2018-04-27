@@ -50,6 +50,14 @@ class Property < ApplicationRecord
 	  self.slug = self.full_address.parameterize if slug != self.full_address.parameterize
 	end
 
+	def self.current_void_rent
+		sum{|house| house.balance if house.vacant?}
+	end
+
+	def self.total_lost_rent
+		sum{|house| house.void_rent_total}
+	end
+
 	def balance
 		if vacant?
 			moved_out_and_accrue_void_rent
@@ -64,10 +72,6 @@ class Property < ApplicationRecord
 
 	def vacant?
 		moving_out_date == nil ? false : Time.now.to_date > moving_out_date
-	end
-
-	def self.total_lost_rent
-		sum{|house| house.void_rent_total}
 	end
 
 	def rent_change_period? 
