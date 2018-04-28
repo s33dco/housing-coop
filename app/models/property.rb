@@ -100,12 +100,7 @@ class Property < ApplicationRecord
 
 	def reset!
 		self.update_columns(balance_created:nil) unless self.balance_created == nil
-		# lost_rent = void_rent_total
-		# lost_rent = end_of_tenancy_balance + void_rent_total if end_of_tenancy_balance?
-
-		# self.update_columns(void_rent_total:lost_rent)
-		# self.update_columns(balance_created:nil) unless balance_created.nil?
-		self.update_columns(end_of_tenancy_balance: nil)
+		self.update_columns(end_of_tenancy_balance: nil) unless self.balance_created == nil
 	end
 
 	def pre_post_rent
@@ -132,11 +127,15 @@ class Property < ApplicationRecord
 	end
 
 	def moved_out_and_accrue_void_rent
-		if end_of_tenancy_balance.nil?
-			make_final_balance
-		else
+		if end_of_tenancy_balance? || fresh_property?
 			void_rent
+		else
+			make_final_balance
 		end
+	end
+
+	def fresh_property?
+		moving_out_date? && first_day_of_next_rent_period.blank? && rent_period_start.blank?
 	end
 
 	def rent_rise_before_final_balance?
@@ -197,7 +196,7 @@ class Property < ApplicationRecord
 
 	def move_out_before_move_in
 		if moving_out_date? && rent_period_start?
-			errors.add(:moving_out_date, "can't move out before rent period start") if moving_out_date < rent_period_start
+			errors.add(:moving_out_date, "can't be before rent period start") if moving_out_date < rent_period_start
 		end
 	end
 
