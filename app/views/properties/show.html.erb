@@ -17,8 +17,9 @@
 				<% unless @property.new_rent_value.nil? || @property.first_day_of_next_rent_period.nil? || @property.first_day_of_next_rent_period <= Time.now.to_date %>. 
 					This is scheduled to change to <%= show_money(@property.new_rent_value)%> per week as of the <%=nice_short_date(@property.first_day_of_next_rent_period)%><% end %>.</p>
 
-				<% unless @rent_balance.nil? %>
-				<p>The balance of the rent account, (as of the <%= nice_short_date(Time.now)%>), is <%=show_money(@rent_balance)%> <%=show_balance(@rent_balance)%>.<% end %>
+				<% unless @property.vacant? %>
+				<p>The balance of the rent account, (as of the <%= nice_short_date(Time.now)%>), is <%=show_money(@rent_balance)%> <%=show_balance(@rent_balance)%>.
+					<% end %>
 						
 			<% unless @property.kitchen_upgrade.nil? %>
 				<p>Kitchen refurb due <%= month_year(@property.kitchen_upgrade) %>, (<%=kitchen_year(@property)%> to go).</p>

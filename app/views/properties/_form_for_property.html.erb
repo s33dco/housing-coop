@@ -27,55 +27,69 @@
                                               } %>
         </li>
         <div class="buttons">
-        <li class="required">
-          <%= f.label :coop_house, "Managed by Coop"%>
-          <%= f.radio_button(:coop_house, 'true', checked: true) %>
-          <%= f.label(:coop_house, "Yes") %>
-          <%= f.radio_button(:coop_house, 'false', checked: false) %>
-          <%= f.label(:coop_house, "No") %>
-        </li>
+          <li class="required">
+            <%= f.label :coop_house, "Managed by Coop"%>
+            <%= f.radio_button(:coop_house, 'true', checked: true) %>
+            <%= f.label(:coop_house, "Yes") %>
+            <%= f.radio_button(:coop_house, 'false', checked: false) %>
+            <%= f.label(:coop_house, "No") %>
+          </li>
         </div>
+        <li class="required">
+          <%= f.label :rent_period_start, "Start of current rent period"%>
+          <%= f.date_select :rent_period_start, { order: [ :day, :month, :year], 
+                                                start_year: Date.today.year - 3, 
+                                                end_year: Date.today.year + 3, 
+                                                include_blank: true
+                                              } %>
+        </li>
+        <li class="required">
+          <%= f.label :rent_per_week ,"Current Rent per week £"%>         
+          <%= f.number_field :rent_per_week, step: :any, placeholder: 'just numbers'%>
+        </li>
+        <% if rent_rights? %>
+          <li class="required">
+            <%= f.label :first_day_of_next_rent_period, "First day of next rent period"%>
+            <%= f.date_select :first_day_of_next_rent_period, { order: [ :day, :month, :year], 
+                                                  start_year: Date.today.year, 
+                                                  end_year: Date.today.year + 5, 
+                                                  include_blank: true
+                                                } %>
+          </li>
+          <li class="required">
+            <%= f.label :new_rent_value ,"Future Rent per week £"%>         
+            <%= f.number_field :new_rent_value, step: :any, placeholder: 'just numbers'%>
+          </li>
+          <li class="required">
+            <%= f.label :moving_out_date, "Moving out date."%>
+            <%= f.date_select :moving_out_date, { order: [ :day, :month, :year], 
+                                                  start_year: Date.today.year - 3, 
+                                                  end_year: Date.today.year + 3, 
+                                                  include_blank: true
+                                                } %>
+          </li>
+          <% if admin_rights? %>
             <li class="required">
-              <%= f.label :rent_period_start, "Start of current rent period"%>
-              <%= f.date_select :rent_period_start, { order: [ :day, :month, :year], 
-                                                    start_year: Date.today.year - 3, 
-                                                    end_year: Date.today.year + 3, 
-                                                    include_blank: true
-                                                  } %>
+              <%= f.label :rent_balance ,"Balance carried over from previous rent period"%>         
+              <%= f.number_field :rent_balance, step: :any, placeholder: 'just numbers'%>
             </li>
             <li class="required">
-              <%= f.label :rent_per_week ,"Current Rent per week £"%>         
-              <%= f.number_field :rent_per_week, step: :any, placeholder: 'just numbers'%>
+              <%= f.label :end_of_tenancy_balance ,"Closing balance from previous tenancy"%>         
+              <%= f.number_field :end_of_tenancy_balance, step: :any, placeholder: 'just numbers'%>
             </li>
-            <% if rent_rights? %>
+          <% else %>
             <li class="required">
-              <%= f.label :first_day_of_next_rent_period, "First day of next rent period"%>
-              <%= f.date_select :first_day_of_next_rent_period, { order: [ :day, :month, :year], 
-                                                    start_year: Date.today.year, 
-                                                    end_year: Date.today.year + 5, 
-                                                    include_blank: true
-                                                  } %>
+              <%= show_money(@property.rent_balance) %> (balance carried over from previous rent period)       
             </li>
-            <li class="required">
-              <%= f.label :new_rent_value ,"Future Rent per week £"%>         
-              <%= f.number_field :new_rent_value, step: :any, placeholder: 'just numbers'%>
-            </li>
-            <li class="required">
-              <%= f.label :moving_out_date, "Moving out date."%>
-              <%= f.date_select :moving_out_date, { order: [ :day, :month, :year], 
-                                                    start_year: Date.today.year - 3, 
-                                                    end_year: Date.today.year + 3, 
-                                                    include_blank: true
-                                                  } %>
-            </li>
-            <% if admin_rights? %>
-            <li class="required">
-              <%= f.label :rent_balance ,"Balance from previous period, auto updates"%>         
-              <%= f.number_field :rent_balance, step: :any%>
-            </li>
+            <% if @property.end_of_tenancy_balance? %>
+              <li class="required">
+                <%= show_money(@property.end_of_tenancy_balance) %> (Closing balance from previous tenancy)     
+              </li>
+            <% end %>
           <% end %>
-          <% end %>
+
+        <% end %>
         <%= f.submit 'Submit' %> 
-       </ul>
+      </ul>
     </fieldset>
 <% end %>

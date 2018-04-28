@@ -83,4 +83,30 @@ RSpec.describe 'Rent Balance' do
 			expect(property.rent_change_period?).to eq(false)
 		end
 	end 
+
+	context 'test scenarios only fire standard rent' do
+		it 'identifies when not a rent change period && not vacant by date combinations(1)' do
+			property = build_stubbed(:property, rent_period_start:4.months.ago, first_day_of_next_rent_period:nil, moving_out_date:nil)
+			expect(property.rent_change_period?).to eq(false)
+			expect(property.vacant?).to eq(false)
+		end
+
+		it 'identifies when not a rent change period && not vacant by date combinations(2)' do
+			property = build_stubbed(:property, rent_period_start:4.months.ago, first_day_of_next_rent_period:nil, moving_out_date:7.weeks.from_now)
+			expect(property.rent_change_period?).to eq(false)
+			expect(property.vacant?).to eq(false)
+		end
+
+		it 'identifies when not a rent change period && not vacant by date combinations(3)' do
+			property = build_stubbed(:property, rent_period_start:4.months.ago, first_day_of_next_rent_period:1.day.from_now, moving_out_date:7.weeks.from_now)
+			expect(property.rent_change_period?).to eq(false)
+			expect(property.vacant?).to eq(false)
+		end
+
+		it 'identifies when not a rent change period && not vacant by date combinations(4)' do
+			property = build_stubbed(:property, rent_period_start:4.months.ago, first_day_of_next_rent_period:1.day.from_now, moving_out_date:nil)
+			expect(property.rent_change_period?).to eq(false)
+			expect(property.vacant?).to eq(false)
+		end
+	end
 end

@@ -97,12 +97,12 @@ Rails.application.configure do
   config.action_mailer.default :charset => "utf-8"
 
   config.action_mailer.smtp_settings = {
-    user_name: ENV['FICTIONAL_USERNAME'],
-    password: ENV['FICTIONAL_PASSWORD'],
-    address: ENV['FICTIONAL_ADDRESS'],
-    domain: ENV['FICTIONAL_DOMAIN'],
-    port: 587,
-    authentication: 'plain',
-    enable_starttls_auto: true
+    address:              'smtp.sendgrid.net',
+    port:                 587,
+    domain:               'heroku.com',
+    user_name:            ENV["SENDGRID_USERNAME"],
+    password:             ENV["SENDGRID_PASSWORD"],
+    authentication:       'plain',
+    enable_starttls_auto: true 
   }
 end

@@ -1,3 +1,5 @@
+
+
 require 'rails_helper'
 
 RSpec.describe Property do
@@ -110,6 +112,36 @@ RSpec.describe Property do
       property.moving_out_date = ""
       property.rent_period_start = "" 
       property.first_day_of_next_rent_period = ""
+      expect(property.valid?).to eq(false)
+  end
+
+  it "rejects a moving_out_date earlier rent_period_start" do
+      property.moving_out_date = 4.weeks.ago
+      property.rent_period_start = 2.weeks.ago
+      expect(property.valid?).to eq(false)
+  end
+
+  it "accepts a moving_out_date after rent_period_start" do
+      property.moving_out_date = 2.weeks.ago
+      property.rent_period_start = 4.weeks.ago
+      expect(property.valid?).to eq(true)
+  end
+
+  it "rejects a nil new rent value if first_day_of_next_rent_period set" do
+      property.new_rent_value = ''
+      property.first_day_of_next_rent_period = 2.weeks.from_now
+      expect(property.valid?).to eq(false)
+  end
+
+  it "first_day_of_next_rent_period can be later than rent period start" do
+      property.rent_period_start = 2.weeks.from_now
+      property.first_day_of_next_rent_period = 5.weeks.from_now
+      expect(property.valid?).to eq(true)
+  end
+
+  it "first_day_of_next_rent_period can't be earlier than rent period start" do
+      property.rent_period_start = 5.weeks.from_now
+      property.first_day_of_next_rent_period = 2.weeks.from_now
       expect(property.valid?).to eq(false)
   end
 end

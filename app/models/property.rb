@@ -25,6 +25,9 @@ class Property < ApplicationRecord
 						numericality: {greater_than_or_equal_to: 0.00}
 
 	validate :no_dates
+	validate :increase_after_start
+	validate :new_rent_value_if_rent_increase
+	validate :move_out_before_move_in
 	
 	before_validation :generate_slug
 	before_save :smarten_address
@@ -50,14 +53,6 @@ class Property < ApplicationRecord
 	  self.slug = self.full_address.parameterize if slug != self.full_address.parameterize
 	end
 
-	# def self.current_void_rent
-	# 	sum{|house| house.balance if house.vacant?}
-	# end
-
-	# def self.total_lost_rent
-	# 	sum{|house| house.void_rent_total unless house.void_rent_total.nil?}
-	# end
-
 	def balance
 		if vacant?
 			moved_out_and_accrue_void_rent
@@ -75,7 +70,7 @@ class Property < ApplicationRecord
 	end
 
 	def rent_change_period? 
-		(first_day_of_next_rent_period == nil) || (Time.now.to_date > first_day_of_next_rent_period) && ( moving_out_date.nil? || Time.now.to_date > moving_out_date) ? false : (Time.now.to_date >= first_day_of_next_rent_period)
+		(first_day_of_next_rent_period == nil) || (Time.now.to_date < first_day_of_next_rent_period) && ( moving_out_date.nil? || Time.now.to_date < moving_out_date) ? false : (Time.now.to_date >= first_day_of_next_rent_period) && (moving_out_date.nil? || first_day_of_next_rent_period < moving_out_date)
 	end
 
 # calculators
@@ -105,12 +100,12 @@ class Property < ApplicationRecord
 
 	def reset!
 		self.update_columns(balance_created:nil) unless self.balance_created == nil
-		lost_rent = void_rent_total
-		lost_rent = end_of_tenancy_balance + void_rent_total if end_of_tenancy_balance?
+		# lost_rent = void_rent_total
+		# lost_rent = end_of_tenancy_balance + void_rent_total if end_of_tenancy_balance?
 
-		self.update_columns(void_rent_total:lost_rent)
-		self.update_columns(balance_created:nil) unless balance_created.nil?
-		self.update_columns(end_of_tenancy_balance: 0.0)
+		# self.update_columns(void_rent_total:lost_rent)
+		# self.update_columns(balance_created:nil) unless balance_created.nil?
+		self.update_columns(end_of_tenancy_balance: nil)
 	end
 
 	def pre_post_rent
@@ -137,8 +132,11 @@ class Property < ApplicationRecord
 	end
 
 	def moved_out_and_accrue_void_rent
-		make_final_balance unless end_of_tenancy_balance.nil?
-		void_rent
+		if end_of_tenancy_balance.nil?
+			make_final_balance
+		else
+			void_rent
+		end
 	end
 
 	def rent_rise_before_final_balance?
@@ -181,7 +179,7 @@ class Property < ApplicationRecord
 	end
 
 	def rent_increase_whilst_vacant?
-		first_day_of_next_rent_period.blank? || moving_out_date.blank? ? false : (moving_out_date < Time.now.to_date && first_day_of_next_rent_period <= Time.now.to_date)
+		first_day_of_next_rent_period.blank? ? false : (moving_out_date < Time.now.to_date && first_day_of_next_rent_period <= Time.now.to_date)
 	end
 
 	private
@@ -189,6 +187,22 @@ class Property < ApplicationRecord
 	def no_dates
 	  errors.add(:rent_period_start, "and moving out date cannot both be blank, (either can individually), if the house is empty set last day of rent period to the last day the property was let, or the day before you wish to start calculating the void rent.") if rent_period_start.blank? && moving_out_date.blank? 
 	  errors.add(:moving_out_date, "and rent period start cannot both be blank, (either can individually), if the house is empty set last day of rent period to the last day the property was let, or the day before you wish to start calculating the void rent.") if rent_period_start.blank? && moving_out_date.blank?
+	end
+
+	def increase_after_start
+		if first_day_of_next_rent_period? && rent_period_start?
+			errors.add(:first_day_of_next_rent_period, "can't be earlier or equal to start of current rent period.") if first_day_of_next_rent_period <= rent_period_start
+		end
+	end
+
+	def move_out_before_move_in
+		if moving_out_date? && rent_period_start?
+			errors.add(:moving_out_date, "can't move out before rent period start") if moving_out_date < rent_period_start
+		end
+	end
+
+	def new_rent_value_if_rent_increase
+		errors.add(:new_rent_value, "can't be blank if next rent period date set.") if first_day_of_next_rent_period? && new_rent_value.blank?
 	end
 
 	def smarten_address
