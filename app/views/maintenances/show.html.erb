@@ -10,7 +10,7 @@
 
 	<section class='detail'>
 		<div class="job">
-				<h2><%= nice_short_date(@maintenance.date)%> <%= @maintenance.worktype.title %>, (<%= link_to @maintenance.contractor.name, contractor_path(@maintenance.contractor) %>) - <%= show_money(@maintenance.cost) %></h2>
+				<h2><%= nice_short_date(@maintenance.date)%> <%= @maintenance.worktype.title %>, (<%= link_to @maintenance.contractor.name, contractor_path(@maintenance.contractor) %>),  <%= show_money(@maintenance.cost) %></h2>
 
 				<% unless @maintenance.details.blank? %>
 

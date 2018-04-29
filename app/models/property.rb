@@ -135,7 +135,7 @@ class Property < ApplicationRecord
 	end
 
 	def fresh_property?
-		moving_out_date? && first_day_of_next_rent_period.blank? && rent_period_start.blank?
+		moving_out_date?  && rent_period_start.blank?
 	end
 
 	def rent_rise_before_final_balance?
