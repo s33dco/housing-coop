@@ -98,14 +98,12 @@
               <%= f.radio_button(:maintenance, 'false', checked: true) %>
               <%= f.label(:maintenance, "No") %>
             </li>
-            <!-- uncomment below to make admin boolean availble for secretary -->
-<!--             <li class="required">
               <%= f.label :admin, "Admin"%>
               <%= f.radio_button(:admin, 'true', checked: false) %>
               <%= f.label(:admin, "Yes") %>
               <%= f.radio_button(:admin, 'false', checked: true) %>
               <%= f.label(:admin, "No") %>
-            </li> -->
+            </li>
           </div>
         <% end %>
       <%= f.submit 'Submit' %> 
