@@ -198,6 +198,9 @@ class Property < ApplicationRecord
 		if moving_out_date? && rent_period_start?
 			errors.add(:moving_out_date, "can't be before rent period start") if moving_out_date < rent_period_start
 		end
+		if moving_out_date? && rent_period_start.nil?
+			errors.add(:moving_out_date, "must be today or in the past if no rent period start date") if moving_out_date >= Time.now.to_date
+		end
 	end
 
 	def new_rent_value_if_rent_increase

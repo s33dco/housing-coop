@@ -8,6 +8,7 @@
 	<section class='report'>
 		<div class="live-report">
 			<h2>Current rent positions as of <%= nice_short_date(Time.now.to_date)%>.</h2>
+			<p>Rent payments last updated - <%= nice_short_date(@last_rent_date) %>.</p>
 				<table>
 				<% @houses.each do |house| %>
 				<tr>
@@ -18,6 +19,7 @@
 				</tr>
 				<% end %>
 				</table>
+
 		</div>
 
 		</section>

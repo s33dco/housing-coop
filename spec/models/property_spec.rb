@@ -127,6 +127,18 @@ RSpec.describe Property do
       expect(property.valid?).to eq(true)
   end
 
+  it "rejects a future moving_out_date if no rent_period_start" do
+      property.moving_out_date = 4.weeks.from_now
+      property.rent_period_start = nil
+      expect(property.valid?).to eq(false)
+  end
+
+  it "accepts a moving_out_date in the past and no rent period start" do
+      property.moving_out_date = 2.weeks.ago
+      property.rent_period_start = nil
+      expect(property.valid?).to eq(true)
+  end
+
   it "rejects a nil new rent value if first_day_of_next_rent_period set" do
       property.new_rent_value = ''
       property.first_day_of_next_rent_period = 2.weeks.from_now

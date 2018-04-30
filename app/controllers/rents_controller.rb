@@ -55,6 +55,7 @@ class RentsController < ApplicationController
 
 	def report
 	  @houses = Property.by_street_name_number
+	  @last_rent_date = Rent.last.created_at
 	end
 
 
