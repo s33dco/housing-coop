@@ -83,7 +83,7 @@
               <%= f.number_field :end_of_tenancy_balance, step: :any, placeholder: 'just numbers'%>
             </li>
         <% else %>
-          <% if admin_rights? %>
+          <% if rent_rights? %>
             <li class="required">
               <%= show_money(@property.rent_balance) %> (balance carried over from previous rent period)       
             </li>
