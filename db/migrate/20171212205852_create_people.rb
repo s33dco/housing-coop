@@ -8,11 +8,11 @@ class CreatePeople < ActiveRecord::Migration[5.0]
       t.decimal :participation
       t.date :joined
       t.date :exit
-      t.boolean :member, default:false
+      t.boolean :member, default:true
       t.boolean :housed, default:true
-      t.boolean :secretary, default:true
-      t.boolean :rent_officer, default:true
-      t.boolean :admin, default:true
+      t.boolean :secretary, default:false
+      t.boolean :rent_officer, default:false
+      t.boolean :admin, default:false
 
       t.timestamps
     end
