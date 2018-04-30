@@ -23,6 +23,6 @@ RSpec.describe 'Add maintenance request' do
 		click_on("Submit")
 		expect(current_path).to eq(maintenance_path(Maintenance.last))
 		expect(page).to have_content("Maintenance work successfully added!")
-		expect(page).to have_content("Electrical, (Steve Mcqueen) - £999.99 re-floored the downstairs")
+		expect(page).to have_content("Electrical, (Steve Mcqueen), £999.99 re-floored the downstairs")
 	end
 end
