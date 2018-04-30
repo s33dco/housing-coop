@@ -5,7 +5,7 @@ Property.create!({
 	postcode:'W1 1AA', 
 	rent_per_week:70.00,
 	coop_house: true,
-	moving_out_date: Time.now.to_date,
+	moving_out_date: 7.days.ago
 	
 								})
 

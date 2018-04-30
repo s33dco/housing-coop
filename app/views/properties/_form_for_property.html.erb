@@ -2,51 +2,55 @@
   <%= render "shared/errors", object: @property %>
     <fieldset>
       <ul>
-        <li class="required">
-          <%= f.label :name_or_number, "Name or Number" %>         
-          <%= f.text_field :name_or_number, size: 30, placeholder: "Property name or number", autofocus: true %>
-        </li>
-        <li class="required">
-          <%= f.label :address1, "Address 1" %>         
-          <%= f.text_field :address1, size: 30 , placeholder: 'Road or Street name'%>
-        </li>
-        <li class="required">
-          <%= f.label :address2, "Address 2" %>         
-          <%= f.text_field :address2, size: 30 , placeholder: 'Town or City'%>
-        </li>
-        <li class="required">
-          <%= f.label :postcode, "Postcode" %>         
-          <%= f.text_field :postcode, size: 30 , placeholder: 'Postcode'%>
-        </li>
-        <li class="required">
-          <%= f.label :kitchen_upgrade, "Kitchen upgrade due :"%>
-          <%= f.date_select :kitchen_upgrade, { order: [ :day, :month, :year], 
-                                                start_year: Date.today.year, 
-                                                end_year: Date.today.year + 10, 
-                                                include_blank: true
-                                              } %>
-        </li>
-        <div class="buttons">
+        <% if sec_rights? %>
           <li class="required">
-            <%= f.label :coop_house, "Managed by Coop"%>
-            <%= f.radio_button(:coop_house, 'true', checked: true) %>
-            <%= f.label(:coop_house, "Yes") %>
-            <%= f.radio_button(:coop_house, 'false', checked: false) %>
-            <%= f.label(:coop_house, "No") %>
+            <%= f.label :name_or_number, "Name or Number" %>         
+            <%= f.text_field :name_or_number, size: 30, placeholder: "Property name or number", autofocus: true %>
           </li>
-        </div>
-        <li class="required">
-          <%= f.label :rent_period_start, "Start of current rent period"%>
-          <%= f.date_select :rent_period_start, { order: [ :day, :month, :year], 
-                                                start_year: Date.today.year - 3, 
-                                                end_year: Date.today.year + 3, 
-                                                include_blank: true
-                                              } %>
-        </li>
-        <li class="required">
-          <%= f.label :rent_per_week ,"Current Rent per week £"%>         
-          <%= f.number_field :rent_per_week, step: :any, placeholder: 'just numbers'%>
-        </li>
+          <li class="required">
+            <%= f.label :address1, "Address 1" %>         
+            <%= f.text_field :address1, size: 30 , placeholder: 'Road or Street name'%>
+          </li>
+          <li class="required">
+            <%= f.label :address2, "Address 2" %>         
+            <%= f.text_field :address2, size: 30 , placeholder: 'Town or City'%>
+          </li>
+          <li class="required">
+            <%= f.label :postcode, "Postcode" %>         
+            <%= f.text_field :postcode, size: 30 , placeholder: 'Postcode'%>
+          </li>
+          <li class="required">
+            <%= f.label :kitchen_upgrade, "Kitchen upgrade due :"%>
+            <%= f.date_select :kitchen_upgrade, { order: [ :day, :month, :year], 
+                                                  start_year: Date.today.year, 
+                                                  end_year: Date.today.year + 10, 
+                                                  include_blank: true
+                                                } %>
+          </li>
+          <div class="buttons">
+            <li class="required">
+              <%= f.label :coop_house, "Managed by Coop"%>
+              <%= f.radio_button(:coop_house, 'true', checked: true) %>
+              <%= f.label(:coop_house, "Yes") %>
+              <%= f.radio_button(:coop_house, 'false', checked: false) %>
+              <%= f.label(:coop_house, "No") %>
+            </li>
+          </div>
+        <% end %>
+        <% if rent_rights? || sec_rights? %>
+          <li class="required">
+            <%= f.label :rent_period_start, "Start of current rent period"%>
+            <%= f.date_select :rent_period_start, { order: [ :day, :month, :year], 
+                                                  start_year: Date.today.year - 3, 
+                                                  end_year: Date.today.year + 3, 
+                                                  include_blank: true
+                                                } %>
+          </li>
+          <li class="required">
+            <%= f.label :rent_per_week ,"Current Rent per week £"%>         
+            <%= f.number_field :rent_per_week, step: :any, placeholder: 'just numbers'%>
+          </li>
+        <% end %>
         <% if rent_rights? %>
           <li class="required">
             <%= f.label :first_day_of_next_rent_period, "First day of next rent period"%>
@@ -68,7 +72,8 @@
                                                   include_blank: true
                                                 } %>
           </li>
-          <% if admin_rights? %>
+        <% end %>
+        <% if admin_rights? %>
             <li class="required">
               <%= f.label :rent_balance ,"Balance carried over from previous rent period"%>         
               <%= f.number_field :rent_balance, step: :any, placeholder: 'just numbers'%>
@@ -77,17 +82,17 @@
               <%= f.label :end_of_tenancy_balance ,"Closing balance from previous tenancy"%>         
               <%= f.number_field :end_of_tenancy_balance, step: :any, placeholder: 'just numbers'%>
             </li>
-          <% else %>
+        <% else %>
+          <% if admin_rights? %>
             <li class="required">
               <%= show_money(@property.rent_balance) %> (balance carried over from previous rent period)       
             </li>
-            <% if @property.end_of_tenancy_balance? %>
-              <li class="required">
-                <%= show_money(@property.end_of_tenancy_balance) %> (Closing balance from previous tenancy)     
-              </li>
+              <% if @property.end_of_tenancy_balance? %>
+                <li class="required">
+                  <%= show_money(@property.end_of_tenancy_balance) %> (Closing balance from previous tenancy)     
+                </li>
+              <% end %>
             <% end %>
-          <% end %>
-
         <% end %>
         <%= f.submit 'Submit' %> 
       </ul>
