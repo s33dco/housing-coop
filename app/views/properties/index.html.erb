@@ -28,7 +28,7 @@
 		</section>
 
 </article>
-<% if property_rights? %>
+<% if sec_rights? || admin_rights? %>
 	<div class="page-actions">
 		<%=link_to 'Add a Property', new_property_path %>
 		</div>
