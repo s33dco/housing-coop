@@ -13,7 +13,7 @@ ENV['COOP_DESCRIPTION']		=	'Fictional is a self-managing housing coop based in F
 # email address
 ENV['COOP_EMAIL_ADDRESS']	= 'code@s33d.co'
 ENV['COOP_EMAIL_SUBJECT']	= 'Message via Fictional Website Contact Form.'
-ENV['COOP_WEB_ADDRESS']	= 'www.fictional.org.uk'
+ENV['COOP_WEB_ADDRESS']	  = 'www.fictional.org.uk'
 
 # Load heroku vars from local file
 heroku_env = File.join(Rails.root, 'config', 'heroku_env.rb')

@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   devise_for :people
-  
+
 	root "static_pages#welcome"
 
 	get  "welcome" => "static_pages#welcome", as: 'welcome'
@@ -22,5 +22,5 @@ Rails.application.routes.draw do
   resources :contractors
   resources :maintenances
   resources :worktypes
-  
+
 end

@@ -9,7 +9,7 @@ class Job < ApplicationRecord
 
 	validates :email, 		presence: true,
 	                  		format: /\A\S+@\S+\z/,
-	                  		uniqueness: { case_sensitive: false , 
+	                  		uniqueness: { case_sensitive: false ,
 	                  									message: "Email address already in use"},
 	                      allow_blank: true
 

@@ -4,7 +4,7 @@ class MaintenancesController < ApplicationController
 	before_action :require_maintenance_rights, except: [:index, :show]
 
 	def index
-		if params[:worktype_id].in? Worktype.all.map{|w| w.id.to_s}
+		if params[:worktype_id].in?(Worktype.all.map{|w| w.id.to_s})
 			@maintenances = Maintenance.worktype(params[:worktype_id])
 		else
 			@maintenances = Maintenance.first_job_first

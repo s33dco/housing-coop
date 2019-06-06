@@ -7,7 +7,7 @@ class ApplicationRecord < ActiveRecord::Base
 
   def full_address
 		"#{self.name_or_number} #{self.address1} #{self.address2} #{self.postcode}"
-	end	
+	end
 
 	def full_name
 		"#{self.firstname} #{self.lastname}"

@@ -1,5 +1,5 @@
 class Property < ApplicationRecord
-	
+
 	has_many :people
 	has_many :rents, -> { order(date: :desc).order(notes: :asc) }
 	has_many :maintenances, -> { order(date: :desc)}
@@ -7,15 +7,15 @@ class Property < ApplicationRecord
 
 	validates :slug, uniqueness: {message: "The same address is already in use"}
 
-	validates :name_or_number,:address1, :address2,	
+	validates :name_or_number,:address1, :address2,
 						presence: true,
 						format: {with: /\A[a-z0-9\s\-\,\.\(\)\/]+\Z/i , message:"- you've used an invalid character"}
 
-	validates :postcode,	
+	validates :postcode,
 						presence: true,
 						length: {minimum: 6, maximum: 9},
 						format: /(([gG][iI][rR] {0,}0[aA]{2})|((([a-pr-uwyzA-PR-UWYZ][a-hk-yA-HK-Y]?[0-9][0-9]?)|(([a-pr-uwyzA-PR-UWYZ][0-9][a-hjkstuwA-HJKSTUW])|([a-pr-uwyzA-PR-UWYZ][a-hk-yA-HK-Y][0-9][abehmnprv-yABEHMNPRV-Y]))) {0,}[0-9][abd-hjlnp-uw-zABD-HJLNP-UW-Z]{2}))/
-                    					
+
 	validates :rent_per_week,
 						presence: true,
 						numericality: {greater_than_or_equal_to: 0.00}
@@ -28,7 +28,7 @@ class Property < ApplicationRecord
 	validate :increase_after_start
 	validate :new_rent_value_if_rent_increase
 	validate :move_out_before_move_in
-	
+
 	before_validation :generate_slug
 	before_save :smarten_address
 
@@ -69,7 +69,7 @@ class Property < ApplicationRecord
 		moving_out_date == nil ? false : Time.now.to_date > moving_out_date
 	end
 
-	def rent_change_period? 
+	def rent_change_period?
 		(first_day_of_next_rent_period == nil) || (Time.now.to_date < first_day_of_next_rent_period) && ( moving_out_date.nil? || Time.now.to_date < moving_out_date) ? false : (Time.now.to_date >= first_day_of_next_rent_period) && (moving_out_date.nil? || first_day_of_next_rent_period < moving_out_date)
 	end
 
@@ -115,9 +115,9 @@ class Property < ApplicationRecord
 		update_balance!(end_of_period)
 		end_of_period
 	end
-	
+
 	def update_balance!(end_of_period)
-		self.update_columns(rent_balance:end_of_period) 
+		self.update_columns(rent_balance:end_of_period)
 		self.update_columns(balance_created:Time.now)
 	end
 
@@ -169,10 +169,10 @@ class Property < ApplicationRecord
 		now = Time.now.to_date
 		from = moving_out_date + 1
 		if rent_increase_whilst_vacant?
-			rent_pre = (rent_due_before(rent_per_week, moving_out_date, first_day_of_next_rent_period)) 
+			rent_pre = (rent_due_before(rent_per_week, moving_out_date, first_day_of_next_rent_period))
 			rent_post = (rent_due_on_to_including(new_rent_value, first_day_of_next_rent_period, now))
 			-(rent_pre + rent_post)
-		else			
+		else
 			-(rent_due_on_to_including(rent_per_week, from, now))
 		end
 	end
@@ -184,7 +184,7 @@ class Property < ApplicationRecord
 	private
 
 	def no_dates
-	  errors.add(:rent_period_start, "and moving out date cannot both be blank, (either can individually), if the house is empty set last day of rent period to the last day the property was let, or the day before you wish to start calculating the void rent.") if rent_period_start.blank? && moving_out_date.blank? 
+	  errors.add(:rent_period_start, "and moving out date cannot both be blank, (either can individually), if the house is empty set last day of rent period to the last day the property was let, or the day before you wish to start calculating the void rent.") if rent_period_start.blank? && moving_out_date.blank?
 	  errors.add(:moving_out_date, "and rent period start cannot both be blank, (either can individually), if the house is empty set last day of rent period to the last day the property was let, or the day before you wish to start calculating the void rent.") if rent_period_start.blank? && moving_out_date.blank?
 	end
 

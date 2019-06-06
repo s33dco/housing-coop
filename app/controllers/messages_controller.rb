@@ -6,7 +6,7 @@ class MessagesController < ApplicationController
 
 	def create
 	  @message = Message.new(message_params)
-	  
+
 	  if @message.valid?
 	  	MessageMailer.contact(@message).deliver_now
 	    redirect_to new_message_url, notice: "Thanks for your email!"

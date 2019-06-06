@@ -1,7 +1,7 @@
 class Person < ApplicationRecord
- 
+
   #  and :omniauthable
-  devise :database_authenticatable, :recoverable, 
+  devise :database_authenticatable, :recoverable,
           :rememberable, :trackable, :lockable
 
   belongs_to :property
@@ -23,7 +23,7 @@ class Person < ApplicationRecord
 
   validates :email, 		presence: true,
                     		format: /\A\S+@\S+\z/,
-                    		uniqueness: { case_sensitive: false , 
+                    		uniqueness: { case_sensitive: false ,
                     									message: "Email address already in use"}
 
   validates :phone,     numericality:  {message: "- just digits no spaces"},
@@ -35,8 +35,7 @@ class Person < ApplicationRecord
                        length: {:within => 8..40},
                        on:  :create
 
-  validates :password, 
-                       confirmation: true,
+  validates :password, confirmation: true,
                        length:  {:within => 8..40},
                        allow_blank: true,
                        on: :update
@@ -68,8 +67,8 @@ class Person < ApplicationRecord
 
   def event_percent
     eventsattended = self.joined
-    (self.events.size.to_f/Calendar.all.select{|event| event.date_time > eventsattended}.size)*(100)  
-  end  
+    (self.events.size.to_f/Calendar.all.select{|event| event.date_time > eventsattended}.size)*(100)
+  end
 
   def to_param
     slug
@@ -81,7 +80,7 @@ class Person < ApplicationRecord
   end
 
 private
-  
+
   def member_must_have_join_date
     errors.add(:joined, "- If person a member they must have a first moved in date.") if member == true && joined.blank?
   end

@@ -4,7 +4,7 @@ class Maintenance < ApplicationRecord
 	belongs_to :contractor
 	belongs_to :worktype, -> { order(title: :desc) }
 
-	validates :cost, 								
+	validates :cost,
 							presence: true,
 							numericality: {greater_than_or_equal_to: 0.00}
 
@@ -12,7 +12,7 @@ class Maintenance < ApplicationRecord
 
 	validates :worktype_id, presence: true
 
-	validates :property_id, presence: true	
+	validates :property_id, presence: true
 
 	validates :contractor_id, presence: true
 

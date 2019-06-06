@@ -1,12 +1,12 @@
 class Calendar < ApplicationRecord
-	
+
 
 	has_many :participations
 	has_many :people, through: :participations
 
 	validates :date_time, 	presence: true
 
-	validates :title, :details, :where, 
+	validates :title, :details, :where,
 										presence: true,
 										format: {with: /\A[a-z0-9\s\-\,\.\(\)\/\&\£\!\?\']+\Z/i, message:"- you've used an invalid character"}
 	# validate :link
@@ -20,7 +20,7 @@ class Calendar < ApplicationRecord
 	def past?
 		Time.now.to_date > date_time
 	end
-	
+
 private
 
 	def clean_title

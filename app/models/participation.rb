@@ -4,5 +4,5 @@ class Participation < ApplicationRecord
 
   validates :person, presence: true
   validates :calendar, presence: true
-  
+
 end
